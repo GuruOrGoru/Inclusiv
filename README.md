@@ -1,83 +1,3 @@
-# PathForward 🚀
-
-**Bridging Abilities to Opportunities**
-
-PathForward is an AI-powered career platform that matches individuals with disabilities to meaningful employment opportunities based on their skills and abilities, not their limitations. Our mission is to transform the employment landscape by focusing on what people can do, while providing intelligent accommodation recommendations and career pathway guidance.
-
-## 🎯 Problem Statement
-
-- **50%+ unemployment rate** among people with disabilities despite their desire to work
-- Traditional job platforms focus on disability as a limitation rather than showcasing abilities
-- Lack of personalized accommodation guidance for both job seekers and employers
-- Limited career pathway visibility for people with various accessibility needs
-
-## 💡 Our Solution
-
-PathForward addresses these challenges through:
-
-- **Skills-First Matching**: AI-powered algorithm that prioritizes abilities and skills over disability status
-- **Smart Accommodation Engine**: Intelligent suggestions for workplace accommodations based on job requirements
-- **Career Pathway Mapping**: Personalized career progression routes with accessibility considerations
-- **Employer Education Hub**: Resources to help employers create inclusive workplaces
-- **Peer Support Network**: Community features connecting users with similar experiences
-
-## 🛠 Tech Stack
-
-- **Frontend**: React.js with accessibility-first design
-- **Backend**: Node.js with Express
-- **Database**: PostgreSQL
-- **AI/ML**: OpenAI API for skill matching and natural language processing
-- **APIs**: Indeed Jobs API, LinkedIn Jobs API
-- **Deployment**: AWS/Vercel
-- **Testing**: Jest, React Testing Library, axe-core for accessibility testing
-
-## ✨ Key Features
-
-### Phase 1 (MVP - Week 1)
-- [x] User registration and profile creation
-- [x] Skills assessment questionnaire
-- [x] Basic job matching algorithm
-- [x] Accommodation recommendations
-- [x] Accessible UI/UX design
-
-### Phase 2 (Future)
-- [ ] Advanced AI-powered career pathway suggestions
-- [ ] Employer onboarding and job posting
-- [ ] Peer mentorship matching
-- [ ] Integration with assistive technologies
-- [ ] Mobile application
-
-## 👥 Team
-
-- **Developer**: Core development, system architecture, AI integration
-- **Avhi**: UX/UI design, user research, product strategy, content creation
-
-## 📅 Week 1 Development Sprint
-
-### **Sunday - Foundation Day**
-**Developer Tasks:**
-- Set up development environment (Golang, Docker, Supabasejj)
-- Create GitHub repository and project structure
-- Research accessibility APIs and job board integrations
-- Investigate AI/ML APIs for skill matching
-- Document technical feasibility and constraints
-
-**Avhi Tasks:**
-- Conduct user research and competitor analysis
-- Interview potential users from disability communities
-- Analyze existing solutions (AbilityJobs, Inclusively, LinkedIn)
-- Create initial user personas and problem validation
-- Research disability employment statistics and pain points
-
-**Evening Sync:** Share findings and finalize core feature set
-
----
-
-### **Monday - Architecture & Design**
-**Developer Tasks:**
-- Design system architecture and database schema
-- Choose final tech stack and set up boilerplate
-- Create API endpoint structure planning
 - Set up development tools and testing framework
 
 **Avhi Tasks:**
@@ -98,10 +18,8 @@ PathForward addresses these challenges through:
 - Create foundation for skills assessment module
 
 **Avhi Tasks:**
-- Finalize UI/UX designs for core screens
-- Create content strategy and copy for user flows
-- Research and document accommodation database structure
 - Begin user testing plan development
+djccjiirjvohshohskhdkhkaoaoc bdhyuyuttyilghghjfhfhg
 
 **Evening Review:** Test user registration and profile creation flow
 
@@ -192,7 +110,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Project Repository**: [GitHub](https://github.com/guruorgoru)
+- **Project Repository Owner**: [GitHub](https://github.com/guruorgoru)
 - **Developer**: siddharthadhakall3722@gmail.com
 - **Avhi**: avhipro19@gmail.com
 ---
