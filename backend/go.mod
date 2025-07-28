@@ -1,3 +1,3 @@
-module github.com/guruorgoru/Inclusiv
+module inclusiv/backend
 
 go 1.24.4
