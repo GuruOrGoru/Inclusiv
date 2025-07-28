@@ -36,7 +36,7 @@ COPY .env .
 # Fix permissions
 RUN chown -R appuser:appgroup /root/
 
-# Switch to non-root user
+# Switch to non-root user's
 USER appuser
 
 # Health check endpoint
