@@ -1,0 +1,20 @@
+
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8414:8414"
+    environment:
+      - PORT=8414
+    env_file:
+      - .env
+    restart: unless-stopped
+    network_mode: "host"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8414/health"]
+      timeout: 10s
+      interval: 30s
+      retries: 5
+      start_period: 60s
