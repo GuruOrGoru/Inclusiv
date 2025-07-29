@@ -1,8 +1,8 @@
-# PathForward 🚀
+# Inclusiv 🚀
 
 **Bridging Abilities to Opportunities**
 
-PathForward is an AI-powered career platform that matches individuals with disabilities to meaningful employment opportunities based on their skills and abilities, not their limitations. Our mission is to transform the employment landscape by focusing on what people can do, while providing intelligent accommodation recommendations and career pathway guidance.
+Inclusiv is an AI-powered career platform that matches individuals with disabilities to meaningful employment opportunities based on their skills and abilities, not their limitations. Our mission is to transform the employment landscape by focusing on what people can do, while providing intelligent accommodation recommendations and career pathway guidance.
 
 ## 🎯 Problem Statement
 
@@ -13,7 +13,7 @@ PathForward is an AI-powered career platform that matches individuals with disab
 
 ## 💡 Our Solution
 
-PathForward addresses these challenges through:
+Inclusiv addresses these challenges through:
 
 - **Skills-First Matching**: AI-powered algorithm that prioritizes abilities and skills over disability status
 - **Smart Accommodation Engine**: Intelligent suggestions for workplace accommodations based on job requirements
@@ -197,5 +197,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Avhi**: avhipro19@gmail.com
 ---
 
-**PathForward** - *Empowering careers through accessibility and inclusion* 🌟
+**Inclusiv** - *Empowering careers through accessibility and inclusion* 🌟
 # Inclusiv
