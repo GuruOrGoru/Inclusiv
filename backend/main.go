@@ -1,45 +1,59 @@
 package main
 
 import (
-	"fmt"
-	"inclusiv/backend/internal/job"
+	"inclusiv/backend/internal/router"
 	"log"
+	"net/http"
+	"os"
+	"strings"
+	"time"
+
+	"github.com/joho/godotenv"
 )
 
-func main() {
-	apiURLs := []string{
-		"https://boards-api.greenhouse.io/v1/boards/gitlab/jobs",
+func getAPIURLsFromEnv() []string {
+	urlsEnv := os.Getenv("API_URLS")
+
+	if urlsEnv == "" {
+		log.Println("Warning: API_URLS environment variable is empty")
+		return []string{}
 	}
 
-	var allJobs []job.Job
+	urlList := strings.Split(urlsEnv, ",")
+	urls := make([]string, 0, len(urlList))
 
-	for _, apiURL := range apiURLs {
-		fmt.Printf("Fetching jobs from: %s\n", apiURL)
-
-		jobs, err := job.FetchJobs(apiURL)
-		if err != nil {
-			log.Printf("Error fetching from %s: %v\n", apiURL, err)
-			continue
+	for _, url := range urlList {
+		trimmedURL := strings.TrimSpace(url)
+		if trimmedURL != "" {
+			urls = append(urls, trimmedURL)
 		}
-
-		fmt.Printf("Retrieved %d jobs\n", len(jobs))
-		allJobs = append(allJobs, jobs...)
 	}
 
-	if len(allJobs) == 0 {
-		fmt.Println("Creating sample jobs for demonstration...")
-		allJobs = job.CreateSampleJobs()
+	return urls
+}
+
+func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file:", err)
 	}
 
-	inclusiveJobs := job.FilterInclusiveJobs(allJobs)
-
-	if len(inclusiveJobs) == 0 {
-		fmt.Println("No inclusive job opportunities found")
-		return
+	portstr := os.Getenv("PORT")
+	if portstr == "" {
+		log.Fatal("Port not set in env")
 	}
 
-	job.DisplayJobs(inclusiveJobs)
+	urls := getAPIURLsFromEnv()
+	router := router.NewRouter(urls)
 
-	fmt.Printf("\nTotal jobs processed: %d\n", len(allJobs))
-	fmt.Printf("Inclusive opportunities found: %d\n", len(inclusiveJobs))
+	server := &http.Server{
+		Addr:         ":" + portstr,
+		Handler:      router,
+		ReadTimeout:  10 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  60 * time.Second,
+	}
+
+	log.Println("Server started on port", portstr)
+	log.Fatalln(server.ListenAndServe())
 }
