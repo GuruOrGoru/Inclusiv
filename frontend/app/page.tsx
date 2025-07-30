@@ -2,17 +2,19 @@ import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
 import { StatsSection } from "@/components/stats-section"
 import { FeaturedJobs } from "@/components/featured-jobs"
-import { FeaturedEmployers } from "@/components/featured-employers"
+import { HowItWorks } from "@/components/how-it-works"
+import { Testimonials } from "@/components/testimonials"
 import { Footer } from "@/components/footer"
 
 export default function HomePage() {
   return (
-    <main>
+    <main className="min-h-screen bg-white">
       <Navigation />
       <HeroSection />
       <StatsSection />
       <FeaturedJobs />
-      <FeaturedEmployers />
+      <HowItWorks />
+      <Testimonials />
       <Footer />
     </main>
   )

@@ -2,25 +2,26 @@ import { getJobs } from "@/lib/api"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { MapPin, Clock, Accessibility } from "lucide-react"
+import { MapPin, Clock, DollarSign, Accessibility, Building2 } from "lucide-react"
 import Link from "next/link"
 
 export async function FeaturedJobs() {
   let jobs
   try {
     const allJobs = await getJobs()
-    jobs = allJobs.slice(0, 6) // Show first 6 jobs
+    jobs = allJobs.slice(0, 6)
   } catch (error) {
     jobs = []
   }
 
   if (jobs.length === 0) {
     return (
-      <section className="py-16 bg-gray-50" aria-labelledby="featured-jobs-heading">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="featured-jobs-heading" className="text-3xl font-bold text-center text-gray-900 mb-12">
-            Featured Opportunities
-          </h2>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Jobs</h2>
+            <p className="text-xl text-gray-600">Discover inclusive opportunities from top employers</p>
+          </div>
           <div className="text-center text-gray-600">
             <p>Loading opportunities... Please ensure the backend is running on localhost:8414</p>
           </div>
@@ -30,61 +31,67 @@ export async function FeaturedJobs() {
   }
 
   return (
-    <section className="py-16 bg-gray-50" aria-labelledby="featured-jobs-heading">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 id="featured-jobs-heading" className="text-3xl font-bold text-gray-900 mb-4">
-            Featured Opportunities
-          </h2>
-          <p className="text-xl text-gray-600">Discover inclusive job opportunities tailored to your abilities</p>
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Jobs</h2>
+          <p className="text-xl text-gray-600">Discover inclusive opportunities from top employers</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {jobs.map((job) => (
-            <Card key={job.id} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <CardTitle className="text-lg">{job.title}</CardTitle>
-                <div className="flex items-center text-gray-600 text-sm">
-                  <span className="font-medium">{job.company}</span>
+            <Card key={job.id} className="hover:shadow-lg transition-all duration-300 border-0 shadow-md">
+              <CardHeader className="pb-4">
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <Building2 className="h-6 w-6 text-blue-600" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-lg font-semibold text-gray-900 line-clamp-1">
+                        {job.title}
+                      </CardTitle>
+                      <p className="text-blue-600 font-medium">{job.company}</p>
+                    </div>
+                  </div>
                 </div>
               </CardHeader>
-              <CardContent>
+              
+              <CardContent className="pt-0">
                 <div className="space-y-3">
                   <div className="flex items-center text-gray-600 text-sm">
-                    <MapPin className="h-4 w-4 mr-1" aria-hidden="true" />
+                    <MapPin className="h-4 w-4 mr-2" />
                     {job.location}
                   </div>
+                  
+                  {job.remote && (
+                    <Badge variant="secondary" className="bg-green-100 text-green-800">
+                      Remote Friendly
+                    </Badge>
+                  )}
 
-                  <div className="flex items-center text-gray-600 text-sm">
-                    <Clock className="h-4 w-4 mr-1" aria-hidden="true" />
-                    {job.type}
-                  </div>
+                  <p className="text-gray-700 text-sm line-clamp-3 leading-relaxed">
+                    {job.description}
+                  </p>
 
-                  {job.salary_range && <div className="text-sm font-medium text-green-600">{job.salary_range}</div>}
-
-                  <p className="text-gray-700 text-sm line-clamp-3">{job.description}</p>
-
-                  {job.accessibility_features && job.accessibility_features.length > 0 && (
-                    <div className="flex items-start gap-2">
-                      <Accessibility className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" aria-hidden="true" />
-                      <div className="flex flex-wrap gap-1">
-                        {job.accessibility_features.slice(0, 2).map((feature, index) => (
-                          <Badge key={index} variant="secondary" className="text-xs">
-                            {feature}
-                          </Badge>
-                        ))}
-                        {job.accessibility_features.length > 2 && (
-                          <Badge variant="secondary" className="text-xs">
-                            +{job.accessibility_features.length - 2} more
-                          </Badge>
-                        )}
-                      </div>
+                  {job.salary && (
+                    <div className="flex items-center text-green-600 font-semibold">
+                      <DollarSign className="h-4 w-4 mr-1" />
+                      {job.salary}
                     </div>
                   )}
 
-                  <Button asChild className="w-full mt-4">
-                    <Link href={`/jobs/${job.id}`}>View Details</Link>
-                  </Button>
+                  <div className="flex items-center justify-between pt-4">
+                    <div className="flex items-center text-gray-500 text-xs">
+                      <Clock className="h-3 w-3 mr-1" />
+                      {new Date(job.posted_date).toLocaleDateString()}
+                    </div>
+                    <Button asChild size="sm" className="bg-blue-600 hover:bg-blue-700">
+                      <Link href={`/jobs/${job.id}`}>
+                        View Details
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -92,8 +99,10 @@ export async function FeaturedJobs() {
         </div>
 
         <div className="text-center">
-          <Button asChild variant="outline" size="lg">
-            <Link href="/jobs">View All Opportunities</Link>
+          <Button asChild variant="outline" size="lg" className="border-blue-600 text-blue-600 hover:bg-blue-50">
+            <Link href="/jobs">
+              View All Jobs
+            </Link>
           </Button>
         </div>
       </div>
