@@ -83,7 +83,7 @@ func FetchJobs(apiURL string) ([]Job, error) {
   // Fetch job postings from Greenhouse
   // Apply inclusive criteria
   // Return clean job list
-}
+}```
 
 We respect user-agent headers. We avoid unnecessary retries. We do one thing well: fetch jobs, then tell you which ones are likely worth your time.
 Inclusivity Detection
