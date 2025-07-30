@@ -92,22 +92,10 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center">
-                        <!-- Logo SVG (from the provided image) -->
-                        <svg class="h-10 w-auto mr-3" viewBox="0 0 100 100" aria-hidden="true">
-                            <circle cx="20" cy="30" r="8" fill="#3b82f6"/>
-                            <rect x="12" y="40" width="16" height="35" rx="8" fill="#3b82f6"/>
-                            
-                            <circle cx="50" cy="30" r="8" fill="#22c55e"/>
-                            <rect x="42" y="40" width="16" height="35" rx="8" fill="#22c55e"/>
-                            
-                            <circle cx="80" cy="30" r="8" fill="#3b82f6"/>
-                            <rect x="72" y="40" width="16" height="20" rx="8" fill="#3b82f6"/>
-                            <circle cx="88" cy="65" r="6" fill="#fbbf24"/>
-                            <rect x="88" y="65" width="8" height="10" fill="#3b82f6"/>
-                        </svg>
-                        <span class="text-2xl font-bold text-primary-900">Inclusiv</span>
-                    </div>
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="logo.png" alt="Inclusiv Logo" class="h-13 w-12 mr-3" />
+                    <span class="text-2xl font-bold text-primary-900">Inclusiv</span>
+                </div>
                 </div>
                 
                 <!-- Navigation Links -->
@@ -263,11 +251,11 @@
                 <h2 id="stats-heading" class="text-2xl font-bold mb-6">Making a Difference</h2>
                 <div class="grid md:grid-cols-3 gap-8">
                     <div>
-                        <div class="text-4xl font-bold mb-2">50%+</div>
+                        <div class="text-4xl font-bold mb-2">70%+</div>
                         <div class="text-primary-100">Unemployment rate we're addressing</div>
                     </div>
                     <div>
-                        <div class="text-4xl font-bold mb-2">1000+</div>
+                        <div class="text-4xl font-bold mb-2">100+</div>
                         <div class="text-primary-100">Inclusive jobs available</div>
                     </div>
                     <div>
@@ -287,11 +275,6 @@
 
             <!-- Job Results -->
             <div x-show="jobs.length > 0" class="space-y-6">
-                <div class="bg-white p-4 rounded-lg border border-gray-200">
-                    <p class="text-sm text-gray-600 mb-4">
-                        Showing <span x-text="jobs.length"></span> of <span x-text="totalJobs"></span> inclusive job opportunities
-                    </p>
-                </div>
                 <div x-show="error" class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
                     <div class="flex">
                         <div class="flex-shrink-0">
@@ -304,6 +287,11 @@
                             <p class="text-sm text-red-600 mt-2">Showing sample data instead.</p>
                         </div>
                     </div>
+                </div>
+                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                    <p class="text-sm text-gray-600 mb-4">
+                        Showing <span x-text="jobs.length"></span> of <span x-text="totalJobs"></span> inclusive job opportunities
+                    </p>
                 </div>
 
                 <template x-for="job in jobs" :key="job.id">
@@ -340,14 +328,10 @@
                             <p class="text-gray-700" x-text="job.description || 'No description available'"></p>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-3">
-                            <button @click="showJobDetails(job)" 
-                                    class="bg-primary-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-700 focus-visible:focus transition-colors">
+                            <button @click="showJobDetails(job)" class="bg-primary-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-700 focus-visible:focus transition-colors">
                                 View Details
                             </button>
-                            <a :href="job.apply_url" 
-                               target="_blank" 
-                               rel="noopener noreferrer"
-                               class="border border-primary-600 text-primary-600 px-6 py-2 rounded-lg font-medium text-center hover:bg-primary-50 focus-visible:focus transition-colors">
+                            <a :href="job.apply_url" target="_blank" rel="noopener noreferrer" class="border border-primary-600 text-primary-600 px-6 py-2 rounded-lg font-medium text-center hover:bg-primary-50 focus-visible:focus transition-colors">
                                 Apply Now
                                 <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
@@ -689,10 +673,8 @@
                 
                 <div class="prose max-w-none mb-8">
                     <h3 class="text-lg font-semibold text-gray-900 mb-3">Job Description</h3>
-                    <div class="text-gray-700 whitespace-pre-line" 
-                         x-text="selectedJob?.description || 'No description available'"></div>
-                    <div x-show="selectedJob?.salary && selectedJob?.salary !== 'Salary not specified'" 
-                         class="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <div class="text-gray-700 whitespace-pre-line" x-text="selectedJob?.description || 'No description available'"></div>
+                    <div x-show="selectedJob?.salary && selectedJob?.salary !== 'Salary not specified'" class="mt-4 p-3 bg-gray-50 rounded-lg">
                         <h4 class="font-semibold text-gray-900">Salary</h4>
                         <p x-text="selectedJob?.salary" class="text-secondary-600"></p>
                     </div>
@@ -725,16 +707,7 @@
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="md:col-span-2">
                     <div class="flex items-center mb-4">
-                        <svg class="h-8 w-auto mr-2" viewBox="0 0 100 100" aria-hidden="true">
-                            <circle cx="20" cy="30" r="8" fill="#3b82f6"/>
-                            <rect x="12" y="40" width="16" height="35" rx="8" fill="#3b82f6"/>
-                            <circle cx="50" cy="30" r="8" fill="#22c55e"/>
-                            <rect x="42" y="40" width="16" height="35" rx="8" fill="#22c55e"/>
-                            <circle cx="80" cy="30" r="8" fill="#3b82f6"/>
-                            <rect x="72" y="40" width="16" height="20" rx="8" fill="#3b82f6"/>
-                            <circle cx="88" cy="65" r="6" fill="#fbbf24"/>
-                            <rect x="88" y="65" width="8" height="10" fill="#3b82f6"/>
-                        </svg>
+                        <img src="logo.png" alt="Inclusiv Logo" class="h-13 w-12 mr-3" />
                         <span class="text-xl font-bold">Inclusiv</span>
                     </div>
                     <p class="text-gray-300 mb-4">
@@ -771,7 +744,7 @@
         function inclusivApp() {
             return {
                 // Backend API URL - Replace with your hosted backend URL
-                API_BASE_URL: 'https://your-api-endpoint.com', // Replace with your actual API URL
+                API_BASE_URL: 'http://localhost:8414', // Replace with your actual API URL
                 
                 // App state
                 currentPage: 'home',
@@ -807,11 +780,11 @@
                             throw new Error(`Failed to load jobs. Status: ${response.status}`);
                         }
                         const data = await response.json();
-                        if (!data.jobs || !Array.isArray(data.jobs)) {
+                        console.log('API response:', data); // Debug log
+                        if (!("jobs" in data) || !Array.isArray(data.jobs)) {
                             throw new Error('Invalid data format from API');
                         }
                         this.totalJobs = data.count;
-                        // Transform API data to match expected format
                         this.jobs = data.jobs.map(job => ({
                             id: job.id,
                             title: job.title,
