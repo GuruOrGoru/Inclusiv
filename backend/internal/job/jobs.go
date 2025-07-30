@@ -237,17 +237,17 @@ func FetchJobs(apiURL string) ([]Job, error) {
 			company = matches[1]
 		}
 		if company == "unknown" {
-    	u, err := url.Parse(apiURL)
-    		if err == nil {
-        	parts := strings.Split(u.Path, "/")
-        	for i, part := range parts {
-            	if part == "boards" && i+1 < len(parts) {
-              	  company = parts[i+1]
-                	break
-            	}
-        	}
-    	}
-	}
+			u, err := url.Parse(apiURL)
+			if err == nil {
+				parts := strings.Split(u.Path, "/")
+				for i, part := range parts {
+					if part == "boards" && i+1 < len(parts) {
+						company = parts[i+1]
+						break
+					}
+				}
+			}
+		}
 
 		var ghResponse struct {
 			Jobs []struct {
