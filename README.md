@@ -1,176 +1,110 @@
-# Inclusiv
-
-_“A job portal built for everyone. Especially those usually left out.”_
+# Inclusiv — The Inclusive Job Portal You Didn’t Know You Needed
 
 ---
 
 ## Introduction
 
-Picture this: You're a talented developer. You're in a wheelchair. You spend days scrolling through job boards, opening 57 tabs, and reading between the lines of every "We're an equal opportunity employer" blurb just to figure out if the building has an elevator.
+Welcome to **Inclusiv**, a job portal that’s a little different from the others. You might be wondering: why build another job board? Well, let me tell you a story.
 
-Sound exhausting? That’s exactly why Inclusiv exists.
+Imagine you’re a talented individual with a disability or from an underrepresented community. You have the skills, the drive, and the passion—but every time you try to find a job, the listings either ignore accessibility, flexibility, or plain old human decency. You scroll through hundreds of postings that don’t mention whether the workplace accommodates your needs. You wonder if the company even *cares* about inclusion or if you’ll have to jump through hoops just to be considered.
 
-**Inclusiv** is a carefully crafted, AI-enhanced job portal designed to do one thing right: **find jobs that are actually inclusive** — for people with disabilities, marginalized backgrounds, or anyone who’s tired of guessing whether “we value diversity” really means something.
-
----
-
-## Why This Project?
-
-### The Short Version
-
-Most job portals are built for speed. Inclusiv is built for **empathy**.
-
-### The Long Version
-
-While building tech products, we often optimize for the majority. Clean UIs, blazing-fast filters, clever UX patterns. But what happens when you stop and ask: "Is this job accessible to someone with mobility issues?" or "Will this employer respect neurodivergent candidates?" Most platforms don't even attempt to answer.
-
-So, we did.
-
-Inclusiv isn’t just a scraper or another listings site. It’s a statement: **Technology should serve the edges, not just the middle**.
-
-We collect jobs from real-world companies and assess them based on indicators of inclusion — then present them with clarity, context, and respect.
+Inclusiv was born out of this frustration. It’s a place where job seekers like you don’t have to guess or hope for the best. A place that speaks your language, looks out for your needs, and makes job hunting less of a guessing game and more of a hopeful journey.
 
 ---
 
-## What It Does
+## What is Inclusiv?
 
-Inclusiv fetches and filters job listings from open job board APIs (like Greenhouse) and passes them through a logic-driven inclusivity filter. That means we try to understand:
-
-- Does the company mention disability inclusion?
-- Are there remote or flexible options?
-- Do they have a public DEI (Diversity, Equity, and Inclusion) policy?
-- Are the descriptions accessible in language and structure?
-
-And most importantly: **Would someone who is typically excluded feel welcome here?**
-
-We don’t rely on guesswork — we analyze the job description text using actual natural language processing tools. Think of it as an accessibility-aware search engine, minus the corporate fluff.
+Inclusiv is an AI-powered job portal focused entirely on **inclusivity**. It carefully filters job listings to highlight those that truly embrace accessibility, diversity, and flexibility. Our mission? To bring transparency to hiring practices and to help companies who *actually* care connect with the talent they deserve.
 
 ---
 
-## Features
+## How Does Inclusiv Work?
 
-- **Inclusive Job Detection**  
-  Intelligent parsing of job descriptions to detect inclusive signals like DEI statements, accessibility mentions, and flexible work policies.
+Behind the scenes, Inclusiv fetches jobs from reputable sources like Greenhouse and others. But here’s the secret sauce: instead of just dumping every job on your screen, it uses a smart blend of AI and carefully crafted logic to analyze each posting’s language. It looks for accessibility terms, diversity statements, remote work options, and flexible policies.
 
-- **Multi-Source Aggregation**  
-  Jobs are pulled from various companies via their Greenhouse boards, including Code for America, ProPublica, Hebbia, Notion, and more.
+That means you see job listings that:
 
-- **Clean Frontend Interface**  
-  Accessible HTML + TailwindCSS-based UI (React optional). No logins. No clutter. Just the jobs.
+- Talk about wheelchair accessibility  
+- Explicitly mention remote work or flexible schedules  
+- Have clear diversity and inclusion statements  
+- Use language that doesn’t make you feel like you’re solving a mystery just to understand if the role fits you  
 
-- **Fast Go Backend**  
-  Written in idiomatic Go, dockerized for easy deployment. Fast, lightweight, and scalable.
-
-- **Portable and Open Source**  
-  MIT-licensed. Plug-and-play for anyone looking to host or modify their own inclusive job portal.
+And because our backend is written in Go, it’s not just smart — it’s lightning fast.
 
 ---
 
-## Live Demo?
+## Why Should You Care?
 
-Not yet — but coming soon. Until then, clone the repo, run it locally (see below), and experience the magic for yourself.
+Because most job portals were made for the “average” job seeker — and guess what? The “average” person doesn’t exist. We all come with unique needs and stories. Inclusiv recognizes this diversity and caters to it.
+
+Think of Inclusiv like that friendly neighborhood barista who *actually* remembers your name and how you like your coffee — only here, it’s about remembering and respecting your accessibility and inclusion needs.
 
 ---
 
-## How It Works (A Brief Technical Tale)
+## A Peek Under the Hood
 
-### The Backend
+You don’t need to be a techie to use Inclusiv, but if you are curious — the backend is a robust Go application that pulls data from various Greenhouse job boards. It then analyzes those jobs using AI models or custom logic to score inclusivity and filter accordingly.
 
-Powered by Go, the backend does the heavy lifting. It fetches job data from multiple companies via the Greenhouse API, then processes each job listing using inclusive detection logic.
+The frontend is designed to be clean, accessible, and straightforward, so you won’t need a manual to figure out how to find your next inclusive opportunity.
 
-```go
-func FetchJobs(apiURL string) ([]Job, error) {
-  // Fetch job postings from Greenhouse
-  // Apply inclusive criteria
-  // Return clean job list
-}```
+---
 
-We respect user-agent headers. We avoid unnecessary retries. We do one thing well: fetch jobs, then tell you which ones are likely worth your time.
-Inclusivity Detection
+## Who Built Inclusiv?
 
-You can think of this as a mini-critic with a magnifying glass. We check job descriptions for terms that indicate:
+Inclusiv is the brainchild of a passionate developer who believes technology can help level the playing field. The goal isn’t just to build another app, but to create a tool that makes a real difference for people often left out.
 
-    Wheelchair accessibility
+---
 
-    Remote work flexibility
+## What’s Next?
 
-    Gender-neutral language
+This is just the beginning. Future plans include:
 
-    Neurodiversity-friendly environments
+- Adding more job sources so you get an even wider range of inclusive jobs  
+- Improving AI to provide better inclusivity scores and transparency  
+- Adding notifications to alert you when inclusive jobs matching your profile pop up  
+- Creating a space for employers who *really* walk the talk on diversity and inclusion  
 
-    Genuine diversity policies (not just buzzwords)
+---
 
-The current model uses a rule-based parser (soon to be upgraded to a small language model or in-house embedding matcher). It’s not perfect, but it’s better than squinting through 300 listings.
-Project Structure
+## How to Use Inclusiv
 
-Inclusiv/
-├── backend/
-│   ├── main.go               # Entry point
-│   ├── jobfetcher.go         # Job fetching & parsing logic
-│   ├── utils.go              # Utilities
-│   ├── models.go             # Job structs
-│   └── docker-compose.yaml   # Compose file
-├── frontend/
-│   ├── index.html            # Main UI
-│   ├── tailwind.config.js    # Styling setup
-│   └── styles.css            # CSS classes
+Simply browse, search, and filter jobs by your preferences. No sign-up, no complicated onboarding, no barriers. Because inclusion means **easy access**.
 
-How to Run It
-Prerequisites
+---
 
-    Go 1.20+
+## Final Thoughts
 
-    Docker & Docker Compose
+Inclusiv isn’t perfect, but then again, neither are we. What it is, is a step forward — a way to say loudly and clearly that everyone deserves a fair shot at their dream job, regardless of ability or background.
 
-    Node.js (for Tailwind, optional)
+If you believe in that too, welcome aboard.
 
-Quickstart
+---
 
-# Backend
-cd backend
-go run main.go
+## PS: Why “Inclusiv” without the “e”?
 
-# Or, use Docker
-docker compose up --build
+Because inclusion doesn’t need an extra letter.  
+It just needs you.
 
-# Frontend (static for now)
-cd frontend
-open index.html
+---
 
-Boom. You’re now staring at jobs handpicked (by code) for inclusion.
-Roadmap
+## Get Involved
 
-    Replace Hugging Face API with local NLP model or embedding classifier
+You’re invited to explore, contribute, and share feedback. Inclusiv thrives because of the community that cares about fairness and accessibility.
 
-    Add company profiles with inclusion ratings
+Check out the code, suggest improvements, or just spread the word.
 
-    Weekly digest or job alert emails (with opt-in)
+---
 
-    Add GitHub OAuth for bookmarking jobs (optional)
+## Links
 
-    Publish the Inclusiv Score algorithm as an open framework
+- Repository: [github.com/guruorgoru/Inclusiv](https://github.com/guruorgoru/Inclusiv)  
+- Backend powered by Go  
+- Frontend designed with accessibility in mind
 
-Contributing
+---
 
-This project is built with love, irritation (at inaccessible job portals), and a desire to do better. If you believe in the cause, want to improve the parser, or just like Go and accessibility, you’re welcome here.
+Thank you for being part of the Inclusiv journey. Together, we can make the job market a more welcoming place for everyone.
 
-Submit an issue. Fork the repo. Build something better.
-License
+---
 
-MIT. Use it for good. Don’t resell it as another VC-funded clone without at least sending us a thank-you note.
-A Final Word
-
-Inclusiv doesn’t promise to solve inequality. But it does promise to start somewhere.
-
-It won’t fix systemic hiring biases, but it will refuse to ignore them.
-
-It’s not perfect. But it is open. It’s improving. And it’s real.
-
-If you've ever felt left out of the tech job market, Inclusiv was built for you.
-
-If you've never had to think about that — Inclusiv was built for you, too.
-
-Now go hire better.
-
-—
-Team Inclusiv
+*Inclusiv — Because everyone deserves a seat at the table.*
