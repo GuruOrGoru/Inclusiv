@@ -10,9 +10,6 @@ import (
 	"regexp"
 	"strings"
 	"time"
-
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 )
 
 type Job struct {
@@ -45,21 +42,6 @@ type HuggingFaceClassificationResponse struct {
 	Scores   []float64 `json:"scores"`
 }
 
-type HuggingFaceTextGenerationRequest struct {
-	Inputs     string `json:"inputs"`
-	Parameters struct {
-		MaxLength   int     `json:"max_length"`
-		Temperature float64 `json:"temperature"`
-		DoSample    bool    `json:"do_sample"`
-		TopP        float64 `json:"top_p"`
-		NumReturn   int     `json:"num_return_sequences"`
-	} `json:"parameters"`
-}
-
-type HuggingFaceTextGenerationResponse []struct {
-	GeneratedText string `json:"generated_text"`
-}
-
 type AIJobFilter struct {
 	client    *http.Client
 	apiURL    string
@@ -74,126 +56,6 @@ func NewAIJobFilter() *AIJobFilter {
 		apiURL:    "https://api-inference.huggingface.co/models/facebook/bart-large-mnli",
 		threshold: 0.5,
 	}
-}
-
-func (f *AIJobFilter) generateJobDescription(jobTitle, company string) (string, error) {
-	textGenURL := "https://api-inference.huggingface.co/models/microsoft/DialoGPT-medium"
-
-	prompt := fmt.Sprintf("Job Title: %s at %s\n\nJob Description: We are an inclusive, equal opportunity employer seeking a talented %s to join our diverse team. This role offers:",
-		jobTitle, company, strings.ToLower(jobTitle))
-
-	reqBody := HuggingFaceTextGenerationRequest{
-		Inputs: prompt,
-		Parameters: struct {
-			MaxLength   int     `json:"max_length"`
-			Temperature float64 `json:"temperature"`
-			DoSample    bool    `json:"do_sample"`
-			TopP        float64 `json:"top_p"`
-			NumReturn   int     `json:"num_return_sequences"`
-		}{
-			MaxLength:   400,
-			Temperature: 0.7,
-			DoSample:    true,
-			TopP:        0.9,
-			NumReturn:   1,
-		},
-	}
-
-	jsonData, err := json.Marshal(reqBody)
-	if err != nil {
-		return f.generateFallbackDescription(jobTitle, company), nil
-	}
-
-	req, err := http.NewRequest("POST", textGenURL, bytes.NewBuffer(jsonData))
-	if err != nil {
-		return f.generateFallbackDescription(jobTitle, company), nil
-	}
-
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("User-Agent", "Inclisiv-AI-Filter/1.0")
-
-	resp, err := f.client.Do(req)
-	if err != nil {
-		return f.generateFallbackDescription(jobTitle, company), nil
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode == 503 {
-		time.Sleep(3 * time.Second)
-		return f.generateFallbackDescription(jobTitle, company), nil
-	}
-
-	if resp.StatusCode != 200 {
-		return f.generateFallbackDescription(jobTitle, company), nil
-	}
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return f.generateFallbackDescription(jobTitle, company), nil
-	}
-
-	var result HuggingFaceTextGenerationResponse
-	if err := json.Unmarshal(body, &result); err != nil {
-		return f.generateFallbackDescription(jobTitle, company), nil
-	}
-
-	if len(result) > 0 && result[0].GeneratedText != "" {
-		generated := result[0].GeneratedText
-		if len(generated) > len(prompt) {
-			generated = generated[len(prompt):]
-		}
-
-		inclusiveDescription := f.enhanceWithInclusiveLanguage(generated, jobTitle, company)
-		return inclusiveDescription, nil
-	}
-
-	return f.generateFallbackDescription(jobTitle, company), nil
-}
-
-func (f *AIJobFilter) generateFallbackDescription(jobTitle, company string) string {
-	templates := []string{
-		"We are an inclusive, equal opportunity employer seeking a talented %s to join our diverse team at %s. We welcome applications from all backgrounds and provide reasonable accommodations for employees with disabilities. This remote-friendly position offers flexible work arrangements and competitive compensation. We value diversity, inclusion, and creating an accessible workplace for everyone.",
-
-		"Join %s as a %s and be part of our commitment to building an inclusive workplace. We actively promote diversity and welcome candidates from all backgrounds, including those with disabilities. Our company provides flexible work options, comprehensive benefits, and a supportive environment where everyone can thrive. Equal opportunity employer.",
-
-		"%s is seeking a dedicated %s to contribute to our inclusive team culture. We believe diversity drives innovation and welcome applications from underrepresented groups. Our accessible workplace offers reasonable accommodations, remote work flexibility, and a collaborative environment that values different perspectives and experiences.",
-	}
-
-	templateIndex := len(jobTitle) % len(templates)
-
-	return fmt.Sprintf(templates[templateIndex], jobTitle, company)
-}
-
-func (f *AIJobFilter) enhanceWithInclusiveLanguage(description, jobTitle, company string) string {
-	inclusiveAdditions := []string{
-		"We are an equal opportunity employer committed to diversity and inclusion.",
-		"Reasonable accommodations provided for employees with disabilities.",
-		"Remote and flexible work arrangements available.",
-		"We welcome applications from all backgrounds and experiences.",
-		"Our inclusive workplace values neurodiversity and different perspectives.",
-	}
-
-	hasInclusive := false
-	inclusiveKeywords := []string{"inclusive", "diversity", "equal opportunity", "accommodation", "flexible", "remote"}
-
-	descLower := strings.ToLower(description)
-	for _, keyword := range inclusiveKeywords {
-		if strings.Contains(descLower, keyword) {
-			hasInclusive = true
-			break
-		}
-	}
-
-	if !hasInclusive {
-		additionIndex := len(jobTitle) % len(inclusiveAdditions)
-		description = description + "\n\n" + inclusiveAdditions[additionIndex]
-	}
-
-	if !strings.Contains(strings.ToLower(description), strings.ToLower(company)) {
-		description = fmt.Sprintf("At %s, we are looking for a %s. %s", company, jobTitle, description)
-	}
-
-	return description
 }
 
 func (f *AIJobFilter) classifyJobInclusion(jobText string) (bool, float64, error) {
@@ -405,34 +267,17 @@ func FetchJobs(apiURL string) ([]Job, error) {
 			return nil, err
 		}
 
-		filter := NewAIJobFilter()
-		caser := cases.Title(language.English)
-
 		for _, ghJob := range ghResponse.Jobs {
 			job := Job{
-				ID:         fmt.Sprintf("gh-%d", ghJob.ID),
-				Title:      ghJob.Title,
-				Company:    caser.String(company),
-				Location:   ghJob.Location.Name,
-				Remote:     strings.Contains(strings.ToLower(ghJob.Location.Name), "remote"),
-				PostedDate: ghJob.UpdatedAt,
-				ApplyURL:   fmt.Sprintf("https://boards.greenhouse.io/%s/jobs/%d", company, ghJob.ID),
+				ID:          fmt.Sprintf("gh-%d", ghJob.ID),
+				Title:       ghJob.Title,
+				Company:     strings.Title(company),
+				Location:    ghJob.Location.Name,
+				Description: ghJob.Content,
+				Remote:      strings.Contains(strings.ToLower(ghJob.Location.Name), "remote"),
+				PostedDate:  ghJob.UpdatedAt,
+				ApplyURL:    fmt.Sprintf("https://boards.greenhouse.io/%s/jobs/%d", company, ghJob.ID),
 			}
-
-			if ghJob.Content == "" || len(strings.TrimSpace(ghJob.Content)) < 50 {
-				fmt.Printf("Generating description for job: %s at %s\n", ghJob.Title, company)
-				generatedDesc, err := filter.generateJobDescription(ghJob.Title, caser.String(company))
-				if err != nil {
-					fmt.Printf("Error generating description: %v\n", err)
-					job.Description = filter.generateFallbackDescription(ghJob.Title, caser.String(company))
-				} else {
-					job.Description = generatedDesc
-				}
-				time.Sleep(1 * time.Second)
-			} else {
-				job.Description = ghJob.Content
-			}
-
 			jobs = append(jobs, job)
 		}
 	} else {
