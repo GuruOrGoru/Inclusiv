@@ -23,12 +23,12 @@ func GetServerConfigs(portstr string, router http.Handler) *http.Server {
 func InitEnvAndGetPortString() string {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file:", err)
+		log.Println("Error loading .env file:", err)
 	}
 
 	portstr := os.Getenv("PORT")
 	if portstr == "" {
-		log.Fatal("Port not set in env")
+		log.Fatalln("Port not set in env")
 	}
 	return portstr
 }
@@ -37,7 +37,7 @@ func GetAPIURLsFromEnv() []string {
 	urlsEnv := os.Getenv("API_URLS")
 
 	if urlsEnv == "" {
-		log.Println("Warning: API_URLS environment variable is empty")
+		log.Fatalln("Warning: API_URLS environment variable is empty")
 		return []string{}
 	}
 

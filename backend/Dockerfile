@@ -31,7 +31,6 @@ WORKDIR /root/
 
 # Copy binary and config
 COPY --from=builder /app/main .
-COPY .env .
 
 # Fix permissions
 RUN chown -R appuser:appgroup /root/
