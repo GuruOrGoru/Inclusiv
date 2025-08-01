@@ -21,20 +21,82 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            900: '#1e3a8a'
+                        vintage: {
+                            50: '#fef7f0',
+                            100: '#fdecd8',
+                            200: '#fbd5b0',
+                            300: '#f8b87d',
+                            400: '#f4944a',
+                            500: '#f17a2a',
+                            600: '#e25f1f',
+                            700: '#bc4a1c',
+                            800: '#963c1e',
+                            900: '#7a331c'
                         },
-                        secondary: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d'
+                        cream: {
+                            50: '#fefefe',
+                            100: '#fdfcf9',
+                            200: '#faf7f0',
+                            300: '#f5f0e3',
+                            400: '#ede4d0',
+                            500: '#e2d5b8',
+                            600: '#d4c39e',
+                            700: '#c2ad82',
+                            800: '#a8946a',
+                            900: '#8b7a5a'
+                        },
+                        sage: {
+                            50: '#f6f7f6',
+                            100: '#e3e7e3',
+                            200: '#c7d1c7',
+                            300: '#a3b5a3',
+                            400: '#7a947a',
+                            500: '#5c7a5c',
+                            600: '#4a614a',
+                            700: '#3d4f3d',
+                            800: '#334033',
+                            900: '#2b352b'
+                        },
+                        sepia: {
+                            50: '#fdfcf8',
+                            100: '#f9f6ed',
+                            200: '#f2ebd6',
+                            300: '#e8dbb8',
+                            400: '#dcc794',
+                            500: '#d1b372',
+                            600: '#c19f5e',
+                            700: '#a8854c',
+                            800: '#8a6c41',
+                            900: '#715a3a'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Georgia', 'Times New Roman', 'serif'],
+                        'display': ['Playfair Display', 'Georgia', 'serif'],
+                        'body': ['Lora', 'Georgia', 'serif']
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.8s ease-in-out',
+                        'slide-up': 'slideUp 1s ease-out',
+                        'gentle-bounce': 'gentleBounce 3s ease-in-out infinite',
+                        'vintage-float': 'vintageFloat 4s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        gentleBounce: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        vintageFloat: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-15px) rotate(1deg)' },
                         }
                     }
                 }
@@ -43,9 +105,12 @@
     </script>
     
     <style>
+        /* Import Google Fonts for vintage typography */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap');
+
         /* Custom styles for accessibility */
         .focus-visible:focus {
-            outline: 3px solid #3b82f6;
+            outline: 3px solid #e25f1f;
             outline-offset: 2px;
         }
         
@@ -53,11 +118,12 @@
             position: absolute;
             top: -40px;
             left: 6px;
-            background: #000;
-            color: #fff;
+            background: #7a331c;
+            color: #fef7f0;
             padding: 8px;
             text-decoration: none;
             z-index: 1000;
+            font-family: 'Lora', serif;
         }
         
         .skip-link:focus {
@@ -66,9 +132,9 @@
         
         /* High contrast mode support */
         @media (prefers-contrast: high) {
-            .bg-gray-50 { background-color: #ffffff; }
-            .text-gray-600 { color: #000000; }
-            .border-gray-200 { border-color: #000000; }
+            .bg-cream-50 { background-color: #ffffff; }
+            .text-sage-600 { color: #000000; }
+            .border-sage-200 { border-color: #000000; }
         }
         
         /* Reduced motion support */
@@ -79,22 +145,150 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* Vintage Hero backgrounds with warm, nostalgic images */
+        .hero-bg-primary {
+            background-image: linear-gradient(135deg, rgba(241, 122, 42, 0.85), rgba(92, 122, 92, 0.85)), 
+                              url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-bg-secondary {
+            background-image: linear-gradient(135deg, rgba(194, 173, 130, 0.85), rgba(241, 122, 42, 0.85)), 
+                              url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-bg-tertiary {
+            background-image: linear-gradient(135deg, rgba(209, 179, 114, 0.85), rgba(194, 173, 130, 0.85)), 
+                              url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-bg-quaternary {
+            background-image: linear-gradient(135deg, rgba(92, 122, 92, 0.85), rgba(209, 179, 114, 0.85)), 
+                              url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Vintage section backgrounds - solid colors for accessibility */
+        .section-bg-gradient {
+            background: #e25f1f;
+        }
+
+        .section-bg-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(241, 122, 42, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(92, 122, 92, 0.1) 0%, transparent 50%);
+            background-size: 120px 120px;
+        }
+
+        /* Vintage card styles with angular borders */
+        .card-hover {
+            transition: all 0.4s ease;
+            transform: translateY(0);
+            border: 2px solid #e2d5b8;
+            position: relative;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(226, 45, 31, 0.15);
+            border-color: #e25f1f;
+        }
+
+        /* Vintage glass effect */
+        .glass {
+            background: rgba(254, 247, 240, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 213, 184, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Vintage search highlight */
+        .search-highlight {
+            background: linear-gradient(120deg, #fdecd8 0%, #fbd5b0 100%);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            border: 1px solid #f8b87d;
+        }
+
+        /* Vintage decorative text - solid color for accessibility */
+        .vintage-text {
+            color: #e25f1f;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Vintage floating animation */
+        .vintage-float {
+            animation: vintageFloat 4s ease-in-out infinite;
+        }
+
+        /* Vintage button styles - solid colors for accessibility */
+        .btn-vintage {
+            background: #e25f1f;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #7a331c;
+            font-family: 'Lora', serif;
+            font-weight: 500;
+        }
+
+        .btn-vintage:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(226, 95, 31, 0.3);
+            background: #bc4a1c;
+        }
+
+        .btn-vintage:focus {
+            outline: 3px solid #7a331c;
+            outline-offset: 2px;
+        }
+
+        /* Angular decorative elements */
+        .decorative-border {
+            border: 3px solid #e2d5b8;
+            position: relative;
+        }
+
+        /* Vintage typography enhancements */
+        .vintage-heading {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: #7a331c;
+        }
+
+        .vintage-body {
+            font-family: 'Lora', serif;
+            line-height: 1.7;
+        }
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-900" x-data="inclusivApp()">
+<body class="bg-cream-50 text-sage-900 font-body" x-data="inclusivApp()">
     <!-- Skip to main content link -->
     <a href="#main-content" class="skip-link focus-visible:focus">Skip to main content</a>
     
     <!-- Header -->
-    <header class="bg-white shadow-sm border-b border-gray-200" role="banner">
+    <header class="bg-cream-100 shadow-md border-b-2 border-vintage-300" role="banner">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex items-center">
                 <div class="flex-shrink-0 flex items-center">
                     <img src="logo.png" alt="Inclusiv Logo" class="h-13 w-12 mr-3" />
-                    <span class="text-2xl font-bold text-primary-900">Inclusiv</span>
+                    <span class="text-2xl font-bold vintage-heading">Inclusiv</span>
                 </div>
                 </div>
                 
@@ -102,29 +296,29 @@
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
                         <button @click="currentPage = 'home'" 
-                                :class="currentPage === 'home' ? 'bg-primary-100 text-primary-700 border-b-2 border-primary-500' : 'text-gray-600 hover:text-primary-600'"
-                                class="px-3 py-2 text-sm font-medium focus-visible:focus transition-colors"
+                                :class="currentPage === 'home' ? 'bg-vintage-100 text-vintage-700 border-b-2 border-vintage-500' : 'text-sage-600 hover:text-vintage-600'"
+                                class="px-4 py-3 text-sm font-medium focus-visible:focus transition-colors vintage-body"
                                 aria-current="page">
                             Home
                         </button>
                         <button @click="currentPage = 'jobs'; loadJobs()" 
-                                :class="currentPage === 'jobs' ? 'bg-primary-100 text-primary-700 border-b-2 border-primary-500' : 'text-gray-600 hover:text-primary-600'"
-                                class="px-3 py-2 text-sm font-medium focus-visible:focus transition-colors">
+                                :class="currentPage === 'jobs' ? 'bg-vintage-100 text-vintage-700 border-b-2 border-vintage-500' : 'text-sage-600 hover:text-vintage-600'"
+                                class="px-4 py-3 text-sm font-medium focus-visible:focus transition-colors vintage-body">
                             Browse Jobs
                         </button>
                         <button @click="currentPage = 'about'" 
-                                :class="currentPage === 'about' ? 'bg-primary-100 text-primary-700 border-b-2 border-primary-500' : 'text-gray-600 hover:text-primary-600'"
-                                class="px-3 py-2 text-sm font-medium focus-visible:focus transition-colors">
+                                :class="currentPage === 'about' ? 'bg-vintage-100 text-vintage-700 border-b-2 border-vintage-500' : 'text-sage-600 hover:text-vintage-600'"
+                                class="px-4 py-3 text-sm font-medium focus-visible:focus transition-colors vintage-body">
                             About
                         </button>
                         <button @click="currentPage = 'accessibility'" 
-                                :class="currentPage === 'accessibility' ? 'bg-primary-100 text-primary-700 border-b-2 border-primary-500' : 'text-gray-600 hover:text-primary-600'"
-                                class="px-3 py-2 text-sm font-medium focus-visible:focus transition-colors">
+                                :class="currentPage === 'accessibility' ? 'bg-vintage-100 text-vintage-700 border-b-2 border-vintage-500' : 'text-sage-600 hover:text-vintage-600'"
+                                class="px-4 py-3 text-sm font-medium focus-visible:focus transition-colors vintage-body">
                             Accessibility Help
                         </button>
                         <button @click="currentPage = 'contact'" 
-                                :class="currentPage === 'contact' ? 'bg-primary-100 text-primary-700 border-b-2 border-primary-500' : 'text-gray-600 hover:text-primary-600'"
-                                class="px-3 py-2 text-sm font-medium focus-visible:focus transition-colors">
+                                :class="currentPage === 'contact' ? 'bg-vintage-100 text-vintage-700 border-b-2 border-vintage-500' : 'text-sage-600 hover:text-vintage-600'"
+                                class="px-4 py-3 text-sm font-medium focus-visible:focus transition-colors vintage-body">
                             Contact
                         </button>
                     </div>
@@ -133,7 +327,7 @@
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
                     <button @click="mobileMenuOpen = !mobileMenuOpen" 
-                            class="bg-white p-2 rounded-md text-gray-600 hover:text-primary-600 hover:bg-gray-100 focus-visible:focus"
+                            class="bg-cream-200 p-3 rounded-lg text-sage-600 hover:text-vintage-600 hover:bg-cream-300 focus-visible:focus"
                             :aria-expanded="mobileMenuOpen"
                             aria-controls="mobile-menu"
                             aria-label="Toggle navigation menu">
@@ -155,30 +349,30 @@
                  x-transition:leave-end="transform opacity-0 scale-95"
                  class="md:hidden" 
                  id="mobile-menu">
-                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-gray-200">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-cream-100 border-t-2 border-vintage-300">
                     <button @click="currentPage = 'home'; mobileMenuOpen = false" 
-                            :class="currentPage === 'home' ? 'bg-primary-100 text-primary-700' : 'text-gray-600 hover:text-primary-600 hover:bg-gray-100'"
-                            class="block w-full text-left px-3 py-2 text-base font-medium focus-visible:focus transition-colors">
+                            :class="currentPage === 'home' ? 'bg-vintage-100 text-vintage-700' : 'text-sage-600 hover:text-vintage-600 hover:bg-cream-200'"
+                            class="block w-full text-left px-4 py-3 text-base font-medium focus-visible:focus transition-colors vintage-body">
                         Home
                     </button>
                     <button @click="currentPage = 'jobs'; loadJobs(); mobileMenuOpen = false" 
-                            :class="currentPage === 'jobs' ? 'bg-primary-100 text-primary-700' : 'text-gray-600 hover:text-primary-600 hover:bg-gray-100'"
-                            class="block w-full text-left px-3 py-2 text-base font-medium focus-visible:focus transition-colors">
+                            :class="currentPage === 'jobs' ? 'bg-vintage-100 text-vintage-700' : 'text-sage-600 hover:text-vintage-600 hover:bg-cream-200'"
+                            class="block w-full text-left px-4 py-3 text-base font-medium focus-visible:focus transition-colors vintage-body">
                         Browse Jobs
                     </button>
                     <button @click="currentPage = 'about'; mobileMenuOpen = false" 
-                            :class="currentPage === 'about' ? 'bg-primary-100 text-primary-700' : 'text-gray-600 hover:text-primary-600 hover:bg-gray-100'"
-                            class="block w-full text-left px-3 py-2 text-base font-medium focus-visible:focus transition-colors">
+                            :class="currentPage === 'about' ? 'bg-vintage-100 text-vintage-700' : 'text-sage-600 hover:text-vintage-600 hover:bg-cream-200'"
+                            class="block w-full text-left px-4 py-3 text-base font-medium focus-visible:focus transition-colors vintage-body">
                         About
                     </button>
                     <button @click="currentPage = 'accessibility'; mobileMenuOpen = false" 
-                            :class="currentPage === 'accessibility' ? 'bg-primary-100 text-primary-700' : 'text-gray-600 hover:text-primary-600 hover:bg-gray-100'"
-                            class="block w-full text-left px-3 py-2 text-base font-medium focus-visible:focus transition-colors">
+                            :class="currentPage === 'accessibility' ? 'bg-vintage-100 text-vintage-700' : 'text-sage-600 hover:text-vintage-600 hover:bg-cream-200'"
+                            class="block w-full text-left px-4 py-3 text-base font-medium focus-visible:focus transition-colors vintage-body">
                         Accessibility Help
                     </button>
                     <button @click="currentPage = 'contact'; mobileMenuOpen = false" 
-                            :class="currentPage === 'contact' ? 'bg-primary-100 text-primary-700' : 'text-gray-600 hover:text-primary-600 hover:bg-gray-100'"
-                            class="block w-full text-left px-3 py-2 text-base font-medium focus-visible:focus transition-colors">
+                            :class="currentPage === 'contact' ? 'bg-vintage-100 text-vintage-700' : 'text-sage-600 hover:text-vintage-600 hover:bg-cream-200'"
+                            class="block w-full text-left px-4 py-3 text-base font-medium focus-visible:focus transition-colors vintage-body">
                         Contact
                     </button>
                 </div>
@@ -191,76 +385,137 @@
         
         <!-- Home Page -->
         <div x-show="currentPage === 'home'" x-transition>
-            <section class="text-center mb-16">
-                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            <!-- Hero Section with Vintage Background Image -->
+            <section :class="`hero-bg-${currentHeroBackground} text-cream-50 p-12 mb-16 text-center relative overflow-hidden decorative-border`">
+                <!-- Decorative background elements -->
+                <div class="absolute inset-0 opacity-15">
+                    <div class="absolute top-10 left-10 w-24 h-24 bg-cream-200 rounded-full vintage-float"></div>
+                    <div class="absolute top-20 right-20 w-20 h-20 bg-cream-200 rounded-full vintage-float" style="animation-delay: 1.5s;"></div>
+                    <div class="absolute bottom-20 left-1/4 w-16 h-16 bg-cream-200 rounded-full vintage-float" style="animation-delay: 3s;"></div>
+                </div>
+                
+                <div class="relative z-10">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in vintage-heading">
                     Bridging Abilities to 
-                    <span class="text-primary-600">Opportunities</span>
+                        <span class="vintage-text">Opportunities</span>
                 </h1>
-                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    <p class="text-xl mb-8 max-w-3xl mx-auto opacity-95 animate-slide-up vintage-body">
                     AI-powered career platform that matches individuals with disabilities to meaningful employment opportunities based on their skills and abilities, not their limitations.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up" style="animation-delay: 0.2s;">
                     <button @click="currentPage = 'jobs'; loadJobs()" 
-                            class="bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 focus-visible:focus transition-colors">
+                                class="btn-vintage text-cream-50 px-8 py-4 font-semibold focus-visible:focus transition-all duration-300 shadow-lg">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                </svg>
                         Find Inclusive Jobs
+                            </span>
                     </button>
                     <button @click="currentPage = 'about'" 
-                            class="border border-primary-600 text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-primary-50 focus-visible:focus transition-colors">
+                                class="glass text-sage-800 px-8 py-4 font-semibold hover:bg-cream-200 hover:text-sage-900 focus-visible:focus transition-all duration-300 border-2 border-cream-300">
+                            <span class="flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
                         Learn More
+                            </span>
                     </button>
+                    </div>
                 </div>
             </section>
 
-            <!-- Features Section -->
-            <section class="grid md:grid-cols-3 gap-8 mb-16" aria-labelledby="features-heading">
-                <h2 id="features-heading" class="sr-only">Our Features</h2>
+            <!-- Vintage Features Section with Background -->
+            <section class="section-bg-pattern p-8 mb-16 relative overflow-hidden decorative-border" aria-labelledby="features-heading">
+                <!-- Background decoration -->
+                <div class="absolute inset-0 opacity-10">
+                    <div class="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-vintage-400 to-sage-400 rounded-full"></div>
+                    <div class="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-br from-sepia-400 to-vintage-400 rounded-full"></div>
+                </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <div class="relative z-10">
+                    <h2 id="features-heading" class="text-3xl font-bold text-center mb-12 vintage-heading">Why Choose Inclusiv?</h2>
+                    
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="card-hover bg-cream-50/95 backdrop-blur-sm p-8 shadow-lg border-2 border-cream-200">
+                            <div class="w-16 h-16 bg-vintage-500 flex items-center justify-center mb-6 shadow-lg">
+                                <svg class="w-8 h-8 text-cream-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Skills-First Matching</h3>
-                    <p class="text-gray-600">AI-powered algorithm that prioritizes abilities and skills over disability status for perfect job matches.</p>
+                            <h3 class="text-xl font-bold text-sage-900 mb-4 vintage-heading">Skills-First Matching</h3>
+                            <p class="text-sage-700 leading-relaxed vintage-body">AI-powered algorithm that prioritizes abilities and skills over disability status for perfect job matches.</p>
                 </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <div class="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Smart Accommodations</h3>
-                    <p class="text-gray-600">Intelligent suggestions for workplace accommodations based on job requirements and individual needs.</p>
+                        <div class="card-hover bg-cream-50/95 backdrop-blur-sm p-8 shadow-lg border-2 border-cream-200">
+                            <div class="w-16 h-16 bg-sage-500 flex items-center justify-center mb-6 shadow-lg">
+                                <svg class="w-8 h-8 text-cream-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-sage-900 mb-4 vintage-heading">Smart Accommodations</h3>
+                            <p class="text-sage-700 leading-relaxed vintage-body">Intelligent suggestions for workplace accommodations based on job requirements and individual needs.</p>
                 </div>
                 
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                        <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                        <div class="card-hover bg-cream-50/95 backdrop-blur-sm p-8 shadow-lg border-2 border-cream-200">
+                            <div class="w-16 h-16 bg-sepia-500 flex items-center justify-center mb-6 shadow-lg">
+                                <svg class="w-8 h-8 text-cream-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Career Pathways</h3>
-                    <p class="text-gray-600">Personalized career progression routes with accessibility considerations and growth opportunities.</p>
+                            <h3 class="text-xl font-bold text-sage-900 mb-4 vintage-heading">Inclusive Community</h3>
+                            <p class="text-sage-700 leading-relaxed vintage-body">Connect with employers committed to diversity and inclusion in the workplace.</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <!-- Statistics Section -->
-            <section class="bg-primary-600 text-white rounded-lg p-8 text-center" aria-labelledby="stats-heading">
-                <h2 id="stats-heading" class="text-2xl font-bold mb-6">Making a Difference</h2>
+            <!-- Background Rotation Controls -->
+            <section class="bg-cream-50/90 backdrop-blur-sm p-6 mb-16 border-2 border-cream-200">
+                <h3 class="text-xl font-bold text-sage-900 mb-4 text-center vintage-heading">Choose Your Background Theme</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button @click="changeHeroBackground('primary')" 
+                            class="px-6 py-3 bg-vintage-500 text-cream-50 font-medium hover:shadow-lg transition-all duration-300 vintage-body">
+                        Autumn
+                    </button>
+                    <button @click="changeHeroBackground('secondary')" 
+                            class="px-6 py-3 bg-sage-500 text-cream-50 font-medium hover:shadow-lg transition-all duration-300 vintage-body">
+                        Forest
+                    </button>
+                    <button @click="changeHeroBackground('tertiary')" 
+                            class="px-6 py-3 bg-sepia-500 text-cream-50 font-medium hover:shadow-lg transition-all duration-300 vintage-body">
+                        Heritage
+                    </button>
+                    <button @click="changeHeroBackground('quaternary')" 
+                            class="px-6 py-3 bg-vintage-600 text-cream-50 font-medium hover:shadow-lg transition-all duration-300 vintage-body">
+                        Classic
+                    </button>
+                </div>
+            </section>
+
+            <!-- Vintage Statistics Section -->
+            <section class="section-bg-gradient text-cream-50 p-12 text-center relative overflow-hidden decorative-border" aria-labelledby="stats-heading">
+                <!-- Decorative background elements -->
+                <div class="absolute inset-0 opacity-15">
+                    <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-cream-200 rounded-full vintage-float"></div>
+                    <div class="absolute bottom-1/4 right-1/4 w-24 h-24 bg-cream-200 rounded-full vintage-float" style="animation-delay: 1.5s;"></div>
+                </div>
+                
+                <div class="relative z-10">
+                    <h2 id="stats-heading" class="text-3xl font-bold mb-12 vintage-heading">Making a Difference</h2>
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div>
-                        <div class="text-4xl font-bold mb-2">70%+</div>
-                        <div class="text-primary-100">Disability unemployment rate we're addressing</div>
+                        <div class="card-hover bg-cream-50/10 backdrop-blur-sm p-8 border-2 border-cream-200/30">
+                            <div class="text-5xl font-bold mb-4 text-vintage-200">70%+</div>
+                            <div class="text-lg opacity-95 vintage-body">Disability unemployment rate we're addressing</div>
                     </div>
-                    <div>
-                        <div class="text-4xl font-bold mb-2">100+</div>
-                        <div class="text-primary-100">Inclusive jobs available</div>
+                        <div class="card-hover bg-cream-50/10 backdrop-blur-sm p-8 border-2 border-cream-200/30">
+                            <div class="text-5xl font-bold mb-4 text-sage-200">100+</div>
+                            <div class="text-lg opacity-95 vintage-body">Inclusive jobs available</div>
                     </div>
-                    <div>
-                        <div class="text-4xl font-bold mb-2">100%</div>
-                        <div class="text-primary-100">Commitment to accessibility</div>
+                        <div class="card-hover bg-cream-50/10 backdrop-blur-sm p-8 border-2 border-cream-200/30">
+                            <div class="text-5xl font-bold mb-4 text-sepia-200">100%</div>
+                            <div class="text-lg opacity-95 vintage-body">Commitment to accessibility</div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -273,8 +528,81 @@
                 <p class="text-gray-600 mb-6">Discover opportunities that value your abilities and provide inclusive work environments.</p>
             </div>
 
+            <!-- Search and Filter Section -->
+            <div class="bg-cream-50 p-6 border-2 border-cream-200 mb-6">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Search Input -->
+                    <div class="md:col-span-2">
+                        <label for="job-search" class="block text-sm font-medium text-sage-700 mb-1 vintage-body">Search Jobs</label>
+                        <div class="relative">
+                            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                            <input type="text" 
+                                   id="job-search"
+                                   x-model="searchQuery"
+                                   @input="filterJobs()"
+                                   placeholder="Search by title, company, or keywords..."
+                                   class="w-full pl-10 pr-4 py-3 border-2 border-cream-300 focus:ring-2 focus:ring-vintage-500 focus:border-vintage-500 focus-visible:focus bg-cream-100 vintage-body">
+                        </div>
+                    </div>
+
+                    <!-- Location Filter -->
+                    <div>
+                        <label for="location-filter" class="block text-sm font-medium text-sage-700 mb-1 vintage-body">Location</label>
+                        <select id="location-filter" 
+                                x-model="locationFilter"
+                                @change="filterJobs()"
+                                class="w-full px-3 py-3 border-2 border-cream-300 focus:ring-2 focus:ring-vintage-500 focus:border-vintage-500 focus-visible:focus bg-cream-100 vintage-body">
+                            <option value="">All Locations</option>
+                            <option value="Remote">Remote Only</option>
+                            <option value="New York">New York</option>
+                            <option value="San Francisco">San Francisco</option>
+                            <option value="London">London</option>
+                        </select>
+                    </div>
+
+                    <!-- Job Type Filter -->
+                    <div>
+                        <label for="type-filter" class="block text-sm font-medium text-sage-700 mb-1 vintage-body">Job Type</label>
+                        <select id="type-filter" 
+                                x-model="typeFilter"
+                                @change="filterJobs()"
+                                class="w-full px-3 py-3 border-2 border-cream-300 focus:ring-2 focus:ring-vintage-500 focus:border-vintage-500 focus-visible:focus bg-cream-100 vintage-body">
+                            <option value="">All Types</option>
+                            <option value="Software Engineer">Software Engineer</option>
+                            <option value="Data Analyst">Data Analyst</option>
+                            <option value="Designer">Designer</option>
+                            <option value="Manager">Manager</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Active Filters Display -->
+                <div x-show="hasActiveFilters()" class="mt-4 pt-4 border-t-2 border-cream-200">
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-sm text-sage-600 vintage-body">Active filters:</span>
+                        <span x-show="searchQuery" class="bg-vintage-100 text-vintage-800 px-3 py-1 text-sm vintage-body border border-vintage-300">
+                            Search: <span x-text="searchQuery"></span>
+                            <button @click="clearSearch()" class="ml-1 text-vintage-600 hover:text-vintage-800">×</button>
+                        </span>
+                        <span x-show="locationFilter" class="bg-sage-100 text-sage-800 px-3 py-1 text-sm vintage-body border border-sage-300">
+                            Location: <span x-text="locationFilter"></span>
+                            <button @click="clearLocationFilter()" class="ml-1 text-sage-600 hover:text-sage-800">×</button>
+                        </span>
+                        <span x-show="typeFilter" class="bg-sepia-100 text-sepia-800 px-3 py-1 text-sm vintage-body border border-sepia-300">
+                            Type: <span x-text="typeFilter"></span>
+                            <button @click="clearTypeFilter()" class="ml-1 text-sepia-600 hover:text-sepia-800">×</button>
+                        </span>
+                        <button @click="clearAllFilters()" class="text-sm text-sage-600 hover:text-sage-800 underline vintage-body">
+                            Clear all filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <!-- Job Results -->
-            <div x-show="jobs.length > 0" class="space-y-6">
+            <div x-show="filteredJobs.length > 0" class="space-y-6">
                 <div x-show="error" class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
                     <div class="flex">
                         <div class="flex-shrink-0">
@@ -288,58 +616,96 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                <div class="bg-cream-50 p-4 border-2 border-cream-200">
                     <p class="text-sm text-gray-600 mb-4">
-                        Showing <span x-text="jobs.length"></span> of <span x-text="totalJobs"></span> inclusive job opportunities
+                        Showing <span x-text="paginatedJobs.length"></span> of <span x-text="filteredJobs.length"></span> jobs 
+                        (Page <span x-text="currentPageNum"></span> of <span x-text="totalPages"></span>)
                     </p>
                 </div>
 
-                <template x-for="job in jobs" :key="job.id">
-                    <article class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
-                        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                <template x-for="job in paginatedJobs" :key="job.id">
+                    <article class="card-hover bg-cream-50/95 backdrop-blur-sm p-8 shadow-lg border-2 border-cream-200 mb-8 hover:shadow-xl transition-all duration-300">
+                        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
                             <div class="flex-1">
-                                <h2 class="text-xl font-semibold text-gray-900 mb-2" x-text="job.title"></h2>
-                                <p class="text-lg text-primary-600 font-medium mb-2" x-text="job.company"></p>
-                                <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-3">
-                                    <span class="flex items-center gap-1">
+                                <h2 class="text-2xl font-bold text-sage-900 mb-3 vintage-heading" x-html="highlightSearch(job.title)"></h2>
+                                <p class="text-lg text-vintage-600 font-medium mb-3 vintage-body" x-html="highlightSearch(job.company)"></p>
+                                <div class="flex flex-wrap items-center gap-4 text-sm text-sage-600 mb-3">
+                                    <span class="flex items-center gap-2 bg-cream-200 px-3 py-1 border border-cream-300">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                                         </svg>
-                                        <span x-text="job.location"></span>
+                                        <span x-text="job.location" class="vintage-body"></span>
                                     </span>
-                                    <span class="flex items-center gap-1" x-show="job.remote">
+                                    <span class="flex items-center gap-2 bg-sage-100 text-sage-700 px-3 py-1 border border-sage-300" x-show="job.remote">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                                         </svg>
                                         Remote
                                     </span>
-                                    <span x-show="job.salary && job.salary !== 'Salary not specified'" x-text="job.salary" class="font-medium text-secondary-600"></span>
+                                    <span x-show="job.salary && job.salary !== 'Salary not specified'" x-text="job.salary" class="font-medium text-sepia-600 bg-sepia-50 px-3 py-1 border border-sepia-300 vintage-body"></span>
                                 </div>
                             </div>
-                            <div class="flex flex-col items-end gap-2">
-                                <span class="bg-secondary-100 text-secondary-800 px-3 py-1 rounded-full text-sm font-medium">
+                            <div class="flex flex-col items-end gap-3">
+                                <span class="bg-vintage-500 text-cream-50 px-4 py-2 text-sm font-bold shadow-lg vintage-body">
                                     Inclusive Workplace
                                 </span>
-                                <time class="text-sm text-gray-500" x-text="formatDate(job.posted_date)"></time>
+                                <time class="text-sm text-sage-500 bg-cream-200 px-3 py-1 border border-cream-300 vintage-body" x-text="formatDate(job.posted_date)"></time>
                             </div>
                         </div>
-                        <div class="prose max-w-none mb-4">
-                            <p class="text-gray-700" x-text="job.description || 'No description available'"></p>
+                        <div class="prose max-w-none mb-6">
+                            <p class="text-sage-700 leading-relaxed vintage-body" x-html="highlightSearch(job.description || 'No description available')"></p>
                         </div>
-                        <div class="flex flex-col sm:flex-row gap-3">
-                            <button @click="showJobDetails(job)" class="bg-primary-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-700 focus-visible:focus transition-colors">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button @click="showJobDetails(job)" class="btn-vintage text-cream-50 px-8 py-3 font-semibold focus-visible:focus transition-all duration-300 shadow-lg">
+                                <span class="flex items-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                    </svg>
                                 View Details
+                                </span>
                             </button>
-                            <a :href="job.apply_url" target="_blank" rel="noopener noreferrer" class="border border-primary-600 text-primary-600 px-6 py-2 rounded-lg font-medium text-center hover:bg-primary-50 focus-visible:focus transition-colors">
-                                Apply Now
-                                <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <a :href="job.apply_url" target="_blank" rel="noopener noreferrer" class="glass text-vintage-600 px-8 py-3 font-semibold text-center hover:bg-vintage-50 focus-visible:focus transition-all duration-300 border-2 border-vintage-200">
+                                <span class="flex items-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                                 </svg>
+                                    Apply Now
+                                </span>
                             </a>
                         </div>
                     </article>
                 </template>
+
+                <!-- Pagination -->
+                <div x-show="totalPages > 1" class="flex justify-center items-center space-x-2 mt-8">
+                    <button @click="goToPage(currentPageNum - 1)" 
+                            :disabled="currentPageNum === 1"
+                            :class="currentPageNum === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-cream-200'"
+                            class="px-4 py-3 border-2 border-cream-300 focus-visible:focus bg-cream-100 vintage-body">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
+                    
+                    <template x-for="page in getPageNumbers()" :key="page">
+                        <button @click="goToPage(page)" 
+                                :class="page === currentPageNum ? 'bg-vintage-600 text-cream-50' : 'bg-cream-100 text-sage-700 hover:bg-cream-200'"
+                                class="px-4 py-3 border-2 border-cream-300 focus-visible:focus vintage-body">
+                            <span x-text="page"></span>
+                        </button>
+                    </template>
+                    
+                    <button @click="goToPage(currentPageNum + 1)" 
+                            :disabled="currentPageNum === totalPages"
+                            :class="currentPageNum === totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:bg-cream-200'"
+                            class="px-4 py-3 border-2 border-cream-300 focus-visible:focus bg-cream-100 vintage-body">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             <!-- Loading State -->
@@ -349,12 +715,13 @@
             </div>
 
             <!-- No Jobs State -->
-            <div x-show="!loading && jobs.length === 0" class="text-center py-12">
+            <div x-show="!loading && filteredJobs.length === 0" class="text-center py-12">
                 <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"/>
                 </svg>
                 <h2 class="text-xl font-semibold text-gray-900 mb-2">No jobs found</h2>
-                <p class="text-gray-600 mb-4">We're currently updating our job listings. Please check back soon!</p>
+                <p class="text-gray-600 mb-4" x-show="hasActiveFilters()">Try adjusting your search criteria or filters.</p>
+                <p class="text-gray-600 mb-4" x-show="!hasActiveFilters()">We're currently updating our job listings. Please check back soon!</p>
                 <button @click="loadJobs()" 
                         class="bg-primary-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-700 focus-visible:focus transition-colors">
                     Refresh Jobs
@@ -702,38 +1069,38 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white mt-16" role="contentinfo">
+    <footer class="bg-sage-900 text-cream-50 mt-16" role="contentinfo">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid md:grid-cols-4 gap-8">
                 <div class="md:col-span-2">
                     <div class="flex items-center mb-4">
                         <img src="logo.png" alt="Inclusiv Logo" class="h-13 w-12 mr-3" />
-                        <span class="text-xl font-bold">Inclusiv</span>
+                        <span class="text-xl font-bold vintage-heading">Inclusiv</span>
                     </div>
-                    <p class="text-gray-300 mb-4">
+                    <p class="text-cream-200 mb-4 vintage-body">
                         Bridging abilities to opportunities through inclusive job matching and career development.
                     </p>
-                    <p class="text-gray-400 text-sm">
+                    <p class="text-cream-300 text-sm vintage-body">
                         © 2025 Inclusiv. All rights reserved. Made with ❤️ for accessibility.
                     </p>
                 </div>
                 
                 <div>
-                    <h3 class="font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><button @click="currentPage = 'home'" class="hover:text-white focus-visible:focus">Home</button></li>
-                        <li><button @click="currentPage = 'jobs'; loadJobs()" class="hover:text-white focus-visible:focus">Browse Jobs</button></li>
-                        <li><button @click="currentPage = 'about'" class="hover:text-white focus-visible:focus">About</button></li>
-                        <li><button @click="currentPage = 'contact'" class="hover:text-white focus-visible:focus">Contact</button></li>
+                    <h3 class="font-semibold mb-4 vintage-heading">Quick Links</h3>
+                    <ul class="space-y-2 text-cream-200">
+                        <li><button @click="currentPage = 'home'" class="hover:text-cream-50 focus-visible:focus vintage-body">Home</button></li>
+                        <li><button @click="currentPage = 'jobs'; loadJobs()" class="hover:text-cream-50 focus-visible:focus vintage-body">Browse Jobs</button></li>
+                        <li><button @click="currentPage = 'about'" class="hover:text-cream-50 focus-visible:focus vintage-body">About</button></li>
+                        <li><button @click="currentPage = 'contact'" class="hover:text-cream-50 focus-visible:focus vintage-body">Contact</button></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="font-semibold mb-4">Support</h3>
-                    <ul class="space-y-2 text-gray-300">
-                        <li><button @click="currentPage = 'accessibility'" class="hover:text-white focus-visible:focus">Accessibility Help</button></li>
-                        <li><a href="mailto:support@inclusiv.com" class="hover:text-white focus-visible:focus">Email Support</a></li>
-                        <li><a href="mailto:accessibility@inclusiv.com" class="hover:text-white focus-visible:focus">Accessibility Support</a></li>
+                    <h3 class="font-semibold mb-4 vintage-heading">Support</h3>
+                    <ul class="space-y-2 text-cream-200">
+                        <li><button @click="currentPage = 'accessibility'" class="hover:text-cream-50 focus-visible:focus vintage-body">Accessibility Help</button></li>
+                        <li><a href="mailto:support@inclusiv.com" class="hover:text-cream-50 focus-visible:focus vintage-body">Email Support</a></li>
+                        <li><a href="mailto:accessibility@inclusiv.com" class="hover:text-cream-50 focus-visible:focus vintage-body">Accessibility Support</a></li>
                     </ul>
                 </div>
             </div>
@@ -756,6 +1123,14 @@
                 // Jobs data
                 jobs: [],
                 selectedJob: null,
+                filteredJobs: [],
+                
+                // Search and Filter state
+                searchQuery: '',
+                locationFilter: '',
+                typeFilter: '',
+                currentPageNum: 1,
+                jobsPerPage: 10,
                 
                 // Initialize the app
                 init() {
@@ -767,6 +1142,9 @@
                             mainContent.focus();
                         }
                     });
+                    this.loadJobs(); // Load initial jobs on page load
+                    this.filteredJobs = []; // Initialize filtered jobs
+                    this.startBackgroundRotation(); // Start background rotation
                 },
                 
                 // Load jobs from backend
@@ -795,6 +1173,8 @@
                             posted_date: job.posted_date,
                             apply_url: job.apply_url
                         }));
+                        this.currentPageNum = 1; // Reset page to 1 after new data
+                        this.filterJobs(); // Apply filters to new data
                     } catch (error) {
                         console.error('Error loading jobs:', error);
                         this.error = error.message;
@@ -837,6 +1217,90 @@
                     return description.substring(0, maxLength).trim() + '...';
                 },
                 
+                // Filter jobs based on search and filters
+                filterJobs() {
+                    this.currentPageNum = 1; // Reset to first page when filters change
+                    this.applyFilters();
+                },
+
+                applyFilters() {
+                    this.filteredJobs = this.jobs.filter(job => {
+                        const matchesSearch = this.searchQuery 
+                            ? job.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                              job.company.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                              job.description.toLowerCase().includes(this.searchQuery.toLowerCase())
+                            : true;
+
+                        const matchesLocation = this.locationFilter 
+                            ? job.location.toLowerCase() === this.locationFilter.toLowerCase()
+                            : true;
+
+                        const matchesType = this.typeFilter 
+                            ? job.title.toLowerCase().includes(this.typeFilter.toLowerCase())
+                            : true;
+
+                        return matchesSearch && matchesLocation && matchesType;
+                    });
+                    this.currentPageNum = 1; // Reset to first page after filtering
+                },
+
+                clearSearch() {
+                    this.searchQuery = '';
+                    this.filterJobs();
+                },
+
+                clearLocationFilter() {
+                    this.locationFilter = '';
+                    this.filterJobs();
+                },
+
+                clearTypeFilter() {
+                    this.typeFilter = '';
+                    this.filterJobs();
+                },
+
+                clearAllFilters() {
+                    this.searchQuery = '';
+                    this.locationFilter = '';
+                    this.typeFilter = '';
+                    this.filterJobs();
+                },
+
+                hasActiveFilters() {
+                    return this.searchQuery || this.locationFilter || this.typeFilter;
+                },
+
+                // Pagination logic
+                getPageNumbers() {
+                    const totalPages = Math.ceil(this.filteredJobs.length / this.jobsPerPage);
+                    if (totalPages <= 1) return [];
+
+                    const startPage = Math.max(1, this.currentPageNum - 2);
+                    const endPage = Math.min(totalPages, this.currentPageNum + 2);
+
+                    if (startPage > 1) {
+                        return [1, '...', ...Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i)];
+                    } else {
+                        return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+                    }
+                },
+
+                goToPage(page) {
+                    if (page >= 1 && page <= this.totalPages) {
+                        this.currentPageNum = page;
+                    }
+                },
+
+                get paginatedJobs() {
+                    const start = (this.currentPageNum - 1) * this.jobsPerPage;
+                    const end = start + this.jobsPerPage;
+                    return this.filteredJobs.slice(start, end);
+                },
+
+                get totalPages() {
+                    return Math.ceil(this.filteredJobs.length / this.jobsPerPage);
+                },
+                
                 // Sample jobs for demo/fallback
                 getSampleJobs() {
                     return [
@@ -874,6 +1338,38 @@
                             apply_url: "https://example.com/jobs/data-analyst"
                         }
                     ];
+                },
+
+                // Highlight search terms in job descriptions
+                highlightSearch(text) {
+                    if (!this.searchQuery) return text;
+                    const regex = new RegExp(`(${this.searchQuery})`, 'gi');
+                    return text.replace(regex, '<span class="search-highlight">$1</span>');
+                },
+
+                // Background rotation system
+                currentHeroBackground: 'primary',
+                
+                changeHeroBackground(theme) {
+                    this.currentHeroBackground = theme;
+                    const heroSection = document.querySelector('.hero-bg-primary');
+                    if (heroSection) {
+                        // Remove all background classes
+                        heroSection.classList.remove('hero-bg-primary', 'hero-bg-secondary', 'hero-bg-tertiary', 'hero-bg-quaternary');
+                        // Add the new background class
+                        heroSection.classList.add(`hero-bg-${theme}`);
+                    }
+                },
+
+                // Auto-rotate background every 30 seconds
+                startBackgroundRotation() {
+                    const themes = ['primary', 'secondary', 'tertiary', 'quaternary'];
+                    let currentIndex = 0;
+                    
+                    setInterval(() => {
+                        currentIndex = (currentIndex + 1) % themes.length;
+                        this.changeHeroBackground(themes[currentIndex]);
+                    }, 30000); // 30 seconds
                 }
             }
         }
