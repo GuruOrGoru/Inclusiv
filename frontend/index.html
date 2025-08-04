@@ -21,82 +21,52 @@
             theme: {
                 extend: {
                     colors: {
-                        vintage: {
-                            50: '#fef7f0',
-                            100: '#fdecd8',
-                            200: '#fbd5b0',
-                            300: '#f8b87d',
-                            400: '#f4944a',
-                            500: '#f17a2a',
-                            600: '#e25f1f',
-                            700: '#bc4a1c',
-                            800: '#963c1e',
-                            900: '#7a331c'
+                        apple: {
+                            50: '#f8f9fa',
+                            100: '#f1f3f4',
+                            200: '#e8eaed',
+                            300: '#dadce0',
+                            400: '#bdc1c6',
+                            500: '#9aa0a6',
+                            600: '#80868b',
+                            700: '#5f6368',
+                            800: '#3c4043',
+                            900: '#1a1a1a'
                         },
-                        cream: {
-                            50: '#fefefe',
-                            100: '#fdfcf9',
-                            200: '#faf7f0',
-                            300: '#f5f0e3',
-                            400: '#ede4d0',
-                            500: '#e2d5b8',
-                            600: '#d4c39e',
-                            700: '#c2ad82',
-                            800: '#a8946a',
-                            900: '#8b7a5a'
-                        },
-                        sage: {
-                            50: '#f6f7f6',
-                            100: '#e3e7e3',
-                            200: '#c7d1c7',
-                            300: '#a3b5a3',
-                            400: '#7a947a',
-                            500: '#5c7a5c',
-                            600: '#4a614a',
-                            700: '#3d4f3d',
-                            800: '#334033',
-                            900: '#2b352b'
-                        },
-                        sepia: {
-                            50: '#fdfcf8',
-                            100: '#f9f6ed',
-                            200: '#f2ebd6',
-                            300: '#e8dbb8',
-                            400: '#dcc794',
-                            500: '#d1b372',
-                            600: '#c19f5e',
-                            700: '#a8854c',
-                            800: '#8a6c41',
-                            900: '#715a3a'
+                        blue: {
+                            50: '#e3f2fd',
+                            100: '#bbdefb',
+                            200: '#90caf9',
+                            300: '#64b5f6',
+                            400: '#42a5f5',
+                            500: '#2196f3',
+                            600: '#1e88e5',
+                            700: '#1976d2',
+                            800: '#1565c0',
+                            900: '#0d47a1'
                         }
                     },
                     fontFamily: {
-                        'serif': ['Georgia', 'Times New Roman', 'serif'],
-                        'display': ['Playfair Display', 'Georgia', 'serif'],
-                        'body': ['Lora', 'Georgia', 'serif']
+                        'apple': ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Display', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        'apple-text': ['-apple-system', 'BlinkMacSystemFont', 'SF Pro Text', 'Segoe UI', 'Roboto', 'sans-serif']
                     },
                     animation: {
-                        'fade-in': 'fadeIn 0.8s ease-in-out',
-                        'slide-up': 'slideUp 1s ease-out',
-                        'gentle-bounce': 'gentleBounce 3s ease-in-out infinite',
-                        'vintage-float': 'vintageFloat 4s ease-in-out infinite',
+                        'fade-in': 'fadeIn 1.2s ease-out',
+                        'slide-up': 'slideUp 1.5s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
                     },
                     keyframes: {
                         fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
                         },
                         slideUp: {
-                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '0%': { transform: 'translateY(50px)', opacity: '0' },
                             '100%': { transform: 'translateY(0)', opacity: '1' },
                         },
-                        gentleBounce: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-8px)' },
-                        },
-                        vintageFloat: {
-                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-15px) rotate(1deg)' },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
                         }
                     }
                 }
@@ -105,36 +75,44 @@
     </script>
     
     <style>
-        /* Import Google Fonts for vintage typography */
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@400;500;600&display=swap');
+        /* Import Apple-style fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-        /* Custom styles for accessibility */
+        /* Apple-style focus indicators */
         .focus-visible:focus {
-            outline: 3px solid #e25f1f;
+            outline: 3px solid #007AFF;
             outline-offset: 2px;
+            border-radius: 8px;
         }
         
+        /* Enhanced skip link */
         .skip-link {
             position: absolute;
-            top: -40px;
-            left: 6px;
-            background: #7a331c;
-            color: #fef7f0;
-            padding: 8px;
+            top: -60px;
+            left: 20px;
+            background: #007AFF;
+            color: white;
+            padding: 16px 24px;
             text-decoration: none;
-            z-index: 1000;
-            font-family: 'Lora', serif;
+            z-index: 2000;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 600;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
         }
         
         .skip-link:focus {
-            top: 6px;
+            top: 20px;
+            transform: scale(1.05);
         }
         
         /* High contrast mode support */
         @media (prefers-contrast: high) {
-            .bg-cream-50 { background-color: #ffffff; }
-            .text-sage-600 { color: #000000; }
-            .border-sage-200 { border-color: #000000; }
+            .bg-white { background-color: #ffffff !important; }
+            .text-gray-900 { color: #000000 !important; }
+            .text-gray-600 { color: #333333 !important; }
+            .border-gray-200 { border-color: #000000 !important; }
         }
         
         /* Reduced motion support */
@@ -143,182 +121,268 @@
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
         }
 
-        /* Vintage Hero backgrounds with warm, nostalgic images */
-        .hero-bg-primary {
-            background-image: linear-gradient(135deg, rgba(241, 122, 42, 0.85), rgba(92, 122, 92, 0.85)), 
-                              url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        /* Apple-style hero backgrounds with videos and images */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(88, 86, 214, 0.1)),
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-        }
-
-        .hero-bg-secondary {
-            background-image: linear-gradient(135deg, rgba(194, 173, 130, 0.85), rgba(241, 122, 42, 0.85)), 
-                              url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .hero-bg-tertiary {
-            background-image: linear-gradient(135deg, rgba(209, 179, 114, 0.85), rgba(194, 173, 130, 0.85)), 
-                              url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .hero-bg-quaternary {
-            background-image: linear-gradient(135deg, rgba(92, 122, 92, 0.85), rgba(209, 179, 114, 0.85)), 
-                              url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        /* Vintage section backgrounds - solid colors for accessibility */
-        .section-bg-gradient {
-            background: #e25f1f;
-        }
-
-        .section-bg-pattern {
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(241, 122, 42, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(92, 122, 92, 0.1) 0%, transparent 50%);
-            background-size: 120px 120px;
-        }
-
-        /* Vintage card styles with angular borders */
-        .card-hover {
-            transition: all 0.4s ease;
-            transform: translateY(0);
-            border: 2px solid #e2d5b8;
+            min-height: 100vh;
             position: relative;
         }
 
-        .card-hover:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(226, 45, 31, 0.15);
-            border-color: #e25f1f;
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.3;
         }
 
-        /* Vintage glass effect */
-        .glass {
-            background: rgba(254, 247, 240, 0.9);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(226, 213, 184, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        .features-bg {
+            background: linear-gradient(45deg, rgba(0, 122, 255, 0.05), rgba(255, 255, 255, 0.95)),
+                        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
         }
 
-        /* Vintage search highlight */
-        .search-highlight {
-            background: linear-gradient(120deg, #fdecd8 0%, #fbd5b0 100%);
-            padding: 2px 6px;
-            border-radius: 3px;
+        .stats-bg {
+            background: linear-gradient(135deg, rgba(30, 136, 229, 0.9), rgba(25, 118, 210, 0.9)),
+                        url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=2126&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Apple-style glass morphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+        }
+
+        /* Remove card hover effects (no more popping) */
+        .static-card {
+            transition: none;
+            transform: none;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .static-card:hover {
+            transform: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Apple-style buttons */
+        .btn-apple {
+            background: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px 32px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 600;
-            border: 1px solid #f8b87d;
+            font-size: 17px;
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
 
-        /* Vintage decorative text - solid color for accessibility */
-        .vintage-text {
-            color: #e25f1f;
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
+        .btn-apple:hover {
+            background: #0056b3;
+            transform: translateY(-1px);
         }
 
-        /* Vintage floating animation */
-        .vintage-float {
-            animation: vintageFloat 4s ease-in-out infinite;
-        }
-
-        /* Vintage button styles - solid colors for accessibility */
-        .btn-vintage {
-            background: #e25f1f;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid #7a331c;
-            font-family: 'Lora', serif;
-            font-weight: 500;
-        }
-
-        .btn-vintage:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(226, 95, 31, 0.3);
-            background: #bc4a1c;
-        }
-
-        .btn-vintage:focus {
-            outline: 3px solid #7a331c;
+        .btn-apple:focus {
+            outline: 3px solid rgba(0, 122, 255, 0.5);
             outline-offset: 2px;
         }
 
-        /* Angular decorative elements */
-        .decorative-border {
-            border: 3px solid #e2d5b8;
-            position: relative;
-        }
-
-        /* Vintage typography enhancements */
-        .vintage-heading {
-            font-family: 'Playfair Display', serif;
+        .btn-secondary {
+            background: rgba(0, 0, 0, 0.05);
+            color: #007AFF;
+            border: 2px solid #007AFF;
+            border-radius: 12px;
+            padding: 14px 30px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             font-weight: 600;
-            color: #7a331c;
+            font-size: 17px;
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
 
-        .vintage-body {
-            font-family: 'Lora', serif;
-            line-height: 1.7;
+        .btn-secondary:hover {
+            background: #007AFF;
+            color: white;
+        }
+
+        /* Apple typography */
+        .apple-heading {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .apple-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+            line-height: 1.5;
+        }
+
+        /* Accessibility enhancements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Focus indicators for all interactive elements */
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 3px solid #007AFF;
+            outline-offset: 2px;
+            border-radius: 8px;
+        }
+
+        /* High contrast text */
+        @media (prefers-contrast: high) {
+            .apple-text { color: #000000 !important; }
+            .text-gray-600 { color: #000000 !important; }
+            .text-gray-700 { color: #000000 !important; }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .glass-card {
+                background: rgba(28, 28, 30, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .static-card {
+                background: rgba(28, 28, 30, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                color: white;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* Apple-style navigation */
+        .nav-blur {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Floating animation for decorative elements */
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Video background overlay */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(88, 86, 214, 0.1));
+            z-index: 1;
+        }
+
+        .content-over-video {
+            position: relative;
+            z-index: 2;
         }
     </style>
+
+    <!-- Accessibility: Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
 </head>
 
-<body class="bg-cream-50 text-sage-900 font-body" x-data="inclusivApp()">
-    <!-- Skip to main content link -->
-    <a href="#main-content" class="skip-link focus-visible:focus">Skip to main content</a>
+<body class="bg-white text-gray-900 font-apple-text" x-data="inclusivApp()">
+    <!-- Enhanced skip links for better accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#navigation" class="skip-link" style="top: -120px;">Skip to navigation</a>
     
-    <!-- Header -->
-    <header class="bg-cream-100 shadow-md border-b-2 border-vintage-300" role="banner">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+    <!-- Screen reader announcement for page changes -->
+    <div aria-live="polite" aria-atomic="true" class="sr-only" x-text="currentPage === 'home' ? 'Home page loaded' : currentPage === 'jobs' ? 'Jobs page loaded' : currentPage === 'about' ? 'About page loaded' : currentPage === 'accessibility' ? 'Accessibility help page loaded' : currentPage === 'contact' ? 'Contact page loaded' : ''"></div>
+    
+    <!-- Header with Apple-style blur effect -->
+    <header class="nav-blur fixed top-0 left-0 right-0 z-50" role="banner">
+        <nav id="navigation" class="max-w-7xl mx-auto px-6 lg:px-8" aria-label="Main navigation">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <img src="logo.png" alt="Inclusiv Logo" class="h-13 w-12 mr-3" />
-                    <span class="text-2xl font-bold vintage-heading">Inclusiv</span>
-                </div>
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="logo.png" alt="Inclusiv Logo" class="h-10 w-10 mr-3" />
+                        <span class="text-2xl font-bold apple-heading text-gray-900">Inclusiv</span>
+                    </div>
                 </div>
                 
                 <!-- Navigation Links -->
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
+                    <div class="ml-10 flex items-center space-x-8">
                         <button @click="currentPage = 'home'" 
-                                :class="currentPage === 'home' ? 'bg-vintage-100 text-vintage-700 border-b-2 border-vintage-500' : 'text-sage-600 hover:text-vintage-600'"
-                                class="px-4 py-3 text-sm font-medium focus-visible:focus transition-colors vintage-body"
-                                aria-current="page">
+                                :class="currentPage === 'home' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'"
+                                class="px-4 py-2 text-17 font-medium transition-colors apple-text"
+                                aria-current="page"
+                                :aria-label="currentPage === 'home' ? 'Home, current page' : 'Home'">
                             Home
                         </button>
                         <button @click="currentPage = 'jobs'; loadJobs()" 
-                                :class="currentPage === 'jobs' ? 'bg-vintage-100 text-vintage-700 border-b-2 border-vintage-500' : 'text-sage-600 hover:text-vintage-600'"
-                                class="px-4 py-3 text-sm font-medium focus-visible:focus transition-colors vintage-body">
+                                :class="currentPage === 'jobs' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'"
+                                class="px-4 py-2 text-17 font-medium transition-colors apple-text"
+                                :aria-label="currentPage === 'jobs' ? 'Browse Jobs, current page' : 'Browse Jobs'">
                             Browse Jobs
                         </button>
                         <button @click="currentPage = 'about'" 
-                                :class="currentPage === 'about' ? 'bg-vintage-100 text-vintage-700 border-b-2 border-vintage-500' : 'text-sage-600 hover:text-vintage-600'"
-                                class="px-4 py-3 text-sm font-medium focus-visible:focus transition-colors vintage-body">
+                                :class="currentPage === 'about' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'"
+                                class="px-4 py-2 text-17 font-medium transition-colors apple-text"
+                                :aria-label="currentPage === 'about' ? 'About, current page' : 'About'">
                             About
                         </button>
                         <button @click="currentPage = 'accessibility'" 
-                                :class="currentPage === 'accessibility' ? 'bg-vintage-100 text-vintage-700 border-b-2 border-vintage-500' : 'text-sage-600 hover:text-vintage-600'"
-                                class="px-4 py-3 text-sm font-medium focus-visible:focus transition-colors vintage-body">
+                                :class="currentPage === 'accessibility' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'"
+                                class="px-4 py-2 text-17 font-medium transition-colors apple-text"
+                                :aria-label="currentPage === 'accessibility' ? 'Accessibility Help, current page' : 'Accessibility Help'">
                             Accessibility Help
                         </button>
                         <button @click="currentPage = 'contact'" 
-                                :class="currentPage === 'contact' ? 'bg-vintage-100 text-vintage-700 border-b-2 border-vintage-500' : 'text-sage-600 hover:text-vintage-600'"
-                                class="px-4 py-3 text-sm font-medium focus-visible:focus transition-colors vintage-body">
+                                :class="currentPage === 'contact' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'"
+                                class="px-4 py-2 text-17 font-medium transition-colors apple-text"
+                                :aria-label="currentPage === 'contact' ? 'Contact, current page' : 'Contact'">
                             Contact
                         </button>
                     </div>
@@ -327,52 +391,55 @@
                 <!-- Mobile menu button -->
                 <div class="md:hidden">
                     <button @click="mobileMenuOpen = !mobileMenuOpen" 
-                            class="bg-cream-200 p-3 rounded-lg text-sage-600 hover:text-vintage-600 hover:bg-cream-300 focus-visible:focus"
+                            class="p-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-gray-100"
                             :aria-expanded="mobileMenuOpen"
                             aria-controls="mobile-menu"
                             aria-label="Toggle navigation menu">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                            <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
+                        <span class="sr-only" x-text="mobileMenuOpen ? 'Close menu' : 'Open menu'"></span>
+                        <!-- Hamburger icon (replaced SVG with CSS) -->
+                        <div class="w-6 h-6 flex flex-col justify-center space-y-1">
+                            <div :class="mobileMenuOpen ? 'rotate-45 translate-y-2' : ''" class="w-6 h-0.5 bg-current transition-transform duration-200"></div>
+                            <div :class="mobileMenuOpen ? 'opacity-0' : ''" class="w-6 h-0.5 bg-current transition-opacity duration-200"></div>
+                            <div :class="mobileMenuOpen ? '-rotate-45 -translate-y-2' : ''" class="w-6 h-0.5 bg-current transition-transform duration-200"></div>
+                        </div>
                     </button>
                 </div>
             </div>
             
             <!-- Mobile menu -->
             <div x-show="mobileMenuOpen" 
-                 x-transition:enter="transition ease-out duration-100"
+                 x-transition:enter="transition ease-out duration-200"
                  x-transition:enter-start="transform opacity-0 scale-95"
                  x-transition:enter-end="transform opacity-100 scale-100"
-                 x-transition:leave="transition ease-in duration-75"
+                 x-transition:leave="transition ease-in duration-150"
                  x-transition:leave-start="transform opacity-100 scale-100"
                  x-transition:leave-end="transform opacity-0 scale-95"
                  class="md:hidden" 
                  id="mobile-menu">
-                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-cream-100 border-t-2 border-vintage-300">
+                <div class="px-4 pt-4 pb-6 space-y-2 bg-white border-t border-gray-200">
                     <button @click="currentPage = 'home'; mobileMenuOpen = false" 
-                            :class="currentPage === 'home' ? 'bg-vintage-100 text-vintage-700' : 'text-sage-600 hover:text-vintage-600 hover:bg-cream-200'"
-                            class="block w-full text-left px-4 py-3 text-base font-medium focus-visible:focus transition-colors vintage-body">
+                            :class="currentPage === 'home' ? 'bg-blue-50 text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'"
+                            class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors apple-text">
                         Home
                     </button>
                     <button @click="currentPage = 'jobs'; loadJobs(); mobileMenuOpen = false" 
-                            :class="currentPage === 'jobs' ? 'bg-vintage-100 text-vintage-700' : 'text-sage-600 hover:text-vintage-600 hover:bg-cream-200'"
-                            class="block w-full text-left px-4 py-3 text-base font-medium focus-visible:focus transition-colors vintage-body">
+                            :class="currentPage === 'jobs' ? 'bg-blue-50 text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'"
+                            class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors apple-text">
                         Browse Jobs
                     </button>
                     <button @click="currentPage = 'about'; mobileMenuOpen = false" 
-                            :class="currentPage === 'about' ? 'bg-vintage-100 text-vintage-700' : 'text-sage-600 hover:text-vintage-600 hover:bg-cream-200'"
-                            class="block w-full text-left px-4 py-3 text-base font-medium focus-visible:focus transition-colors vintage-body">
+                            :class="currentPage === 'about' ? 'bg-blue-50 text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'"
+                            class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors apple-text">
                         About
                     </button>
                     <button @click="currentPage = 'accessibility'; mobileMenuOpen = false" 
-                            :class="currentPage === 'accessibility' ? 'bg-vintage-100 text-vintage-700' : 'text-sage-600 hover:text-vintage-600 hover:bg-cream-200'"
-                            class="block w-full text-left px-4 py-3 text-base font-medium focus-visible:focus transition-colors vintage-body">
+                            :class="currentPage === 'accessibility' ? 'bg-blue-50 text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'"
+                            class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors apple-text">
                         Accessibility Help
                     </button>
                     <button @click="currentPage = 'contact'; mobileMenuOpen = false" 
-                            :class="currentPage === 'contact' ? 'bg-vintage-100 text-vintage-700' : 'text-sage-600 hover:text-vintage-600 hover:bg-cream-200'"
-                            class="block w-full text-left px-4 py-3 text-base font-medium focus-visible:focus transition-colors vintage-body">
+                            :class="currentPage === 'contact' ? 'bg-blue-50 text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'"
+                            class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors apple-text">
                         Contact
                     </button>
                 </div>
@@ -381,140 +448,117 @@
     </header>
 
     <!-- Main Content -->
-    <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main id="main-content" class="pt-20">
         
         <!-- Home Page -->
         <div x-show="currentPage === 'home'" x-transition>
-            <!-- Hero Section with Vintage Background Image -->
-            <section :class="`hero-bg-${currentHeroBackground} text-cream-50 p-12 mb-16 text-center relative overflow-hidden decorative-border`">
-                <!-- Decorative background elements -->
-                <div class="absolute inset-0 opacity-15">
-                    <div class="absolute top-10 left-10 w-24 h-24 bg-cream-200 rounded-full vintage-float"></div>
-                    <div class="absolute top-20 right-20 w-20 h-20 bg-cream-200 rounded-full vintage-float" style="animation-delay: 1.5s;"></div>
-                    <div class="absolute bottom-20 left-1/4 w-16 h-16 bg-cream-200 rounded-full vintage-float" style="animation-delay: 3s;"></div>
+            <!-- Hero Section with Video Background -->
+            <section class="hero-section flex items-center justify-center text-center relative overflow-hidden">
+                <!-- Background video -->
+                <video autoplay muted loop playsinline class="hero-video" aria-hidden="true">
+                    <source src="https://player.vimeo.com/external/370467553.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6a5c&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
+                    <!-- Fallback for browsers that don't support video -->
+                </video>
+                
+                <!-- Video overlay -->
+                <div class="video-overlay"></div>
+                
+                <!-- Floating decorative elements -->
+                <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+                    <div class="absolute top-20 left-20 w-32 h-32 bg-blue-200 rounded-full opacity-20 floating-element"></div>
+                    <div class="absolute top-40 right-32 w-24 h-24 bg-blue-300 rounded-full opacity-15 floating-element" style="animation-delay: 2s;"></div>
+                    <div class="absolute bottom-32 left-1/3 w-20 h-20 bg-blue-400 rounded-full opacity-25 floating-element" style="animation-delay: 4s;"></div>
                 </div>
                 
-                <div class="relative z-10">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-fade-in vintage-heading">
-                    Bridging Abilities to 
-                        <span class="vintage-text">Opportunities</span>
-                </h1>
-                    <p class="text-xl mb-8 max-w-3xl mx-auto opacity-95 animate-slide-up vintage-body">
-                    AI-powered career platform that matches individuals with disabilities to meaningful employment opportunities based on their skills and abilities, not their limitations.
-                </p>
-                    <div class="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up" style="animation-delay: 0.2s;">
-                    <button @click="currentPage = 'jobs'; loadJobs()" 
-                                class="btn-vintage text-cream-50 px-8 py-4 font-semibold focus-visible:focus transition-all duration-300 shadow-lg">
-                            <span class="flex items-center gap-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                </svg>
-                        Find Inclusive Jobs
-                            </span>
-                    </button>
-                    <button @click="currentPage = 'about'" 
-                                class="glass text-sage-800 px-8 py-4 font-semibold hover:bg-cream-200 hover:text-sage-900 focus-visible:focus transition-all duration-300 border-2 border-cream-300">
-                            <span class="flex items-center gap-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                        Learn More
-                            </span>
-                    </button>
+                <div class="content-over-video max-w-6xl mx-auto px-6 lg:px-8 py-32">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-8 animate-fade-in apple-heading text-white">
+                        Bridging Abilities to 
+                        <span class="text-blue-400">Opportunities</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-12 max-w-4xl mx-auto text-white/90 animate-slide-up apple-text">
+                        AI-powered career platform that matches individuals with disabilities to meaningful employment opportunities based on their skills and abilities, not their limitations.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center animate-slide-up" style="animation-delay: 0.3s;">
+                        <button @click="currentPage = 'jobs'; loadJobs()" 
+                                class="btn-apple text-white shadow-lg"
+                                aria-describedby="find-jobs-desc">
+                            Find Inclusive Jobs
+                        </button>
+                        <button @click="currentPage = 'about'" 
+                                class="btn-secondary bg-white/10 text-white border-white/30 hover:bg-white hover:text-blue-600"
+                                aria-describedby="learn-more-desc">
+                            Learn More
+                        </button>
+                    </div>
+                    
+                    <!-- Screen reader descriptions -->
+                    <div class="sr-only">
+                        <div id="find-jobs-desc">Navigate to the jobs page to browse inclusive employment opportunities</div>
+                        <div id="learn-more-desc">Navigate to the about page to learn more about our mission</div>
                     </div>
                 </div>
             </section>
 
-            <!-- Vintage Features Section with Background -->
-            <section class="section-bg-pattern p-8 mb-16 relative overflow-hidden decorative-border" aria-labelledby="features-heading">
-                <!-- Background decoration -->
-                <div class="absolute inset-0 opacity-10">
-                    <div class="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-vintage-400 to-sage-400 rounded-full"></div>
-                    <div class="absolute bottom-0 right-0 w-24 h-24 bg-gradient-to-br from-sepia-400 to-vintage-400 rounded-full"></div>
-                </div>
-                
-                <div class="relative z-10">
-                    <h2 id="features-heading" class="text-3xl font-bold text-center mb-12 vintage-heading">Why Choose Inclusiv?</h2>
+            <!-- Features Section with Background Image -->
+            <section class="features-bg py-24 relative" aria-labelledby="features-heading">
+                <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                    <h2 id="features-heading" class="text-4xl md:text-5xl font-bold text-center mb-16 apple-heading text-gray-900">Why Choose Inclusiv?</h2>
                     
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div class="card-hover bg-cream-50/95 backdrop-blur-sm p-8 shadow-lg border-2 border-cream-200">
-                            <div class="w-16 h-16 bg-vintage-500 flex items-center justify-center mb-6 shadow-lg">
-                                <svg class="w-8 h-8 text-cream-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                        </svg>
-                    </div>
-                            <h3 class="text-xl font-bold text-sage-900 mb-4 vintage-heading">Skills-First Matching</h3>
-                            <p class="text-sage-700 leading-relaxed vintage-body">AI-powered algorithm that prioritizes abilities and skills over disability status for perfect job matches.</p>
-                </div>
-                
-                        <div class="card-hover bg-cream-50/95 backdrop-blur-sm p-8 shadow-lg border-2 border-cream-200">
-                            <div class="w-16 h-16 bg-sage-500 flex items-center justify-center mb-6 shadow-lg">
-                                <svg class="w-8 h-8 text-cream-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
+                    <div class="grid md:grid-cols-3 gap-12">
+                        <div class="static-card p-10 text-center">
+                            <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-8 mx-auto shadow-lg">
+                                <!-- Replaced SVG with emoji/text icon -->
+                                <span class="text-3xl text-white font-bold" role="img" aria-label="Skills icon">💡</span>
                             </div>
-                            <h3 class="text-xl font-bold text-sage-900 mb-4 vintage-heading">Smart Accommodations</h3>
-                            <p class="text-sage-700 leading-relaxed vintage-body">Intelligent suggestions for workplace accommodations based on job requirements and individual needs.</p>
-                </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6 apple-heading">Skills-First Matching</h3>
+                            <p class="text-gray-700 leading-relaxed text-lg apple-text">AI-powered algorithm that prioritizes abilities and skills over disability status for perfect job matches.</p>
+                        </div>
                 
-                        <div class="card-hover bg-cream-50/95 backdrop-blur-sm p-8 shadow-lg border-2 border-cream-200">
-                            <div class="w-16 h-16 bg-sepia-500 flex items-center justify-center mb-6 shadow-lg">
-                                <svg class="w-8 h-8 text-cream-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
-                        </svg>
-                    </div>
-                            <h3 class="text-xl font-bold text-sage-900 mb-4 vintage-heading">Inclusive Community</h3>
-                            <p class="text-sage-700 leading-relaxed vintage-body">Connect with employers committed to diversity and inclusion in the workplace.</p>
+                        <div class="static-card p-10 text-center">
+                            <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mb-8 mx-auto shadow-lg">
+                                <!-- Replaced SVG with emoji/text icon -->
+                                <span class="text-3xl text-white font-bold" role="img" aria-label="Accommodations icon">✅</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6 apple-heading">Smart Accommodations</h3>
+                            <p class="text-gray-700 leading-relaxed text-lg apple-text">Intelligent suggestions for workplace accommodations based on job requirements and individual needs.</p>
+                        </div>
+                
+                        <div class="static-card p-10 text-center">
+                            <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mb-8 mx-auto shadow-lg">
+                                <!-- Replaced SVG with emoji/text icon -->
+                                <span class="text-3xl text-white font-bold" role="img" aria-label="Community icon">👥</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6 apple-heading">Inclusive Community</h3>
+                            <p class="text-gray-700 leading-relaxed text-lg apple-text">Connect with employers committed to diversity and inclusion in the workplace.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Background Rotation Controls -->
-            <section class="bg-cream-50/90 backdrop-blur-sm p-6 mb-16 border-2 border-cream-200">
-                <h3 class="text-xl font-bold text-sage-900 mb-4 text-center vintage-heading">Choose Your Background Theme</h3>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <button @click="changeHeroBackground('primary')" 
-                            class="px-6 py-3 bg-vintage-500 text-cream-50 font-medium hover:shadow-lg transition-all duration-300 vintage-body">
-                        Autumn
-                    </button>
-                    <button @click="changeHeroBackground('secondary')" 
-                            class="px-6 py-3 bg-sage-500 text-cream-50 font-medium hover:shadow-lg transition-all duration-300 vintage-body">
-                        Forest
-                    </button>
-                    <button @click="changeHeroBackground('tertiary')" 
-                            class="px-6 py-3 bg-sepia-500 text-cream-50 font-medium hover:shadow-lg transition-all duration-300 vintage-body">
-                        Heritage
-                    </button>
-                    <button @click="changeHeroBackground('quaternary')" 
-                            class="px-6 py-3 bg-vintage-600 text-cream-50 font-medium hover:shadow-lg transition-all duration-300 vintage-body">
-                        Classic
-                    </button>
-                </div>
-            </section>
-
-            <!-- Vintage Statistics Section -->
-            <section class="section-bg-gradient text-cream-50 p-12 text-center relative overflow-hidden decorative-border" aria-labelledby="stats-heading">
-                <!-- Decorative background elements -->
-                <div class="absolute inset-0 opacity-15">
-                    <div class="absolute top-1/4 left-1/4 w-32 h-32 bg-cream-200 rounded-full vintage-float"></div>
-                    <div class="absolute bottom-1/4 right-1/4 w-24 h-24 bg-cream-200 rounded-full vintage-float" style="animation-delay: 1.5s;"></div>
+            <!-- Statistics Section with Video Background -->
+            <section class="stats-bg py-24 text-white text-center relative overflow-hidden" aria-labelledby="stats-heading">
+                <!-- Background GIF/Video -->
+                <div class="absolute inset-0 opacity-30">
+                    <img src="https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif" 
+                         alt="" 
+                         class="w-full h-full object-cover" 
+                         aria-hidden="true">
                 </div>
                 
-                <div class="relative z-10">
-                    <h2 id="stats-heading" class="text-3xl font-bold mb-12 vintage-heading">Making a Difference</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                        <div class="card-hover bg-cream-50/10 backdrop-blur-sm p-8 border-2 border-cream-200/30">
-                            <div class="text-5xl font-bold mb-4 text-vintage-200">70%+</div>
-                            <div class="text-lg opacity-95 vintage-body">Disability unemployment rate we're addressing</div>
-                    </div>
-                        <div class="card-hover bg-cream-50/10 backdrop-blur-sm p-8 border-2 border-cream-200/30">
-                            <div class="text-5xl font-bold mb-4 text-sage-200">100+</div>
-                            <div class="text-lg opacity-95 vintage-body">Inclusive jobs available</div>
-                    </div>
-                        <div class="card-hover bg-cream-50/10 backdrop-blur-sm p-8 border-2 border-cream-200/30">
-                            <div class="text-5xl font-bold mb-4 text-sepia-200">100%</div>
-                            <div class="text-lg opacity-95 vintage-body">Commitment to accessibility</div>
+                <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+                    <h2 id="stats-heading" class="text-4xl md:text-5xl font-bold mb-16 apple-heading">Making a Difference</h2>
+                    <div class="grid md:grid-cols-3 gap-12">
+                        <div class="glass-card p-12">
+                            <div class="text-6xl font-bold mb-6 text-white">70%+</div>
+                            <div class="text-xl text-white/90 apple-text">Disability unemployment rate we're addressing</div>
+                        </div>
+                        <div class="glass-card p-12">
+                            <div class="text-6xl font-bold mb-6 text-white">100+</div>
+                            <div class="text-xl text-white/90 apple-text">Inclusive jobs available</div>
+                        </div>
+                        <div class="glass-card p-12">
+                            <div class="text-6xl font-bold mb-6 text-white">100%</div>
+                            <div class="text-xl text-white/90 apple-text">Commitment to accessibility</div>
                         </div>
                     </div>
                 </div>
@@ -523,260 +567,241 @@
 
         <!-- Jobs Page -->
         <div x-show="currentPage === 'jobs'" x-transition>
-            <div class="mb-8">
-                <h1 class="text-3xl font-bold text-gray-900 mb-4">Browse Inclusive Jobs</h1>
-                <p class="text-gray-600 mb-6">Discover opportunities that value your abilities and provide inclusive work environments.</p>
-            </div>
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+                <div class="mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 apple-heading">Browse Inclusive Jobs</h1>
+                    <p class="text-xl text-gray-600 mb-8 apple-text">Discover opportunities that value your abilities and provide inclusive work environments.</p>
+                </div>
 
-            <!-- Search and Filter Section -->
-            <div class="bg-cream-50 p-6 border-2 border-cream-200 mb-6">
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <!-- Search Input -->
-                    <div class="md:col-span-2">
-                        <label for="job-search" class="block text-sm font-medium text-sage-700 mb-1 vintage-body">Search Jobs</label>
-                        <div class="relative">
-                            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-sage-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                            </svg>
-                            <input type="text" 
-                                   id="job-search"
-                                   x-model="searchQuery"
-                                   @input="filterJobs()"
-                                   placeholder="Search by title, company, or keywords..."
-                                   class="w-full pl-10 pr-4 py-3 border-2 border-cream-300 focus:ring-2 focus:ring-vintage-500 focus:border-vintage-500 focus-visible:focus bg-cream-100 vintage-body">
+                <!-- Search and Filter Section -->
+                <div class="glass-card p-8 mb-12">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Search Input -->
+                        <div class="md:col-span-2">
+                            <label for="job-search" class="block text-sm font-semibold text-gray-700 mb-2 apple-text">Search Jobs</label>
+                            <div class="relative">
+                                <!-- Search icon (replaced SVG with emoji) -->
+                                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg" role="img" aria-label="Search">🔍</span>
+                                <input type="text" 
+                                       id="job-search"
+                                       x-model="searchQuery"
+                                       @input="filterJobs()"
+                                       placeholder="Search by title, company, or keywords..."
+                                       class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white apple-text text-lg">
+                            </div>
+                        </div>
+
+                        <!-- Location Filter -->
+                        <div>
+                            <label for="location-filter" class="block text-sm font-semibold text-gray-700 mb-2 apple-text">Location</label>
+                            <select id="location-filter" 
+                                    x-model="locationFilter"
+                                    @change="filterJobs()"
+                                    class="w-full px-4 py-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white apple-text text-lg">
+                                <option value="">All Locations</option>
+                                <option value="Remote">Remote Only</option>
+                                <option value="New York">New York</option>
+                                <option value="San Francisco">San Francisco</option>
+                                <option value="London">London</option>
+                            </select>
+                        </div>
+
+                        <!-- Job Type Filter -->
+                        <div>
+                            <label for="type-filter" class="block text-sm font-semibold text-gray-700 mb-2 apple-text">Job Type</label>
+                            <select id="type-filter" 
+                                    x-model="typeFilter"
+                                    @change="filterJobs()"
+                                    class="w-full px-4 py-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white apple-text text-lg">
+                                <option value="">All Types</option>
+                                <option value="Software Engineer">Software Engineer</option>
+                                <option value="Data Analyst">Data Analyst</option>
+                                <option value="Designer">Designer</option>
+                                <option value="Manager">Manager</option>
+                            </select>
                         </div>
                     </div>
 
-                    <!-- Location Filter -->
-                    <div>
-                        <label for="location-filter" class="block text-sm font-medium text-sage-700 mb-1 vintage-body">Location</label>
-                        <select id="location-filter" 
-                                x-model="locationFilter"
-                                @change="filterJobs()"
-                                class="w-full px-3 py-3 border-2 border-cream-300 focus:ring-2 focus:ring-vintage-500 focus:border-vintage-500 focus-visible:focus bg-cream-100 vintage-body">
-                            <option value="">All Locations</option>
-                            <option value="Remote">Remote Only</option>
-                            <option value="New York">New York</option>
-                            <option value="San Francisco">San Francisco</option>
-                            <option value="London">London</option>
-                        </select>
-                    </div>
-
-                    <!-- Job Type Filter -->
-                    <div>
-                        <label for="type-filter" class="block text-sm font-medium text-sage-700 mb-1 vintage-body">Job Type</label>
-                        <select id="type-filter" 
-                                x-model="typeFilter"
-                                @change="filterJobs()"
-                                class="w-full px-3 py-3 border-2 border-cream-300 focus:ring-2 focus:ring-vintage-500 focus:border-vintage-500 focus-visible:focus bg-cream-100 vintage-body">
-                            <option value="">All Types</option>
-                            <option value="Software Engineer">Software Engineer</option>
-                            <option value="Data Analyst">Data Analyst</option>
-                            <option value="Designer">Designer</option>
-                            <option value="Manager">Manager</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Active Filters Display -->
-                <div x-show="hasActiveFilters()" class="mt-4 pt-4 border-t-2 border-cream-200">
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-sm text-sage-600 vintage-body">Active filters:</span>
-                        <span x-show="searchQuery" class="bg-vintage-100 text-vintage-800 px-3 py-1 text-sm vintage-body border border-vintage-300">
-                            Search: <span x-text="searchQuery"></span>
-                            <button @click="clearSearch()" class="ml-1 text-vintage-600 hover:text-vintage-800">×</button>
-                        </span>
-                        <span x-show="locationFilter" class="bg-sage-100 text-sage-800 px-3 py-1 text-sm vintage-body border border-sage-300">
-                            Location: <span x-text="locationFilter"></span>
-                            <button @click="clearLocationFilter()" class="ml-1 text-sage-600 hover:text-sage-800">×</button>
-                        </span>
-                        <span x-show="typeFilter" class="bg-sepia-100 text-sepia-800 px-3 py-1 text-sm vintage-body border border-sepia-300">
-                            Type: <span x-text="typeFilter"></span>
-                            <button @click="clearTypeFilter()" class="ml-1 text-sepia-600 hover:text-sepia-800">×</button>
-                        </span>
-                        <button @click="clearAllFilters()" class="text-sm text-sage-600 hover:text-sage-800 underline vintage-body">
-                            Clear all filters
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Job Results -->
-            <div x-show="filteredJobs.length > 0" class="space-y-6">
-                <div x-show="error" class="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
-                    <div class="flex">
-                        <div class="flex-shrink-0">
-                            <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                        <div class="ml-3">
-                            <p class="text-sm text-red-700" x-text="error"></p>
-                            <p class="text-sm text-red-600 mt-2">Showing sample data instead.</p>
+                    <!-- Active Filters Display -->
+                    <div x-show="hasActiveFilters()" class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex flex-wrap gap-3">
+                            <span class="text-sm text-gray-600 apple-text font-medium">Active filters:</span>
+                            <span x-show="searchQuery" class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm apple-text">
+                                Search: <span x-text="searchQuery"></span>
+                                <button @click="clearSearch()" class="ml-2 text-blue-600 hover:text-blue-800" aria-label="Clear search filter">×</button>
+                            </span>
+                            <span x-show="locationFilter" class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm apple-text">
+                                Location: <span x-text="locationFilter"></span>
+                                <button @click="clearLocationFilter()" class="ml-2 text-green-600 hover:text-green-800" aria-label="Clear location filter">×</button>
+                            </span>
+                            <span x-show="typeFilter" class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm apple-text">
+                                Type: <span x-text="typeFilter"></span>
+                                <button @click="clearTypeFilter()" class="ml-2 text-purple-600 hover:text-purple-800" aria-label="Clear type filter">×</button>
+                            </span>
+                            <button @click="clearAllFilters()" class="text-sm text-gray-600 hover:text-gray-800 underline apple-text">
+                                Clear all filters
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="bg-cream-50 p-4 border-2 border-cream-200">
-                    <p class="text-sm text-gray-600 mb-4">
-                        Showing <span x-text="paginatedJobs.length"></span> of <span x-text="filteredJobs.length"></span> jobs 
-                        (Page <span x-text="currentPageNum"></span> of <span x-text="totalPages"></span>)
-                    </p>
-                </div>
 
-                <template x-for="job in paginatedJobs" :key="job.id">
-                    <article class="card-hover bg-cream-50/95 backdrop-blur-sm p-8 shadow-lg border-2 border-cream-200 mb-8 hover:shadow-xl transition-all duration-300">
-                        <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
-                            <div class="flex-1">
-                                <h2 class="text-2xl font-bold text-sage-900 mb-3 vintage-heading" x-html="highlightSearch(job.title)"></h2>
-                                <p class="text-lg text-vintage-600 font-medium mb-3 vintage-body" x-html="highlightSearch(job.company)"></p>
-                                <div class="flex flex-wrap items-center gap-4 text-sm text-sage-600 mb-3">
-                                    <span class="flex items-center gap-2 bg-cream-200 px-3 py-1 border border-cream-300">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        </svg>
-                                        <span x-text="job.location" class="vintage-body"></span>
+                <!-- Job Results -->
+                <div x-show="filteredJobs.length > 0" class="space-y-8">
+                    <!-- Results info -->
+                    <div class="glass-card p-6">
+                        <p class="text-lg text-gray-700 apple-text">
+                            Showing <span x-text="paginatedJobs.length" class="font-semibold"></span> of <span x-text="filteredJobs.length" class="font-semibold"></span> jobs 
+                            (Page <span x-text="currentPageNum" class="font-semibold"></span> of <span x-text="totalPages" class="font-semibold"></span>)
+                        </p>
+                    </div>
+
+                    <template x-for="job in paginatedJobs" :key="job.id">
+                        <article class="static-card p-10 shadow-lg">
+                            <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-8">
+                                <div class="flex-1">
+                                    <h2 class="text-3xl font-bold text-gray-900 mb-4 apple-heading" x-html="highlightSearch(job.title)"></h2>
+                                    <p class="text-xl text-blue-600 font-semibold mb-4 apple-text" x-html="highlightSearch(job.company)"></p>
+                                    <div class="flex flex-wrap items-center gap-4 text-base text-gray-600 mb-4">
+                                        <span class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full">
+                                            <span role="img" aria-label="Location">📍</span>
+                                            <span x-text="job.location" class="apple-text"></span>
+                                        </span>
+                                        <span class="flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full" x-show="job.remote">
+                                            <span role="img" aria-label="Remote work">🌐</span>
+                                            Remote
+                                        </span>
+                                        <span x-show="job.salary && job.salary !== 'Salary not specified'" x-text="job.salary" class="font-semibold text-blue-600 bg-blue-50 px-4 py-2 rounded-full apple-text"></span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end gap-4">
+                                    <span class="bg-blue-600 text-white px-6 py-3 text-sm font-bold rounded-full shadow-lg apple-text">
+                                        ✓ Inclusive Workplace
                                     </span>
-                                    <span class="flex items-center gap-2 bg-sage-100 text-sage-700 px-3 py-1 border border-sage-300" x-show="job.remote">
-                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                                        </svg>
-                                        Remote
-                                    </span>
-                                    <span x-show="job.salary && job.salary !== 'Salary not specified'" x-text="job.salary" class="font-medium text-sepia-600 bg-sepia-50 px-3 py-1 border border-sepia-300 vintage-body"></span>
+                                    <time class="text-sm text-gray-500 bg-gray-100 px-4 py-2 rounded-full apple-text" x-text="formatDate(job.posted_date)"></time>
                                 </div>
                             </div>
-                            <div class="flex flex-col items-end gap-3">
-                                <span class="bg-vintage-500 text-cream-50 px-4 py-2 text-sm font-bold shadow-lg vintage-body">
-                                    Inclusive Workplace
-                                </span>
-                                <time class="text-sm text-sage-500 bg-cream-200 px-3 py-1 border border-cream-300 vintage-body" x-text="formatDate(job.posted_date)"></time>
+                            <div class="prose max-w-none mb-8">
+                                <p class="text-gray-700 leading-relaxed text-lg apple-text" x-html="highlightSearch(job.description || 'No description available')"></p>
                             </div>
-                        </div>
-                        <div class="prose max-w-none mb-6">
-                            <p class="text-sage-700 leading-relaxed vintage-body" x-html="highlightSearch(job.description || 'No description available')"></p>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <button @click="showJobDetails(job)" class="btn-vintage text-cream-50 px-8 py-3 font-semibold focus-visible:focus transition-all duration-300 shadow-lg">
-                                <span class="flex items-center gap-2">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                    </svg>
-                                View Details
-                                </span>
-                            </button>
-                            <a :href="job.apply_url" target="_blank" rel="noopener noreferrer" class="glass text-vintage-600 px-8 py-3 font-semibold text-center hover:bg-vintage-50 focus-visible:focus transition-all duration-300 border-2 border-vintage-200">
-                                <span class="flex items-center gap-2">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                                </svg>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <button @click="showJobDetails(job)" class="btn-apple shadow-lg">
+                                    View Details
+                                </button>
+                                <a :href="job.apply_url" target="_blank" rel="noopener noreferrer" class="btn-secondary text-center">
                                     Apply Now
-                                </span>
-                            </a>
-                        </div>
-                    </article>
-                </template>
-
-                <!-- Pagination -->
-                <div x-show="totalPages > 1" class="flex justify-center items-center space-x-2 mt-8">
-                    <button @click="goToPage(currentPageNum - 1)" 
-                            :disabled="currentPageNum === 1"
-                            :class="currentPageNum === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-cream-200'"
-                            class="px-4 py-3 border-2 border-cream-300 focus-visible:focus bg-cream-100 vintage-body">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                        </svg>
-                    </button>
-                    
-                    <template x-for="page in getPageNumbers()" :key="page">
-                        <button @click="goToPage(page)" 
-                                :class="page === currentPageNum ? 'bg-vintage-600 text-cream-50' : 'bg-cream-100 text-sage-700 hover:bg-cream-200'"
-                                class="px-4 py-3 border-2 border-cream-300 focus-visible:focus vintage-body">
-                            <span x-text="page"></span>
-                        </button>
+                                </a>
+                            </div>
+                        </article>
                     </template>
-                    
-                    <button @click="goToPage(currentPageNum + 1)" 
-                            :disabled="currentPageNum === totalPages"
-                            :class="currentPageNum === totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:bg-cream-200'"
-                            class="px-4 py-3 border-2 border-cream-300 focus-visible:focus bg-cream-100 vintage-body">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
+
+                    <!-- Pagination -->
+                    <div x-show="totalPages > 1" class="flex justify-center items-center space-x-3 mt-12">
+                        <button @click="goToPage(currentPageNum - 1)" 
+                                :disabled="currentPageNum === 1"
+                                :class="currentPageNum === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'"
+                                class="px-6 py-3 border-2 border-gray-200 rounded-lg bg-white apple-text font-medium"
+                                aria-label="Previous page">
+                            ← Previous
+                        </button>
+                        
+                        <template x-for="page in getPageNumbers()" :key="page">
+                            <button @click="goToPage(page)" 
+                                    :class="page === currentPageNum ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'"
+                                    class="px-6 py-3 border-2 border-gray-200 rounded-lg apple-text font-medium">
+                                <span x-text="page"></span>
+                            </button>
+                        </template>
+                        
+                        <button @click="goToPage(currentPageNum + 1)" 
+                                :disabled="currentPageNum === totalPages"
+                                :class="currentPageNum === totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'"
+                                class="px-6 py-3 border-2 border-gray-200 rounded-lg bg-white apple-text font-medium"
+                                aria-label="Next page">
+                            Next →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div x-show="loading" class="text-center py-24">
+                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-4 border-blue-600 mb-6"></div>
+                    <p class="text-xl text-gray-600 apple-text">Loading inclusive job opportunities...</p>
+                </div>
+
+                <!-- No Jobs State -->
+                <div x-show="!loading && filteredJobs.length === 0" class="text-center py-24">
+                    <div class="text-6xl mb-6" role="img" aria-label="No jobs found">📋</div>
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4 apple-heading">No jobs found</h2>
+                    <p class="text-lg text-gray-600 mb-6 apple-text" x-show="hasActiveFilters()">Try adjusting your search criteria or filters.</p>
+                    <p class="text-lg text-gray-600 mb-6 apple-text" x-show="!hasActiveFilters()">We're currently updating our job listings. Please check back soon!</p>
+                    <button @click="loadJobs()" 
+                            class="btn-apple">
+                        Refresh Jobs
                     </button>
                 </div>
-            </div>
-
-            <!-- Loading State -->
-            <div x-show="loading" class="text-center py-12">
-                <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
-                <p class="mt-4 text-gray-600">Loading inclusive job opportunities...</p>
-            </div>
-
-            <!-- No Jobs State -->
-            <div x-show="!loading && filteredJobs.length === 0" class="text-center py-12">
-                <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"/>
-                </svg>
-                <h2 class="text-xl font-semibold text-gray-900 mb-2">No jobs found</h2>
-                <p class="text-gray-600 mb-4" x-show="hasActiveFilters()">Try adjusting your search criteria or filters.</p>
-                <p class="text-gray-600 mb-4" x-show="!hasActiveFilters()">We're currently updating our job listings. Please check back soon!</p>
-                <button @click="loadJobs()" 
-                        class="bg-primary-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-primary-700 focus-visible:focus transition-colors">
-                    Refresh Jobs
-                </button>
             </div>
         </div>
 
         <!-- About Page -->
         <div x-show="currentPage === 'about'" x-transition>
-            <div class="max-w-4xl mx-auto">
-                <h1 class="text-3xl font-bold text-gray-900 mb-6">About Inclusiv</h1>
+            <div class="max-w-5xl mx-auto px-6 lg:px-8 py-16">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 apple-heading">About Inclusiv</h1>
                 
                 <div class="prose prose-lg max-w-none">
-                    <p class="text-xl text-gray-700 mb-8">
+                    <p class="text-2xl text-gray-700 mb-12 apple-text leading-relaxed">
                         Inclusiv is transforming the employment landscape by focusing on what people can do, 
                         rather than what they cannot. We believe that everyone deserves meaningful work opportunities 
                         that match their skills and abilities.
                     </p>
                     
-                    <section class="mb-8">
-                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Our Mission</h2>
-                        <p class="text-gray-700 mb-4">
+                    <section class="mb-16">
+                        <h2 class="text-3xl font-semibold text-gray-900 mb-6 apple-heading">Our Mission</h2>
+                        <p class="text-xl text-gray-700 mb-6 apple-text leading-relaxed">
                             To bridge the gap between talented individuals with disabilities and inclusive employers 
                             through AI-powered matching, intelligent accommodation recommendations, and 
                             comprehensive career pathway guidance.
                         </p>
                     </section>
                     
-                    <section class="mb-8">
-                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">The Problem We're Solving</h2>
-                        <ul class="list-disc pl-6 text-gray-700 space-y-2">
-                            <li>Over 50% unemployment rate among people with disabilities despite their desire to work</li>
-                            <li>Traditional job platforms focus on disability as a limitation rather than showcasing abilities</li>
-                            <li>Lack of personalized accommodation guidance for both job seekers and employers</li>
-                            <li>Limited career pathway visibility for people with various accessibility needs</li>
+                    <section class="mb-16">
+                        <h2 class="text-3xl font-semibold text-gray-900 mb-6 apple-heading">The Problem We're Solving</h2>
+                        <ul class="list-none space-y-4 text-xl text-gray-700 apple-text">
+                            <li class="flex items-start gap-4">
+                                <span class="text-2xl" role="img" aria-label="Problem">⚠️</span>
+                                Over 50% unemployment rate among people with disabilities despite their desire to work
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="text-2xl" role="img" aria-label="Problem">⚠️</span>
+                                Traditional job platforms focus on disability as a limitation rather than showcasing abilities
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="text-2xl" role="img" aria-label="Problem">⚠️</span>
+                                Lack of personalized accommodation guidance for both job seekers and employers
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="text-2xl" role="img" aria-label="Problem">⚠️</span>
+                                Limited career pathway visibility for people with various accessibility needs
+                            </li>
                         </ul>
                     </section>
                     
-                    <section class="mb-8">
-                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Our Approach</h2>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div class="bg-primary-50 p-6 rounded-lg">
-                                <h3 class="font-semibold text-primary-900 mb-2">Skills-First Philosophy</h3>
-                                <p class="text-primary-800">We prioritize what you can do, matching skills and abilities to job requirements using advanced AI algorithms.</p>
+                    <section class="mb-16">
+                        <h2 class="text-3xl font-semibold text-gray-900 mb-8 apple-heading">Our Approach</h2>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="glass-card p-8">
+                                <h3 class="font-semibold text-blue-900 mb-4 text-xl apple-heading">Skills-First Philosophy</h3>
+                                <p class="text-blue-800 apple-text text-lg">We prioritize what you can do, matching skills and abilities to job requirements using advanced AI algorithms.</p>
                             </div>
-                            <div class="bg-secondary-50 p-6 rounded-lg">
-                                <h3 class="font-semibold text-secondary-900 mb-2">Inclusive by Design</h3>
-                                <p class="text-secondary-800">Every feature is built with accessibility in mind, ensuring our platform works for everyone.</p>
+                            <div class="glass-card p-8">
+                                <h3 class="font-semibold text-green-900 mb-4 text-xl apple-heading">Inclusive by Design</h3>
+                                <p class="text-green-800 apple-text text-lg">Every feature is built with accessibility in mind, ensuring our platform works for everyone.</p>
                             </div>
                         </div>
                     </section>
                     
-                    <section class="mb-8">
-                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Our Impact</h2>
-                        <p class="text-gray-700 mb-4">
+                    <section class="mb-16">
+                        <h2 class="text-3xl font-semibold text-gray-900 mb-6 apple-heading">Our Impact</h2>
+                        <p class="text-xl text-gray-700 mb-6 apple-text leading-relaxed">
                             We're committed to creating lasting change in the employment landscape. By connecting 
                             talented individuals with forward-thinking employers, we're building a more inclusive 
                             workforce where everyone can thrive.
@@ -788,71 +813,149 @@
 
         <!-- Accessibility Help Page -->
         <div x-show="currentPage === 'accessibility'" x-transition>
-            <div class="max-w-4xl mx-auto">
-                <h1 class="text-3xl font-bold text-gray-900 mb-6">Accessibility Help</h1>
+            <div class="max-w-5xl mx-auto px-6 lg:px-8 py-16">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 apple-heading">Accessibility Help</h1>
                 
                 <div class="prose prose-lg max-w-none">
-                    <p class="text-xl text-gray-700 mb-8">
+                    <p class="text-2xl text-gray-700 mb-12 apple-text leading-relaxed">
                         Inclusiv is designed to be accessible to everyone. Here's how to make the most of our platform 
                         using various assistive technologies and accessibility features.
                     </p>
                     
-                    <section class="mb-8">
-                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Keyboard Navigation</h2>
-                        <div class="bg-gray-50 p-6 rounded-lg mb-4">
-                            <ul class="space-y-2 text-gray-700">
-                                <li><kbd class="px-2 py-1 bg-gray-200 rounded text-sm">Tab</kbd> - Navigate forward through interactive elements</li>
-                                <li><kbd class="px-2 py-1 bg-gray-200 rounded text-sm">Shift + Tab</kbd> - Navigate backward through interactive elements</li>
-                                <li><kbd class="px-2 py-1 bg-gray-200 rounded text-sm">Enter</kbd> or <kbd class="px-2 py-1 bg-gray-200 rounded text-sm">Space</kbd> - Activate buttons and links</li>
-                                <li><kbd class="px-2 py-1 bg-gray-200 rounded text-sm">Escape</kbd> - Close modals and menus</li>
+                    <section class="mb-16">
+                        <h2 class="text-3xl font-semibold text-gray-900 mb-6 apple-heading">Keyboard Navigation</h2>
+                        <div class="glass-card p-8 mb-6">
+                            <ul class="space-y-4 text-xl text-gray-700 apple-text">
+                                <li class="flex items-center gap-4">
+                                    <kbd class="px-4 py-2 bg-gray-200 rounded-lg text-lg font-mono">Tab</kbd> 
+                                    <span>Navigate forward through interactive elements</span>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <kbd class="px-4 py-2 bg-gray-200 rounded-lg text-lg font-mono">Shift + Tab</kbd> 
+                                    <span>Navigate backward through interactive elements</span>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <kbd class="px-4 py-2 bg-gray-200 rounded-lg text-lg font-mono">Enter</kbd> 
+                                    <span>or</span>
+                                    <kbd class="px-4 py-2 bg-gray-200 rounded-lg text-lg font-mono">Space</kbd> 
+                                    <span>Activate buttons and links</span>
+                                </li>
+                                <li class="flex items-center gap-4">
+                                    <kbd class="px-4 py-2 bg-gray-200 rounded-lg text-lg font-mono">Escape</kbd> 
+                                    <span>Close modals and menus</span>
+                                </li>
                             </ul>
                         </div>
                     </section>
                     
-                    <section class="mb-8">
-                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Screen Reader Support</h2>
-                        <p class="text-gray-700 mb-4">
-                            Our platform is fully compatible with screen readers including NVDA, JAWS, and VoiceOver. 
+                    <section class="mb-16">
+                        <h2 class="text-3xl font-semibold text-gray-900 mb-6 apple-heading">Screen Reader Support</h2>
+                        <p class="text-xl text-gray-700 mb-6 apple-text leading-relaxed">
+                            Our platform is fully compatible with screen readers including NVDA, JAWS, VoiceOver, and TalkBack. 
                             We use semantic HTML and ARIA labels to ensure all content is properly announced.
                         </p>
-                        <div class="bg-blue-50 p-6 rounded-lg mb-4">
-                            <h3 class="font-semibold text-blue-900 mb-2">Screen Reader Tips:</h3>
-                            <ul class="list-disc pl-6 text-blue-800 space-y-1">
-                                <li>Use landmark navigation to jump between main sections</li>
-                                <li>Headings are properly structured for easy navigation</li>
-                                <li>All form inputs have descriptive labels</li>
-                                <li>Job listings include detailed descriptions for context</li>
+                        <div class="bg-blue-50 p-8 rounded-2xl mb-6">
+                            <h3 class="font-semibold text-blue-900 mb-4 text-xl apple-heading">Screen Reader Tips:</h3>
+                            <ul class="space-y-3 text-blue-800 apple-text text-lg">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-xl" role="img" aria-label="Tip">💡</span>
+                                    Use landmark navigation to jump between main sections
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-xl" role="img" aria-label="Tip">💡</span>
+                                    Headings are properly structured for easy navigation
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-xl" role="img" aria-label="Tip">💡</span>
+                                    All form inputs have descriptive labels
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-xl" role="img" aria-label="Tip">💡</span>
+                                    Job listings include detailed descriptions for context
+                                </li>
                             </ul>
                         </div>
                     </section>
                     
-                    <section class="mb-8">
-                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Visual Accessibility</h2>
-                        <div class="space-y-4">
-                            <div>
-                                <h3 class="font-semibold text-gray-900 mb-2">High Contrast</h3>
-                                <p class="text-gray-700">Our design supports high contrast mode and meets WCAG AA standards for color contrast ratios.</p>
+                    <section class="mb-16">
+                        <h2 class="text-3xl font-semibold text-gray-900 mb-6 apple-heading">Visual Accessibility</h2>
+                        <div class="space-y-8">
+                            <div class="glass-card p-8">
+                                <h3 class="font-semibold text-gray-900 mb-4 text-xl apple-heading">High Contrast</h3>
+                                <p class="text-gray-700 apple-text text-lg">Our design supports high contrast mode and meets WCAG AA standards for color contrast ratios.</p>
                             </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-900 mb-2">Font Size</h3>
-                                <p class="text-gray-700">You can increase text size using your browser's zoom function (Ctrl/Cmd + Plus) up to 200% without losing functionality.</p>
+                            <div class="glass-card p-8">
+                                <h3 class="font-semibold text-gray-900 mb-4 text-xl apple-heading">Font Size</h3>
+                                <p class="text-gray-700 apple-text text-lg">You can increase text size using your browser's zoom function (Ctrl/Cmd + Plus) up to 200% without losing functionality.</p>
                             </div>
-                            <div>
-                                <h3 class="font-semibold text-gray-900 mb-2">Reduced Motion</h3>
-                                <p class="text-gray-700">If you have motion sensitivity, our platform respects your system's reduced motion preferences.</p>
+                            <div class="glass-card p-8">
+                                <h3 class="font-semibold text-gray-900 mb-4 text-xl apple-heading">Reduced Motion</h3>
+                                <p class="text-gray-700 apple-text text-lg">If you have motion sensitivity, our platform respects your system's reduced motion preferences.</p>
+                            </div>
+                            <div class="glass-card p-8">
+                                <h3 class="font-semibold text-gray-900 mb-4 text-xl apple-heading">Dark Mode</h3>
+                                <p class="text-gray-700 apple-text text-lg">Our platform automatically adapts to your system's dark mode preferences for comfortable viewing.</p>
                             </div>
                         </div>
                     </section>
                     
-                    <section class="mb-8">
-                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Need Additional Help?</h2>
-                        <div class="bg-green-50 p-6 rounded-lg">
-                            <p class="text-green-800 mb-4">
+                    <section class="mb-16">
+                        <h2 class="text-3xl font-semibold text-gray-900 mb-6 apple-heading">Voice Control & Motor Accessibility</h2>
+                        <div class="glass-card p-8">
+                            <ul class="space-y-4 text-xl text-gray-700 apple-text">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-xl" role="img" aria-label="Feature">🎤</span>
+                                    Compatible with voice control software like Dragon NaturallySpeaking
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-xl" role="img" aria-label="Feature">🖱️</span>
+                                    Large click targets (minimum 44px) for easier interaction
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-xl" role="img" aria-label="Feature">⏱️</span>
+                                    No time limits on form completion
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-xl" role="img" aria-label="Feature">🎯</span>
+                                    Generous spacing between interactive elements
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section class="mb-16">
+                        <h2 class="text-3xl font-semibold text-gray-900 mb-6 apple-heading">Cognitive Accessibility</h2>
+                        <div class="glass-card p-8">
+                            <ul class="space-y-4 text-xl text-gray-700 apple-text">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-xl" role="img" aria-label="Feature">📝</span>
+                                    Clear, simple language throughout the platform
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-xl" role="img" aria-label="Feature">🧭</span>
+                                    Consistent navigation and layout patterns
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-xl" role="img" aria-label="Feature">💾</span>
+                                    Auto-save functionality for forms
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-xl" role="img" aria-label="Feature">🔍</span>
+                                    Search highlighting to help locate relevant content
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section class="mb-16">
+                        <h2 class="text-3xl font-semibold text-gray-900 mb-6 apple-heading">Need Additional Help?</h2>
+                        <div class="bg-green-50 p-8 rounded-2xl">
+                            <p class="text-green-800 mb-6 text-xl apple-text leading-relaxed">
                                 If you're experiencing any accessibility issues or need additional accommodations, 
                                 please don't hesitate to contact us. We're committed to ensuring everyone can use our platform effectively.
                             </p>
                             <button @click="currentPage = 'contact'" 
-                                    class="bg-green-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-green-700 focus-visible:focus transition-colors">
+                                    class="btn-apple">
                                 Contact Accessibility Support
                             </button>
                         </div>
@@ -863,87 +966,80 @@
 
         <!-- Contact Page -->
         <div x-show="currentPage === 'contact'" x-transition>
-            <div class="max-w-4xl mx-auto">
-                <h1 class="text-3xl font-bold text-gray-900 mb-6">Contact Us</h1>
+            <div class="max-w-6xl mx-auto px-6 lg:px-8 py-16">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8 apple-heading">Contact Us</h1>
                 
-                <div class="grid md:grid-cols-2 gap-8">
+                <div class="grid md:grid-cols-2 gap-16">
                     <div>
-                        <h2 class="text-2xl font-semibold text-gray-900 mb-4">Get in Touch</h2>
-                        <p class="text-gray-700 mb-6">
+                        <h2 class="text-3xl font-semibold text-gray-900 mb-6 apple-heading">Get in Touch</h2>
+                        <p class="text-xl text-gray-700 mb-8 apple-text leading-relaxed">
                             We're here to help you find meaningful employment opportunities. 
                             Whether you have questions about our platform, need accessibility support, 
                             or want to provide feedback, we'd love to hear from you.
                         </p>
                         
-                        <div class="space-y-4">
-                            <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                </svg>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl" role="img" aria-label="Email">📧</span>
                                 <div>
-                                    <p class="font-medium text-gray-900">Email</p>
-                                    <a href="mailto:siddharthadhakall3722@gmail.com" class="text-primary-600 hover:text-primary-700">siddharthadhakall3722@gmail.com</a>
+                                    <p class="font-semibold text-gray-900 apple-text text-lg">Email</p>
+                                    <a href="mailto:siddharthadhakall3722@gmail.com" class="text-blue-600 hover:text-blue-700 apple-text text-lg">siddharthadhakall3722@gmail.com</a>
                                 </div>
                             </div>
                             
-                            <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
-                                </svg>
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl" role="img" aria-label="Accessibility Support">♿</span>
                                 <div>
-                                    <p class="font-medium text-gray-900">Accessibility Support</p>
-                                    <a href="mailto:siddharthadhakall3722@gmail.com" class="text-primary-600 hover:text-primary-700">siddharthadhakall3722@gmail.com</a>
+                                    <p class="font-semibold text-gray-900 apple-text text-lg">Accessibility Support</p>
+                                    <a href="mailto:siddharthadhakall3722@gmail.com" class="text-blue-600 hover:text-blue-700 apple-text text-lg">siddharthadhakall3722@gmail.com</a>
                                 </div>
                             </div>
                             
-                            <div class="flex items-center gap-3">
-                                <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
+                            <div class="flex items-center gap-4">
+                                <span class="text-2xl" role="img" aria-label="Location">📍</span>
                                 <div>
-                                    <p class="font-medium text-gray-900">Location</p>
-                                    <p class="text-gray-600">Biratnagar, Nepal</p>
+                                    <p class="font-semibold text-gray-900 apple-text text-lg">Location</p>
+                                    <p class="text-gray-600 apple-text text-lg">Biratnagar, Nepal</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <div>
-                        <form class="bg-white p-6 rounded-lg border border-gray-200">
-                            <h3 class="text-xl font-semibold text-gray-900 mb-4">Send us a message</h3>
+                        <form class="glass-card p-8">
+                            <h3 class="text-2xl font-semibold text-gray-900 mb-6 apple-heading">Send us a message</h3>
                             
-                            <div class="space-y-4">
+                            <div class="space-y-6">
                                 <div>
-                                    <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">
+                                    <label for="contact-name" class="block text-sm font-semibold text-gray-700 mb-2 apple-text">
                                         Name *
                                     </label>
                                     <input type="text" 
                                            id="contact-name" 
                                            name="name" 
                                            required
-                                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 focus-visible:focus">
+                                           class="w-full px-4 py-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 apple-text text-lg">
                                 </div>
                                 
                                 <div>
-                                    <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">
+                                    <label for="contact-email" class="block text-sm font-semibold text-gray-700 mb-2 apple-text">
                                         Email *
                                     </label>
                                     <input type="email" 
                                            id="contact-email" 
                                            name="email" 
                                            required
-                                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 focus-visible:focus">
+                                           class="w-full px-4 py-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 apple-text text-lg">
                                 </div>
                                 
                                 <div>
-                                    <label for="contact-subject" class="block text-sm font-medium text-gray-700 mb-1">
+                                    <label for="contact-subject" class="block text-sm font-semibold text-gray-700 mb-2 apple-text">
                                         Subject *
                                     </label>
                                     <select id="contact-subject" 
                                             name="subject" 
                                             required
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 focus-visible:focus">
+                                            class="w-full px-4 py-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 apple-text text-lg">
                                         <option value="">Select a topic</option>
                                         <option value="job-search">Job Search Support</option>
                                         <option value="accessibility">Accessibility Issue</option>
@@ -954,19 +1050,19 @@
                                 </div>
                                 
                                 <div>
-                                    <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">
+                                    <label for="contact-message" class="block text-sm font-semibold text-gray-700 mb-2 apple-text">
                                         Message *
                                     </label>
                                     <textarea id="contact-message" 
                                               name="message" 
-                                              rows="4" 
+                                              rows="5" 
                                               required
-                                              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 focus-visible:focus"
+                                              class="w-full px-4 py-4 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 apple-text text-lg"
                                               placeholder="How can we help you?"></textarea>
                                 </div>
                                 
                                 <button type="submit" 
-                                        class="w-full bg-vintage-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-primary-700 focus-visible:focus transition-colors">
+                                        class="btn-apple w-full">
                                     Send Message
                                 </button>
                             </div>
@@ -985,7 +1081,7 @@
          x-transition:leave="transition ease-in duration-200"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center p-4 z-50"
+         class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-6 z-50"
          @click.self="showModal = false"
          @keydown.escape="showModal = false">
         
@@ -996,70 +1092,60 @@
              x-transition:leave="transition ease-in duration-200"
              x-transition:leave-start="opacity-100 transform scale-100"
              x-transition:leave-end="opacity-0 transform scale-95"
-             class="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+             class="glass-card max-w-4xl w-full max-h-[90vh] overflow-y-auto"
              role="dialog"
              aria-modal="true"
              aria-labelledby="modal-title">
             
-            <div class="p-6">
-                <div class="flex justify-between items-start mb-6">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-8">
                     <div class="flex-1">
-                        <h2 id="modal-title" class="text-2xl font-bold text-gray-900 mb-2" x-text="selectedJob?.title"></h2>
-                        <p class="text-xl text-primary-600 font-medium mb-2" x-text="selectedJob?.company"></p>
-                        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
-                            <span class="flex items-center gap-1">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
-                                <span x-text="selectedJob?.location"></span>
+                        <h2 id="modal-title" class="text-3xl font-bold text-gray-900 mb-4 apple-heading" x-text="selectedJob?.title"></h2>
+                        <p class="text-2xl text-blue-600 font-semibold mb-4 apple-text" x-text="selectedJob?.company"></p>
+                        <div class="flex flex-wrap items-center gap-4 text-base text-gray-600">
+                            <span class="flex items-center gap-2">
+                                <span role="img" aria-label="Location">📍</span>
+                                <span x-text="selectedJob?.location" class="apple-text"></span>
                             </span>
-                            <span class="flex items-center gap-1" x-show="selectedJob?.remote">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                                </svg>
+                            <span class="flex items-center gap-2" x-show="selectedJob?.remote">
+                                <span role="img" aria-label="Remote work">🌐</span>
                                 Remote Work Available
                             </span>
-                            <span x-show="selectedJob?.salary && selectedJob?.salary !== 'Salary not specified'" x-text="selectedJob?.salary" class="font-medium text-secondary-600"></span>
+                            <span x-show="selectedJob?.salary && selectedJob?.salary !== 'Salary not specified'" x-text="selectedJob?.salary" class="font-semibold text-blue-600 apple-text"></span>
                         </div>
                     </div>
                     <button @click="showModal = false" 
-                            class="ml-4 text-gray-400 hover:text-gray-600 focus-visible:focus"
+                            class="ml-6 text-gray-400 hover:text-gray-600 p-2"
                             aria-label="Close job details">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                        </svg>
+                        <span class="text-2xl">✕</span>
                     </button>
                 </div>
                 
-                <div class="mb-6">
-                    <span class="bg-secondary-100 text-secondary-800 px-3 py-1 rounded-full text-sm font-medium">
+                <div class="mb-8">
+                    <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-semibold apple-text">
                         ✓ Inclusive Workplace
                     </span>
                 </div>
                 
-                <div class="prose max-w-none mb-8">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Job Description</h3>
-                    <div class="text-gray-700 whitespace-pre-line" x-text="selectedJob?.description || 'No description available'"></div>
-                    <div x-show="selectedJob?.salary && selectedJob?.salary !== 'Salary not specified'" class="mt-4 p-3 bg-gray-50 rounded-lg">
-                        <h4 class="font-semibold text-gray-900">Salary</h4>
-                        <p x-text="selectedJob?.salary" class="text-secondary-600"></p>
+                <div class="prose max-w-none mb-10">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4 apple-heading">Job Description</h3>
+                    <div class="text-gray-700 whitespace-pre-line apple-text text-lg leading-relaxed" x-text="selectedJob?.description || 'No description available'"></div>
+                    <div x-show="selectedJob?.salary && selectedJob?.salary !== 'Salary not specified'" class="mt-6 p-6 bg-gray-50 rounded-lg">
+                        <h4 class="font-semibold text-gray-900 apple-heading text-lg">Salary</h4>
+                        <p x-text="selectedJob?.salary" class="text-blue-600 apple-text text-lg"></p>
                     </div>
                 </div>
                 
-                <div class="border-t border-gray-200 pt-6">
-                    <div class="flex flex-col sm:flex-row gap-3">
+                <div class="border-t border-gray-200 pt-8">
+                    <div class="flex flex-col sm:flex-row gap-4">
                         <a :href="selectedJob?.apply_url" 
                            target="_blank" 
                            rel="noopener noreferrer"
-                           class="bg-primary-600 text-white px-6 py-3 rounded-lg font-medium text-center hover:bg-primary-700 focus-visible:focus transition-colors">
+                           class="btn-apple text-center">
                             Apply for This Job
-                            <svg class="w-4 h-4 inline ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                            </svg>
                         </a>
                         <button @click="showModal = false" 
-                                class="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-50 focus-visible:focus transition-colors">
+                                class="btn-secondary">
                             Close
                         </button>
                     </div>
@@ -1069,38 +1155,38 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-sage-900 text-cream-50 mt-16" role="contentinfo">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="grid md:grid-cols-4 gap-8">
+    <footer class="bg-gray-900 text-white mt-24" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+            <div class="grid md:grid-cols-4 gap-12">
                 <div class="md:col-span-2">
-                    <div class="flex items-center mb-4">
-                        <img src="logo.png" alt="Inclusiv Logo" class="h-13 w-12 mr-3" />
-                        <span class="text-xl font-bold vintage-heading">Inclusiv</span>
+                    <div class="flex items-center mb-6">
+                        <img src="logo.png" alt="Inclusiv Logo" class="h-10 w-10 mr-3" />
+                        <span class="text-2xl font-bold apple-heading">Inclusiv</span>
                     </div>
-                    <p class="text-cream-200 mb-4 vintage-body">
+                    <p class="text-gray-300 mb-6 apple-text text-lg leading-relaxed">
                         Bridging abilities to opportunities through inclusive job matching and career development.
                     </p>
-                    <p class="text-cream-300 text-sm vintage-body">
+                    <p class="text-gray-400 text-base apple-text">
                         © 2025 Inclusiv. All rights reserved. Made with ❤️ for accessibility.
                     </p>
                 </div>
                 
                 <div>
-                    <h3 class="font-semibold mb-4 vintage-heading">Quick Links</h3>
-                    <ul class="space-y-2 text-cream-200">
-                        <li><button @click="currentPage = 'home'" class="hover:text-cream-50 focus-visible:focus vintage-body">Home</button></li>
-                        <li><button @click="currentPage = 'jobs'; loadJobs()" class="hover:text-cream-50 focus-visible:focus vintage-body">Browse Jobs</button></li>
-                        <li><button @click="currentPage = 'about'" class="hover:text-cream-50 focus-visible:focus vintage-body">About</button></li>
-                        <li><button @click="currentPage = 'contact'" class="hover:text-cream-50 focus-visible:focus vintage-body">Contact</button></li>
+                    <h3 class="font-semibold mb-6 apple-heading text-lg">Quick Links</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><button @click="currentPage = 'home'" class="hover:text-white apple-text">Home</button></li>
+                        <li><button @click="currentPage = 'jobs'; loadJobs()" class="hover:text-white apple-text">Browse Jobs</button></li>
+                        <li><button @click="currentPage = 'about'" class="hover:text-white apple-text">About</button></li>
+                        <li><button @click="currentPage = 'contact'" class="hover:text-white apple-text">Contact</button></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="font-semibold mb-4 vintage-heading">Support</h3>
-                    <ul class="space-y-2 text-cream-200">
-                        <li><button @click="currentPage = 'accessibility'" class="hover:text-cream-50 focus-visible:focus vintage-body">Accessibility Help</button></li>
-                        <li><a href="mailto:support@inclusiv.com" class="hover:text-cream-50 focus-visible:focus vintage-body">Email Support</a></li>
-                        <li><a href="mailto:accessibility@inclusiv.com" class="hover:text-cream-50 focus-visible:focus vintage-body">Accessibility Support</a></li>
+                    <h3 class="font-semibold mb-6 apple-heading text-lg">Support</h3>
+                    <ul class="space-y-3 text-gray-300">
+                        <li><button @click="currentPage = 'accessibility'" class="hover:text-white apple-text">Accessibility Help</button></li>
+                        <li><a href="mailto:siddharthadhakall3722@gmail.com" class="hover:text-white apple-text">Email Support</a></li>
+                        <li><a href="mailto:siddharthadhakall3722@gmail.com" class="hover:text-white apple-text">Accessibility Support</a></li>
                     </ul>
                 </div>
             </div>
@@ -1144,7 +1230,6 @@
                     });
                     this.loadJobs(); // Load initial jobs on page load
                     this.filteredJobs = []; // Initialize filtered jobs
-                    this.startBackgroundRotation(); // Start background rotation
                 },
                 
                 // Load jobs from backend
@@ -1180,6 +1265,7 @@
                         this.error = error.message;
                         this.jobs = this.getSampleJobs();
                         this.totalJobs = this.jobs.length;
+                        this.filterJobs(); // Apply filters to sample data
                     } finally {
                         this.loading = false;
                     }
@@ -1208,13 +1294,6 @@
                         month: 'short',
                         day: 'numeric'
                     });
-                },
-                
-                // Truncate job description for list view
-                truncateDescription(description, maxLength = 200) {
-                    if (!description) return '';
-                    if (description.length <= maxLength) return description;
-                    return description.substring(0, maxLength).trim() + '...';
                 },
                 
                 // Filter jobs based on search and filters
@@ -1278,11 +1357,7 @@
                     const startPage = Math.max(1, this.currentPageNum - 2);
                     const endPage = Math.min(totalPages, this.currentPageNum + 2);
 
-                    if (startPage > 1) {
-                        return [1, '...', ...Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i)];
-                    } else {
-                        return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-                    }
+                    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
                 },
 
                 goToPage(page) {
@@ -1344,37 +1419,12 @@
                 highlightSearch(text) {
                     if (!this.searchQuery) return text;
                     const regex = new RegExp(`(${this.searchQuery})`, 'gi');
-                    return text.replace(regex, '<span class="search-highlight">$1</span>');
-                },
-
-                // Background rotation system
-                currentHeroBackground: 'primary',
-                
-                changeHeroBackground(theme) {
-                    this.currentHeroBackground = theme;
-                    const heroSection = document.querySelector('.hero-bg-primary');
-                    if (heroSection) {
-                        // Remove all background classes
-                        heroSection.classList.remove('hero-bg-primary', 'hero-bg-secondary', 'hero-bg-tertiary', 'hero-bg-quaternary');
-                        // Add the new background class
-                        heroSection.classList.add(`hero-bg-${theme}`);
-                    }
-                },
-
-                // Auto-rotate background every 30 seconds
-                startBackgroundRotation() {
-                    const themes = ['primary', 'secondary', 'tertiary', 'quaternary'];
-                    let currentIndex = 0;
-                    
-                    setInterval(() => {
-                        currentIndex = (currentIndex + 1) % themes.length;
-                        this.changeHeroBackground(themes[currentIndex]);
-                    }, 30000); // 30 seconds
+                    return text.replace(regex, '<mark class="bg-yellow-200 px-1 rounded">$1</mark>');
                 }
             }
         }
         
-        // Keyboard navigation enhancement
+        // Enhanced keyboard navigation
         document.addEventListener('keydown', function(e) {
             // Close modal on Escape
             if (e.key === 'Escape') {
@@ -1430,6 +1480,24 @@
                         el.removeEventListener('keydown', handleTabKey);
                     }
                 });
+            });
+        });
+
+        // Announce page changes to screen readers
+        document.addEventListener('alpine:init', () => {
+            Alpine.store('announcements', {
+                announce(message) {
+                    const announcement = document.createElement('div');
+                    announcement.setAttribute('aria-live', 'polite');
+                    announcement.setAttribute('aria-atomic', 'true');
+                    announcement.className = 'sr-only';
+                    announcement.textContent = message;
+                    document.body.appendChild(announcement);
+                    
+                    setTimeout(() => {
+                        document.body.removeChild(announcement);
+                    }, 1000);
+                }
             });
         });
     </script>
