@@ -124,13 +124,24 @@
         
         /* Professional hero section */
         .hero-section {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)),
-                        url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             min-height: 100vh;
             position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.3;
         }
 
         /* Professional card designs */
@@ -233,22 +244,50 @@
 
         /* Accessibility page background */
         .accessibility-bg {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.95)),
-                        url('https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80');
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.95));
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             min-height: 100vh;
+            position: relative;
+        }
+
+        .accessibility-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: -1;
         }
 
         /* Contact page background */
         .contact-bg {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.95)),
-                        url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.95));
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             min-height: 100vh;
+            position: relative;
+        }
+
+        .contact-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: -1;
         }
 
         /* Professional icon containers */
@@ -336,11 +375,22 @@
 
         /* Professional stats section */
         .stats-professional {
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)),
-                        url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            position: relative;
+        }
+
+        .stats-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.2;
         }
 
         /* Screen reader only */
@@ -395,6 +445,59 @@
             background: linear-gradient(135deg, #0f172a, #1e293b);
             border-top: 1px solid rgba(148, 163, 184, 0.2);
         }
+
+        /* Feature GIF styling */
+        .feature-gif {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin: 0 auto 24px;
+            border: 3px solid rgba(14, 165, 233, 0.3);
+        }
+
+        /* Animated elements */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating-element {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Pulse animation for interactive elements */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse-element {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Video responsiveness */
+        @media (max-width: 768px) {
+            .hero-video, .stats-video {
+                height: 100vh;
+                width: 100vw;
+                object-fit: cover;
+            }
+            
+            .feature-gif {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        /* Improved video loading states */
+        .hero-video, .stats-video {
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .hero-video:not([src]), .stats-video:not([src]) {
+            opacity: 0;
+        }
     </style>
 
     <!-- Preload critical fonts -->
@@ -416,7 +519,7 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
-                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                        <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
                              alt="Inclusiv Logo" 
                              class="h-10 w-10 mr-3 rounded-lg object-cover border-2 border-primary-500">
                         <span class="text-2xl font-bold font-heading text-white">Inclusiv</span>
@@ -521,7 +624,13 @@
         <div x-show="currentPage === 'home'" x-transition>
             <!-- Hero Section -->
             <section class="hero-section flex items-center justify-center text-center relative overflow-hidden">
-                <div class="max-w-6xl mx-auto px-6 lg:px-8 py-32">
+                <!-- Background Video -->
+                <video class="hero-video" autoplay muted loop playsinline>
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-diverse-team-working-together-in-modern-office-44525-large.mp4" type="video/mp4">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-business-people-at-work-meeting-4082-large.mp4" type="video/mp4">
+                </video>
+                
+                <div class="max-w-6xl mx-auto px-6 lg:px-8 py-32 relative z-10">
                     <h1 class="text-5xl md:text-7xl font-bold mb-8 animate-fade-in-up font-heading text-white">
                         Bridging Abilities to 
                         <span class="text-primary-400">Opportunities</span>
@@ -560,8 +669,10 @@
                     <div class="grid md:grid-cols-3 gap-12">
                         <!-- Skills-First Matching Card -->
                         <div class="professional-card p-10 text-center group">
-                            <div class="icon-container">
-                                <i class="fas fa-brain text-white text-2xl"></i>
+                            <div class="floating-element">
+                                <img src="https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif" 
+                                     alt="AI Brain Animation" 
+                                     class="feature-gif">
                             </div>
                             <h3 class="text-2xl font-bold text-white mb-6 font-heading">AI-Powered Matching</h3>
                             <p class="text-corporate-300 leading-relaxed text-lg font-corporate mb-6">
@@ -581,8 +692,10 @@
                 
                         <!-- Smart Accommodations Card -->
                         <div class="professional-card p-10 text-center group">
-                            <div class="icon-container">
-                                <i class="fas fa-universal-access text-white text-2xl"></i>
+                            <div class="floating-element" style="animation-delay: 0.5s;">
+                                <img src="https://media.giphy.com/media/l4FGGafcOHmrlQxG0/giphy.gif" 
+                                     alt="Accessibility Solutions Animation" 
+                                     class="feature-gif">
                             </div>
                             <h3 class="text-2xl font-bold text-white mb-6 font-heading">Workplace Solutions</h3>
                             <p class="text-corporate-300 leading-relaxed text-lg font-corporate mb-6">
@@ -602,8 +715,10 @@
                 
                         <!-- Inclusive Community Card -->
                         <div class="professional-card p-10 text-center group">
-                            <div class="icon-container">
-                                <i class="fas fa-users text-white text-2xl"></i>
+                            <div class="floating-element" style="animation-delay: 1s;">
+                                <img src="https://media.giphy.com/media/3o7TKSjRrfIPjeiVyM/giphy.gif" 
+                                     alt="Team Collaboration Animation" 
+                                     class="feature-gif">
                             </div>
                             <h3 class="text-2xl font-bold text-white mb-6 font-heading">Verified Employers</h3>
                             <p class="text-corporate-300 leading-relaxed text-lg font-corporate mb-6">
@@ -626,18 +741,24 @@
 
             <!-- Statistics Section -->
             <section class="stats-professional py-24 text-white text-center relative overflow-hidden" aria-labelledby="stats-heading">
+                <!-- Background Video -->
+                <video class="stats-video" autoplay muted loop playsinline>
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-open-office-space-4091-large.mp4" type="video/mp4">
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-busy-office-space-4092-large.mp4" type="video/mp4">
+                </video>
+                
                 <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
                     <h2 id="stats-heading" class="text-4xl md:text-5xl font-bold mb-16 font-heading text-white">Making a Difference</h2>
                     <div class="grid md:grid-cols-3 gap-12">
-                        <div class="glass-card p-12">
+                        <div class="glass-card p-12 floating-element">
                             <div class="text-6xl font-bold mb-6 text-primary-400 font-heading">70%+</div>
                             <div class="text-xl text-white font-corporate">Disability unemployment rate we're addressing</div>
                         </div>
-                        <div class="glass-card p-12">
+                        <div class="glass-card p-12 floating-element" style="animation-delay: 0.3s;">
                             <div class="text-6xl font-bold mb-6 text-primary-400 font-heading">500+</div>
                             <div class="text-xl text-white font-corporate">Inclusive jobs available</div>
                         </div>
-                        <div class="glass-card p-12">
+                        <div class="glass-card p-12 floating-element" style="animation-delay: 0.6s;">
                             <div class="text-6xl font-bold mb-6 text-primary-400 font-heading">100%</div>
                             <div class="text-xl text-white font-corporate">Commitment to accessibility</div>
                         </div>
@@ -836,6 +957,13 @@
             <div class="max-w-5xl mx-auto px-6 lg:px-8 py-16 bg-corporate-900 min-h-screen">
                 <h1 class="text-4xl md:text-5xl font-bold text-white mb-8 font-heading">About Inclusiv</h1>
                 
+                <!-- Hero GIF -->
+                <div class="text-center mb-12">
+                    <img src="https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif" 
+                         alt="Diverse team working together" 
+                         class="mx-auto rounded-2xl shadow-2xl max-w-md w-full">
+                </div>
+                
                 <div class="prose prose-lg max-w-none">
                     <p class="text-2xl text-corporate-200 mb-12 font-corporate leading-relaxed">
                         Inclusiv is transforming the employment landscape by focusing on what people can do, 
@@ -904,7 +1032,12 @@
         <div x-show="currentPage === 'accessibility'" x-transition>
             <div class="accessibility-bg min-h-screen">
                 <div class="max-w-5xl mx-auto px-6 lg:px-8 py-16">
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-8 font-heading">Accessibility Help</h1>
+                    <div class="text-center mb-8">
+                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 font-heading">Accessibility Help</h1>
+                        <img src="https://media.giphy.com/media/3o7TKr3nASSIrBPdYs/giphy.gif" 
+                             alt="Accessibility features animation" 
+                             class="mx-auto w-32 h-32 rounded-full floating-element">
+                    </div>
                     
                     <div class="prose prose-lg max-w-none">
                         <p class="text-2xl text-corporate-200 mb-12 font-corporate leading-relaxed">
@@ -1065,7 +1198,12 @@
         <div x-show="currentPage === 'contact'" x-transition>
             <div class="contact-bg min-h-screen">
                 <div class="max-w-6xl mx-auto px-6 lg:px-8 py-16">
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-8 font-heading">Contact Us</h1>
+                    <div class="text-center mb-12">
+                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 font-heading">Contact Us</h1>
+                        <img src="https://media.giphy.com/media/3o7TKNLVvZJSgdZhAI/giphy.gif" 
+                             alt="Communication animation" 
+                             class="mx-auto w-24 h-24 rounded-full floating-element">
+                    </div>
                     
                     <div class="grid md:grid-cols-2 gap-16">
                         <div>
@@ -1268,7 +1406,7 @@
             <div class="grid md:grid-cols-4 gap-12">
                 <div class="md:col-span-2">
                     <div class="flex items-center mb-6">
-                        <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                        <img src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
                              alt="Inclusiv Logo" 
                              class="h-10 w-10 mr-3 rounded-lg object-cover border-2 border-primary-500">
                         <span class="text-2xl font-bold font-heading text-white">Inclusiv</span>
@@ -1352,7 +1490,7 @@
                         'Google': 'https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80',
                         'Apple': 'https://images.unsplash.com/photo-1621768216002-5ac171876625?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80'
                     };
-                    return logos[company] || 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80';
+                    return logos[company] || 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80';
                 },
                 
                 // Load jobs from backend
