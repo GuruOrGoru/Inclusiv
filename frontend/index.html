@@ -159,6 +159,14 @@
             cursor: pointer;
         }
 
+        @media (max-width: 768px) {
+            .btn-professional,
+            .btn-secondary-professional {
+                padding: 14px 20px;
+                font-size: 16px;
+            }
+        }
+
         .btn-professional:hover {
             background: linear-gradient(135deg, #0284c7, #0369a1);
             box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
@@ -739,12 +747,63 @@
         }
 
         @media (max-width: 768px) {
-            .jobs-video-bg video {
-                display: none;
+            /* Disable background videos and heavy effects on mobile */
+            .jobs-video-bg video,
+            .about-video-bg video,
+            .hero-section > video,
+            .stats-professional > video,
+            .contact-bg > video,
+            section.bg-corporate-800 > video {
+                display: none !important;
             }
-            .about-video-bg video {
-                display: none;
+
+            /* Avoid costly fixed backgrounds on mobile */
+            .hero-section,
+            .stats-professional,
+            .accessibility-bg,
+            .contact-bg {
+                background-attachment: scroll !important;
             }
+
+            /* Reduce heavy GPU effects */
+            .nav-geometric,
+            .glass-card,
+            .geometric-card,
+            .job-card-geometric,
+            .mobile-menu-professional {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+
+            .geometric-card,
+            .job-card-geometric,
+            .professional-card {
+                box-shadow: none !important;
+            }
+
+            /* Reduce animations/transitions on mobile */
+            .btn-professional,
+            .btn-secondary-professional,
+            .geometric-card,
+            .professional-card {
+                transition: none !important;
+            }
+
+            /* Hide inline decorative videos in cards */
+            .geometric-card video {
+                display: none !important;
+            }
+
+            /* Improve initial render performance of large sections */
+            .hero-section,
+            .stats-professional,
+            .about-video-bg,
+            .jobs-video-bg,
+            .contact-bg {
+                content-visibility: auto;
+                contain-intrinsic-size: 1000px 800px;
+            }
+
             .about-video-bg .geometric-pattern {
                 opacity: 0.2;
             }
@@ -755,10 +814,49 @@
             height: auto;
             display: block;
         }
+
+        /* Mobile text clamping utilities */
+        @media (max-width: 768px) {
+            .clamp-2 {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        }
     </style>
 
     <!-- Preload critical fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" as="style">
+
+    <script>
+        // Reduce mobile lag by pausing/unloading decorative videos on small screens
+        (function() {
+            const isSmallScreen = () => window.matchMedia('(max-width: 768px)').matches;
+            function handleVideosForMobile() {
+                if (!isSmallScreen()) return;
+                const videos = document.querySelectorAll('section > video, .jobs-video-bg video, .about-video-bg video, .hero-section > video, .stats-professional > video, .contact-bg > video, .geometric-card video');
+                videos.forEach(v => {
+                    try { v.pause(); } catch(e) {}
+                    v.removeAttribute('autoplay');
+                    v.removeAttribute('loop');
+                    v.removeAttribute('muted');
+                    // Unload source to prevent network usage on mobile
+                    const sources = v.querySelectorAll('source');
+                    sources.forEach(s => s.removeAttribute('src'));
+                    // Reload to apply empty sources
+                    try { v.load(); } catch(e) {}
+                });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', handleVideosForMobile);
+            } else {
+                handleVideosForMobile();
+            }
+            // Re-evaluate on resize orientation changes
+            window.addEventListener('resize', handleVideosForMobile, { passive: true });
+        })();
+    </script>
 </head>
 
 <body class="bg-corporate-900 text-white font-corporate" x-data="inclusivApp()">
@@ -777,8 +875,8 @@
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
                         <div class="logo-container mr-4">
-                            <img src="logo.png" 
-                             alt="Inclusiv Logo" 
+                            <img src="logo.png" loading="eager" decoding="async" fetchpriority="high" width="48" height="48"
+                             alt="Inclusiv Logo"
                                  class="h-12 w-12 object-cover">
                             <div class="logo-geometric-overlay"></div>
                         </div>
@@ -900,7 +998,7 @@
                 <div class="absolute inset-0 bg-gradient-to-br from-corporate-900/20 via-corporate-800/15 to-corporate-900/20"></div>
                 
                 <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 py-32">
-                    <h1 class="text-5xl md:text-7xl font-bold mb-8 font-heading text-white">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-8 font-heading text-white clamp-2">
                         Bridging Abilities to 
                         <span class="text-primary-400">Opportunities</span>
                     </h1>
@@ -1143,7 +1241,7 @@
                                 <div class="flex-1">
                                         <div class="flex items-center mb-6">
                                             <div class="company-logo-container mr-6">
-                                                <img :src="getCompanyLogo(job.company)" :alt="job.company + ' logo'" class="company-logo-real">
+                                                <img :src="getCompanyLogo(job.company)" :alt="job.company + ' logo'" loading="lazy" decoding="async" class="company-logo-real">
                                                 <div class="logo-geometric-frame"></div>
                                             </div>
                                         <div>
@@ -1223,7 +1321,7 @@
 
                                 <!-- No Jobs State -->
                 <div x-show="!loading && filteredJobs.length === 0" class="text-center py-24">
-                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="No Jobs Found" class="w-32 h-32 mx-auto mb-6 rounded-lg object-cover shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="No Jobs Found" loading="lazy" decoding="async" width="128" height="128" class="w-32 h-32 mx-auto mb-6 rounded-lg object-cover shadow-lg">
                     <h2 class="text-2xl font-semibold text-white mb-4 font-heading">No jobs found</h2>
                     <p class="text-lg text-corporate-300 mb-6 font-corporate" x-show="hasActiveFilters()">Try adjusting your search criteria or filters.</p>
                     <p class="text-lg text-corporate-300 mb-6 font-corporate" x-show="!hasActiveFilters()">We're currently updating our job listings. Please check back soon!</p>
@@ -1810,7 +1908,7 @@
                 <div class="flex justify-between items-start mb-8">
                     <div class="flex-1">
                         <div class="flex items-center mb-4">
-                            <img :src="getCompanyLogo(selectedJob?.company)" :alt="selectedJob?.company + ' logo'" class="company-logo mr-4">
+                            <img :src="getCompanyLogo(selectedJob?.company)" :alt="selectedJob?.company + ' logo'" loading="lazy" decoding="async" class="company-logo mr-4">
                             <div>
                                 <h2 id="modal-title" class="text-3xl font-bold text-white mb-2 font-heading" x-text="selectedJob?.title"></h2>
                                 <p class="text-2xl text-primary-400 font-semibold font-corporate" x-text="selectedJob?.company"></p>
@@ -1878,7 +1976,7 @@
                 <div class="md:col-span-2">
                     <div class="flex items-center mb-6">
                         <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                             alt="Inclusiv Logo" 
+                             alt="Inclusiv Logo" loading="lazy" decoding="async" width="40" height="40"
                              class="h-10 w-10 mr-3 rounded-lg object-cover border-2 border-primary-500">
                         <span class="text-2xl font-bold font-heading text-white">Inclusiv</span>
                     </div>
@@ -1938,6 +2036,10 @@
                 currentPageNum: 1,
                 jobsPerPage: 10,
                 
+                get isSmallScreen() {
+                    return window.matchMedia('(max-width: 768px)').matches;
+                },
+                
                 // Initialize the app
                 init() {
                     // Set focus to main content for accessibility
@@ -1948,6 +2050,10 @@
                             mainContent.focus();
                         }
                     });
+                    // Reduce list size on mobile
+                    if (this.isSmallScreen) {
+                        this.jobsPerPage = 6;
+                    }
                     this.loadJobs(); // Load initial jobs on page load
                     this.filteredJobs = []; // Initialize filtered jobs
                     
