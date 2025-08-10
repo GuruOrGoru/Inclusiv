@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inclusiv</title>
     <meta name="description" content="AI-powered career platform matching individuals with disabilities to meaningful employment opportunities">
+    <!-- Mobile Design by: [Your Name] - Enhanced for better accessibility and performance -->
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,16 +27,28 @@
                 extend: {
                     colors: {
                         primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e'
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a'
+                        },
+                        secondary: {
+                            50: '#fdf4ff',
+                            100: '#fae8ff',
+                            200: '#f5d0fe',
+                            300: '#f0abfc',
+                            400: '#e879f9',
+                            500: '#d946ef',
+                            600: '#c026d3',
+                            700: '#a21caf',
+                            800: '#86198f',
+                            900: '#701a75'
                         },
                         corporate: {
                             50: '#f8fafc',
@@ -48,6 +61,18 @@
                             700: '#334155',
                             800: '#1e293b',
                             900: '#0f172a'
+                        },
+                        success: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d'
                         }
                     },
                     fontFamily: {
@@ -74,9 +99,36 @@
 
         /* Professional Focus Indicators */
         .focus-visible:focus {
-            outline: 3px solid #0ea5e9;
+            outline: 3px solid #3b82f6;
             outline-offset: 2px;
             border-radius: 8px;
+        }
+        
+        /* Line clamp utility for text truncation */
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        /* Enhanced scrollbar for better accessibility */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.7);
         }
         
         /* Enhanced skip link */
@@ -857,38 +909,73 @@
     <!-- Preload critical fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" as="style">
 
-    <!-- Favicon and app icons -->
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Enhanced Favicon and app icons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" sizes="any">
     <link rel="icon" type="image/png" href="logo.png" sizes="256x256">
-    <link rel="apple-touch-icon" href="logo.png">
-    <meta name="theme-color" content="#0ea5e9">
+    <link rel="apple-touch-icon" href="logo.png" sizes="180x180">
+    <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiSW5jbHVzaXYiLCJzaG9ydF9uYW1lIjoiSW5jbHVzaXYiLCJkZXNjcmlwdGlvbiI6IkFJLXBvd2VyZWQgY2FyZWVyIHBsYXRmb3JtIGZvciBkaXNhYmlsaXRpZXMiLCJ0aGVtZV9jb2xvciI6IiMzYjgyZjYiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBmMTcyYSIsImRpc3BsYXkiOiJzdGFuZGFsbCIsImljb25zIjpbeyJzcmMiOiJmYXZpY29uLnN2ZyIsInNpemVzIjoiMTI4eDEyOCIsInR5cGUiOiJpbWFnZS9zdmcreG1sIn1dfQ==">
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="msapplication-TileColor" content="#3b82f6">
+    <meta name="msapplication-config" content="none">
 
     <script>
-        // Reduce mobile lag by pausing/unloading decorative videos on small screens
+        // Enhanced mobile optimization for better performance
         (function() {
-            const isSmallScreen = () => window.matchMedia('(max-width: 768px)').matches;
-            function handleVideosForMobile() {
-                if (!isSmallScreen()) return;
-                const videos = document.querySelectorAll('section > video, .jobs-video-bg video, .about-video-bg video, .hero-section > video, .stats-professional > video, .contact-bg > video, .geometric-card video');
-                videos.forEach(v => {
-                    try { v.pause(); } catch(e) {}
-                    v.removeAttribute('autoplay');
-                    v.removeAttribute('loop');
-                    v.removeAttribute('muted');
-                    // Unload source to prevent network usage on mobile
-                    const sources = v.querySelectorAll('source');
-                    sources.forEach(s => s.removeAttribute('src'));
-                    // Reload to apply empty sources
-                    try { v.load(); } catch(e) {}
+            const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+            const isLowEndDevice = () => {
+                const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+                return connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g');
+            };
+            
+            function optimizeForMobile() {
+                if (!isMobile() && !isLowEndDevice()) return;
+                
+                // Optimize videos for mobile
+                const videos = document.querySelectorAll('video');
+                videos.forEach(video => {
+                    // Pause and unload videos on mobile/low-end devices
+                    try { 
+                        video.pause(); 
+                        video.removeAttribute('autoplay');
+                        video.removeAttribute('loop');
+                        video.removeAttribute('muted');
+                        video.removeAttribute('playsinline');
+                        
+                        // Remove video sources to save bandwidth
+                        const sources = video.querySelectorAll('source');
+                        sources.forEach(source => {
+                            source.removeAttribute('src');
+                            source.removeAttribute('type');
+                        });
+                        
+                        // Replace with lightweight placeholder
+                        video.style.background = 'linear-gradient(135deg, #1e293b, #334155)';
+                        video.innerHTML = '<div class="flex items-center justify-center h-full text-white text-lg">Loading...</div>';
+                        
+                        video.load();
+                    } catch(e) {
+                        console.log('Video optimization applied');
+                    }
+                });
+                
+                // Optimize images for mobile
+                const images = document.querySelectorAll('img[loading="lazy"]');
+                images.forEach(img => {
+                    img.setAttribute('loading', 'eager');
+                    img.setAttribute('decoding', 'sync');
                 });
             }
+            
+            // Apply optimizations
             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', handleVideosForMobile);
+                document.addEventListener('DOMContentLoaded', optimizeForMobile);
             } else {
-                handleVideosForMobile();
+                optimizeForMobile();
             }
-            // Re-evaluate on resize orientation changes
-            window.addEventListener('resize', handleVideosForMobile, { passive: true });
+            
+            // Re-optimize on orientation change
+            window.addEventListener('orientationchange', optimizeForMobile, { passive: true });
+            window.addEventListener('resize', optimizeForMobile, { passive: true });
         })();
     </script>
 </head>
@@ -901,116 +988,106 @@
     <!-- Screen reader announcement for page changes -->
     <div aria-live="polite" aria-atomic="true" class="sr-only" x-text="currentPage === 'home' ? 'Home page loaded' : currentPage === 'jobs' ? 'Jobs page loaded' : currentPage === 'about' ? 'About page loaded' : currentPage === 'accessibility' ? 'Accessibility help page loaded' : currentPage === 'contact' ? 'Contact page loaded' : ''"></div>
     
-    <!-- Header with unique geometric design -->
-    <header class="nav-geometric fixed top-0 left-0 right-0 z-50" role="banner">
-        <nav id="navigation" class="max-w-7xl mx-auto px-6 lg:px-8" aria-label="Main navigation">
-            <div class="flex justify-between items-center h-24">
-                <!-- Logo with geometric design -->
+    <!-- Enhanced Header with modern design -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-corporate-900/95 via-corporate-800/95 to-corporate-900/95 backdrop-blur-md border-b border-corporate-700/50" role="banner">
+        <nav id="navigation" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <!-- Logo with enhanced design -->
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
-                        <div class="logo-container mr-4">
-                            <img src="logo.png" loading="eager" decoding="async" fetchpriority="high" width="48" height="48"
-                             alt="Inclusiv Logo"
-                                 class="h-12 w-12 object-cover rounded-lg ring-2 ring-primary-500/40">
-                            <div class="logo-geometric-overlay"></div>
+                        <div class="relative mr-3">
+                            <img src="logo.png" loading="eager" decoding="async" fetchpriority="high" width="40" height="40"
+                                 alt="Inclusiv Logo"
+                                 class="h-10 w-10 md:h-12 md:w-12 object-cover rounded-xl ring-2 ring-primary-500/60 shadow-lg">
+                            <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-primary-400/20 to-transparent"></div>
                         </div>
-                        <span class="text-3xl font-bold font-heading text-white logo-text tracking-tight">Inclusiv</span>
+                        <span class="text-2xl md:text-3xl font-bold font-heading text-white tracking-tight">Inclusiv</span>
                     </div>
                 </div>
                 
-                <!-- Navigation Links with geometric design -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-center space-x-2">
+                <!-- Desktop Navigation Links -->
+                <div class="hidden lg:block">
+                    <div class="flex items-center space-x-1">
                         <button @click="currentPage = 'home'" 
-                                :class="currentPage === 'home' ? 'nav-btn-active' : 'nav-btn'"
-                                class="nav-btn-geometric px-5 py-3 font-medium transition-all duration-300 font-corporate rounded-md"
-                                aria-current="page"
+                                :class="currentPage === 'home' ? 'bg-primary-500/20 text-primary-400 border-primary-500/50' : 'text-corporate-300 hover:text-white hover:bg-white/10 border-transparent'"
+                                class="px-4 py-2 font-medium transition-all duration-200 font-corporate rounded-lg border-2"
                                 :aria-label="currentPage === 'home' ? 'Home, current page' : 'Home'">
-                            <span class="nav-text">Home</span>
-                            <div class="nav-geometric-bg"></div>
+                            <i class="fas fa-home mr-2"></i>Home
                         </button>
                         <button @click="currentPage = 'jobs'; loadJobs()" 
-                                :class="currentPage === 'jobs' ? 'nav-btn-active' : 'nav-btn'"
-                                class="nav-btn-geometric px-5 py-3 font-medium transition-all duration-300 font-corporate rounded-md"
+                                :class="currentPage === 'jobs' ? 'bg-primary-500/20 text-primary-400 border-primary-500/50' : 'text-corporate-300 hover:text-white hover:bg-white/10 border-transparent'"
+                                class="px-4 py-2 font-medium transition-all duration-200 font-corporate rounded-lg border-2"
                                 :aria-label="currentPage === 'jobs' ? 'Browse Jobs, current page' : 'Browse Jobs'">
-                            <span class="nav-text">Browse Jobs</span>
-                            <div class="nav-geometric-bg"></div>
+                            <i class="fas fa-briefcase mr-2"></i>Jobs
                         </button>
                         <button @click="currentPage = 'about'" 
-                                :class="currentPage === 'about' ? 'nav-btn-active' : 'nav-btn'"
-                                class="nav-btn-geometric px-5 py-3 font-medium transition-all duration-300 font-corporate rounded-md"
+                                :class="currentPage === 'about' ? 'bg-primary-500/20 text-primary-400 border-primary-500/50' : 'text-corporate-300 hover:text-white hover:bg-white/10 border-transparent'"
+                                class="px-4 py-2 font-medium transition-all duration-200 font-corporate rounded-lg border-2"
                                 :aria-label="currentPage === 'about' ? 'About, current page' : 'About'">
-                            <span class="nav-text">About</span>
-                            <div class="nav-geometric-bg"></div>
+                            <i class="fas fa-info-circle mr-2"></i>About
                         </button>
                         <button @click="currentPage = 'accessibility'" 
-                                :class="currentPage === 'accessibility' ? 'nav-btn-active' : 'nav-btn'"
-                                class="nav-btn-geometric px-5 py-3 font-medium transition-all duration-300 font-corporate rounded-md"
+                                :class="currentPage === 'accessibility' ? 'bg-primary-500/20 text-primary-400 border-primary-500/50' : 'text-corporate-300 hover:text-white hover:bg-white/10 border-transparent'"
+                                class="px-4 py-2 font-medium transition-all duration-200 font-corporate rounded-lg border-2"
                                 :aria-label="currentPage === 'accessibility' ? 'Accessibility Help, current page' : 'Accessibility Help'">
-                            <span class="nav-text">Accessibility</span>
-                            <div class="nav-geometric-bg"></div>
+                            <i class="fas fa-universal-access mr-2"></i>Accessibility
                         </button>
                         <button @click="currentPage = 'contact'" 
-                                :class="currentPage === 'contact' ? 'nav-btn-active' : 'nav-btn'"
-                                class="nav-btn-geometric px-5 py-3 font-medium transition-all duration-300 font-corporate rounded-md">
-                            <span class="nav-text">Contact</span>
-                            <div class="nav-geometric-bg"></div>
+                                :class="currentPage === 'contact' ? 'bg-primary-500/20 text-primary-400 border-primary-500/50' : 'text-corporate-300 hover:text-white hover:bg-white/10 border-transparent'"
+                                class="px-4 py-2 font-medium transition-all duration-200 font-corporate rounded-lg border-2">
+                            <i class="fas fa-envelope mr-2"></i>Contact
                         </button>
                     </div>
                 </div>
                 
-                <!-- Theme Toggle and Mobile Menu -->
-                <div class="flex items-center space-x-4">
-                    
-                    <!-- Mobile menu button -->
-                    <div class="md:hidden">
-                        <button @click="mobileMenuOpen = !mobileMenuOpen" 
-                                class="mobile-menu-btn p-3 text-white hover:text-primary-400"
-                                :aria-expanded="mobileMenuOpen"
-                                aria-controls="mobile-menu"
-                                aria-label="Toggle navigation menu">
-                            <span class="sr-only" x-text="mobileMenuOpen ? 'Close menu' : 'Open menu'"></span>
-                            <i :class="mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'" class="text-xl"></i>
-                        </button>
-                    </div>
+                <!-- Mobile menu button -->
+                <div class="lg:hidden">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                            class="p-2 text-white hover:text-primary-400 hover:bg-white/10 rounded-lg transition-colors"
+                            :aria-expanded="mobileMenuOpen"
+                            aria-controls="mobile-menu"
+                            aria-label="Toggle navigation menu">
+                        <span class="sr-only" x-text="mobileMenuOpen ? 'Close menu' : 'Open menu'"></span>
+                        <i :class="mobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'" class="text-xl"></i>
+                    </button>
                 </div>
             </div>
             
-            <!-- Mobile menu -->
+            <!-- Enhanced Mobile menu -->
             <div x-show="mobileMenuOpen" 
-                 x-transition:enter="transition ease-out duration-200"
-                 x-transition:enter-start="transform opacity-0 scale-95"
-                 x-transition:enter-end="transform opacity-100 scale-100"
-                 x-transition:leave="transition ease-in duration-150"
-                 x-transition:leave-start="transform opacity-100 scale-100"
-                 x-transition:leave-end="transform opacity-0 scale-95"
-                 class="md:hidden" 
+                 x-transition:enter="transition ease-out duration-300"
+                 x-transition:enter-start="transform opacity-0 -translate-y-4"
+                 x-transition:enter-end="transform opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-200"
+                 x-transition:leave-start="transform opacity-100 translate-y-0"
+                 x-transition:leave-end="transform opacity-0 -translate-y-4"
+                 class="lg:hidden absolute top-full left-0 right-0 bg-gradient-to-b from-corporate-900/98 to-corporate-800/98 backdrop-blur-lg border-t border-corporate-700/50 shadow-2xl" 
                  id="mobile-menu">
-                <div class="px-4 pt-4 pb-6 space-y-2 mobile-menu-professional">
+                <div class="px-4 py-6 space-y-3">
                     <button @click="currentPage = 'home'; mobileMenuOpen = false" 
-                            :class="currentPage === 'home' ? 'bg-primary-500/20 text-primary-400 font-semibold' : 'text-white hover:text-primary-400 hover:bg-white/10'"
-                            class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors font-corporate">
-                        Home
+                            :class="currentPage === 'home' ? 'bg-primary-500/20 text-primary-400 border-primary-500/50' : 'text-white hover:text-primary-400 hover:bg-white/10 border-transparent'"
+                            class="flex items-center w-full text-left px-4 py-4 rounded-xl text-base font-medium transition-all duration-200 font-corporate border-2">
+                        <i class="fas fa-home mr-3 text-lg"></i>Home
                     </button>
                     <button @click="currentPage = 'jobs'; loadJobs(); mobileMenuOpen = false" 
-                            :class="currentPage === 'jobs' ? 'bg-primary-500/20 text-primary-400 font-semibold' : 'text-white hover:text-primary-400 hover:bg-white/10'"
-                            class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors font-corporate">
-                        Browse Jobs
+                            :class="currentPage === 'jobs' ? 'bg-primary-500/20 text-primary-400 border-primary-500/50' : 'text-white hover:text-primary-400 hover:bg-white/10 border-transparent'"
+                            class="flex items-center w-full text-left px-4 py-4 rounded-xl text-base font-medium transition-all duration-200 font-corporate border-2">
+                        <i class="fas fa-briefcase mr-3 text-lg"></i>Browse Jobs
                     </button>
                     <button @click="currentPage = 'about'; mobileMenuOpen = false" 
-                            :class="currentPage === 'about' ? 'bg-primary-500/20 text-primary-400 font-semibold' : 'text-white hover:text-primary-400 hover:bg-white/10'"
-                            class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors font-corporate">
-                        About
+                            :class="currentPage === 'about' ? 'bg-primary-500/20 text-primary-400 border-primary-500/50' : 'text-white hover:text-primary-400 hover:bg-white/10 border-transparent'"
+                            class="flex items-center w-full text-left px-4 py-4 rounded-xl text-base font-medium transition-all duration-200 font-corporate border-2">
+                        <i class="fas fa-info-circle mr-3 text-lg"></i>About
                     </button>
                     <button @click="currentPage = 'accessibility'; mobileMenuOpen = false" 
-                            :class="currentPage === 'accessibility' ? 'bg-primary-500/20 text-primary-400 font-semibold' : 'text-white hover:text-primary-400 hover:bg-white/10'"
-                            class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors font-corporate">
-                        Accessibility Help
+                            :class="currentPage === 'accessibility' ? 'bg-primary-500/20 text-primary-400 border-primary-500/50' : 'text-white hover:text-primary-400 hover:bg-white/10 border-transparent'"
+                            class="flex items-center w-full text-left px-4 py-4 rounded-xl text-base font-medium transition-all duration-200 font-corporate border-2">
+                        <i class="fas fa-universal-access mr-3 text-lg"></i>Accessibility Help
                     </button>
                     <button @click="currentPage = 'contact'; mobileMenuOpen = false" 
-                            :class="currentPage === 'contact' ? 'bg-primary-500/20 text-primary-400 font-semibold' : 'text-white hover:text-primary-400 hover:bg-white/10'"
-                            class="block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-colors font-corporate">
-                        Contact
+                            :class="currentPage === 'contact' ? 'bg-primary-500/20 text-primary-400 border-primary-500/50' : 'text-white hover:text-primary-400 hover:bg-white/10 border-transparent'"
+                            class="flex items-center w-full text-left px-4 py-4 rounded-xl text-base font-medium transition-all duration-200 font-corporate border-2">
+                        <i class="fas fa-envelope mr-3 text-lg"></i>Contact
                     </button>
                 </div>
             </div>
@@ -1173,152 +1250,140 @@
             </section>
         </div>
 
-        <!-- Jobs Page -->
+        <!-- Enhanced Jobs Page - LinkedIn Style -->
         <div x-show="currentPage === 'jobs'" x-transition>
-            <div class="jobs-video-bg min-h-screen relative overflow-hidden">
-                <!-- Background Video -->
-                <video autoplay muted loop playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover opacity-80 pointer-events-none">
-                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4">
-                </video>
-                <div class="absolute inset-0 bg-gradient-to-br from-corporate-900/20 via-corporate-800/15 to-corporate-900/20"></div>
-                <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-16">
-                <div class="mb-12">
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 font-heading">Browse Inclusive Jobs</h1>
-                    <p class="text-xl text-corporate-300 mb-8 font-corporate">Discover opportunities that value your abilities and provide inclusive work environments.</p>
-                </div>
+            <div class="min-h-screen bg-gradient-to-br from-corporate-900 via-corporate-800 to-corporate-900">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <!-- Header Section -->
+                    <div class="mb-8">
+                        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4 font-heading">Find Your Next Opportunity</h1>
+                        <p class="text-lg text-corporate-300 font-corporate">Discover inclusive workplaces that value your abilities and provide meaningful career growth.</p>
+                    </div>
 
-                <!-- Search and Filter Section -->
-                <div class="glass-card p-8 mb-12">
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <!-- Search Input -->
-                        <div class="md:col-span-2">
-                            <label for="job-search" class="block text-sm font-semibold text-white mb-2 font-corporate">Search Jobs</label>
-                            <div class="relative">
-                                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-corporate-400"></i>
-                                <input type="text" 
-                                       id="job-search"
-                                       x-model="searchQuery"
-                                       @input="filterJobs()"
-                                       placeholder="Search by title, company, or keywords..."
-                                       class="w-full pl-12 pr-4 py-4 font-corporate text-lg">
+                    <!-- Search and Filter Section -->
+                    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 mb-8 border border-white/20">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <!-- Search Input -->
+                            <div class="lg:col-span-2">
+                                <label for="job-search" class="block text-sm font-semibold text-white mb-2 font-corporate">Search Jobs</label>
+                                <div class="relative">
+                                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-corporate-400"></i>
+                                    <input type="text" 
+                                           id="job-search"
+                                           x-model="searchQuery"
+                                           @input="filterJobs()"
+                                           placeholder="Search by title, company, or keywords..."
+                                           class="w-full pl-12 pr-4 py-3 bg-white/20 border border-white/30 rounded-xl text-white placeholder-corporate-400 font-corporate focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                                </div>
+                            </div>
+
+                            <!-- Location Filter -->
+                            <div>
+                                <label for="location-filter" class="block text-sm font-semibold text-white mb-2 font-corporate">Location</label>
+                                <select id="location-filter" 
+                                        x-model="locationFilter"
+                                        @change="filterJobs()"
+                                        class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-xl text-white font-corporate focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                                    <option value="">All Locations</option>
+                                    <option value="Remote">Remote Only</option>
+                                    <option value="New York">New York</option>
+                                    <option value="San Francisco">San Francisco</option>
+                                    <option value="London">London</option>
+                                </select>
+                            </div>
+
+                            <!-- Job Type Filter -->
+                            <div>
+                                <label for="type-filter" class="block text-sm font-semibold text-white mb-2 font-corporate">Job Type</label>
+                                <select id="type-filter" 
+                                        x-model="typeFilter"
+                                        @change="filterJobs()"
+                                        class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-xl text-white font-corporate focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                                    <option value="">All Types</option>
+                                    <option value="Software Engineer">Software Engineer</option>
+                                    <option value="Data Analyst">Data Analyst</option>
+                                    <option value="Designer">Designer</option>
+                                    <option value="Manager">Manager</option>
+                                </select>
                             </div>
                         </div>
 
-                        <!-- Location Filter -->
-                        <div>
-                            <label for="location-filter" class="block text-sm font-semibold text-white mb-2 font-corporate">Location</label>
-                            <select id="location-filter" 
-                                    x-model="locationFilter"
-                                    @change="filterJobs()"
-                                    class="w-full px-4 py-4 font-corporate text-lg">
-                                <option value="">All Locations</option>
-                                <option value="Remote">Remote Only</option>
-                                <option value="New York">New York</option>
-                                <option value="San Francisco">San Francisco</option>
-                                <option value="London">London</option>
-                            </select>
-                        </div>
-
-                        <!-- Job Type Filter -->
-                        <div>
-                            <label for="type-filter" class="block text-sm font-semibold text-white mb-2 font-corporate">Job Type</label>
-                            <select id="type-filter" 
-                                    x-model="typeFilter"
-                                    @change="filterJobs()"
-                                    class="w-full px-4 py-4 font-corporate text-lg">
-                                <option value="">All Types</option>
-                                <option value="Software Engineer">Software Engineer</option>
-                                <option value="Data Analyst">Data Analyst</option>
-                                <option value="Designer">Designer</option>
-                                <option value="Manager">Manager</option>
-                            </select>
+                        <!-- Active Filters Display -->
+                        <div x-show="hasActiveFilters()" class="mt-6 pt-6 border-t border-white/20">
+                            <div class="flex flex-wrap gap-3">
+                                <span class="text-sm text-corporate-300 font-corporate font-medium">Active filters:</span>
+                                <span x-show="searchQuery" class="bg-primary-500/30 text-primary-200 px-3 py-1 rounded-full text-sm font-corporate border border-primary-500/50">
+                                    Search: <span x-text="searchQuery"></span>
+                                    <button @click="clearSearch()" class="ml-2 text-primary-300 hover:text-primary-200" aria-label="Clear search filter">×</button>
+                                </span>
+                                <span x-show="locationFilter" class="bg-success-500/30 text-success-200 px-3 py-1 rounded-full text-sm font-corporate border border-success-500/50">
+                                    Location: <span x-text="locationFilter"></span>
+                                    <button @click="clearLocationFilter()" class="ml-2 text-success-300 hover:text-success-200" aria-label="Clear location filter">×</button>
+                                </span>
+                                <span x-show="typeFilter" class="bg-secondary-500/30 text-secondary-200 px-3 py-1 rounded-full text-sm font-corporate border border-secondary-500/50">
+                                    Type: <span x-text="typeFilter"></span>
+                                    <button @click="clearTypeFilter()" class="ml-2 text-secondary-300 hover:text-secondary-200" aria-label="Clear type filter">×</button>
+                                </span>
+                                <button @click="clearAllFilters()" class="text-sm text-corporate-300 hover:text-white underline font-corporate">
+                                    Clear all filters
+                                </button>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Active Filters Display -->
-                    <div x-show="hasActiveFilters()" class="mt-6 pt-6 border-t border-corporate-600">
-                        <div class="flex flex-wrap gap-3">
-                            <span class="text-sm text-corporate-300 font-corporate font-medium">Active filters:</span>
-                            <span x-show="searchQuery" class="bg-primary-500/20 text-primary-300 px-3 py-1 rounded-full text-sm font-corporate">
-                                Search: <span x-text="searchQuery"></span>
-                                <button @click="clearSearch()" class="ml-2 text-primary-400 hover:text-primary-300" aria-label="Clear search filter">×</button>
-                            </span>
-                            <span x-show="locationFilter" class="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm font-corporate">
-                                Location: <span x-text="locationFilter"></span>
-                                <button @click="clearLocationFilter()" class="ml-2 text-green-400 hover:text-green-300" aria-label="Clear location filter">×</button>
-                            </span>
-                            <span x-show="typeFilter" class="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm font-corporate">
-                                Type: <span x-text="typeFilter"></span>
-                                <button @click="clearTypeFilter()" class="ml-2 text-purple-400 hover:text-purple-300" aria-label="Clear type filter">×</button>
-                            </span>
-                            <button @click="clearAllFilters()" class="text-sm text-corporate-300 hover:text-white underline font-corporate">
-                                Clear all filters
-                            </button>
+                    <!-- Job Results -->
+                    <div x-show="filteredJobs.length > 0" class="space-y-6">
+                        <!-- Results info -->
+                        <div class="bg-white/10 backdrop-blur-lg rounded-xl p-4 border border-white/20">
+                            <p class="text-white font-corporate">
+                                Showing <span x-text="paginatedJobs.length" class="font-semibold text-primary-400"></span> of <span x-text="filteredJobs.length" class="font-semibold text-primary-400"></span> jobs 
+                                (Page <span x-text="currentPageNum" class="font-semibold text-primary-400"></span> of <span x-text="totalPages" class="font-semibold text-primary-400"></span>)
+                            </p>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Job Results -->
-                <div x-show="filteredJobs.length > 0" class="space-y-8">
-                    <!-- Results info -->
-                        <div class="geometric-card p-6">
-                        <p class="text-lg text-white font-corporate">
-                            Showing <span x-text="paginatedJobs.length" class="font-semibold"></span> of <span x-text="filteredJobs.length" class="font-semibold"></span> jobs 
-                            (Page <span x-text="currentPageNum" class="font-semibold"></span> of <span x-text="totalPages" class="font-semibold"></span>)
-                        </p>
-                    </div>
-
-                    <div class="grid gap-6 lg:grid-cols-2">
-                        <template x-for="job in paginatedJobs" :key="job.id">
-                                <article class="job-card-geometric p-8 shadow-lg">
-                                <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
-                                    <div class="flex-1">
-                                            <div class="flex items-center mb-5">
-                                                <div class="company-logo-container mr-5">
-                                                    <img :src="getCompanyLogo(job.company)" :alt="job.company + ' logo'" loading="lazy" decoding="async" class="company-logo-real">
-                                                    <div class="logo-geometric-frame"></div>
-                                                </div>
-                                            <div>
-                                                    <h2 class="text-2xl font-bold text-white mb-2 font-heading" x-html="highlightSearch(job.title)"></h2>
+                        <!-- Job Cards Grid -->
+                        <div class="grid gap-6">
+                            <template x-for="job in paginatedJobs" :key="job.id">
+                                <article class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 hover:shadow-xl hover:shadow-primary-500/20">
+                                    <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+                                        <div class="flex-1">
+                                            <!-- Job Header -->
+                                            <div class="mb-4">
+                                                <h2 class="text-xl md:text-2xl font-bold text-white mb-2 font-heading" x-html="highlightSearch(job.title)"></h2>
                                                 <p class="text-lg text-primary-400 font-semibold font-corporate" x-html="highlightSearch(job.company)"></p>
                                             </div>
+                                            
+                                            <!-- Job Tags -->
+                                            <div class="flex flex-wrap items-center gap-3 text-sm text-corporate-300 mb-4">
+                                                <span class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full">
+                                                    <i class="fas fa-map-marker-alt text-primary-400"></i>
+                                                    <span x-text="job.location" class="font-corporate"></span>
+                                                </span>
+                                                <span x-show="job.remote" class="flex items-center gap-2 bg-success-500/20 px-3 py-1 rounded-full text-success-300">
+                                                    <i class="fas fa-home"></i>
+                                                    Remote
+                                                </span>
+                                                <span x-show="job.salary && job.salary !== 'Salary not specified'" x-text="job.salary" class="bg-secondary-500/20 px-3 py-1 rounded-full text-secondary-300 font-corporate"></span>
+                                            </div>
+                                            
+                                            <!-- Job Description Preview -->
+                                            <div class="text-corporate-300 font-corporate leading-relaxed line-clamp-3" x-html="highlightSearch(job.description.substring(0, 200) + '...')"></div>
                                         </div>
-                                            <div class="flex flex-wrap items-center gap-3 text-base text-corporate-300 mb-5">
-                                                <span class="job-tag">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                                <span x-text="job.location" class="font-corporate"></span>
+                                        
+                                        <!-- Action Buttons -->
+                                        <div class="flex flex-col gap-3 lg:items-end">
+                                            <span class="flex items-center gap-2 bg-success-500/20 text-success-300 px-3 py-1 rounded-full text-sm font-corporate">
+                                                <i class="fas fa-check-circle"></i>
+                                                Inclusive Workplace
                                             </span>
-                                                <span class="job-tag remote-tag" x-show="job.remote">
-                                                <i class="fas fa-home"></i>
-                                                Remote
-                                            </span>
-                                                <span x-show="job.salary && job.salary !== 'Salary not specified'" x-text="job.salary" class="job-tag salary-tag font-corporate"></span>
+                                            <button class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 font-semibold font-corporate rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/50">
+                                                Apply Now
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="flex flex-col items-end gap-3">
-                                            <span class="inclusive-badge">
-                                            <i class="fas fa-check-circle mr-2"></i>
-                                            Inclusive Workplace
-                                        </span>
-                                            <time class="date-badge" x-text="formatDate(job.posted_date)"></time>
-                                    </div>
-                                </div>
-                                <div class="prose max-w-none mb-6">
-                                    <p class="text-corporate-200 leading-relaxed text-base font-corporate" x-html="highlightSearch(job.description || 'No description available')"></p>
-                                </div>
-                                <div class="flex flex-col sm:flex-row gap-3">
-                                    <button @click="showJobDetails(job)" class="btn-professional shadow-lg">
-                                        <i class="fas fa-eye mr-2"></i>
-                                        View Details
-                                    </button>
-                                    <a :href="job.apply_url" target="_blank" rel="noopener noreferrer" class="btn-secondary-professional text-center">
-                                        <i class="fas fa-external-link-alt mr-2"></i>
-                                        Apply Now
-                                    </a>
-                                </div>
-                            </article>
-                        </template>
-                    </div>
+                                </article>
+                            </template>
+                        </div>
 
                     <!-- Pagination -->
                     <div x-show="totalPages > 1" class="flex justify-center items-center space-x-3 mt-10">
@@ -1797,115 +1862,139 @@
             </div>
         </div>
 
-        <!-- Contact Page with Video Background -->
+        <!-- Enhanced Contact Page -->
         <div x-show="currentPage === 'contact'" x-transition>
-            <div class="contact-bg min-h-screen relative overflow-hidden">
-                <!-- Background Video -->
-                <video autoplay muted loop playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover opacity-80">
-                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" type="video/mp4">
-                </video>
-                <div class="absolute inset-0 bg-gradient-to-br from-corporate-900/20 via-corporate-800/15 to-corporate-900/20"></div>
-                
-                <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 py-16">
-                    <h1 class="text-4xl md:text-5xl font-bold text-white mb-8 font-heading">Contact Us</h1>
+            <div class="min-h-screen bg-gradient-to-br from-corporate-900 via-corporate-800 to-corporate-900">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                    <div class="text-center mb-12">
+                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6 font-heading">Get in Touch</h1>
+                        <p class="text-xl text-corporate-300 font-corporate max-w-3xl mx-auto">
+                            We're here to help you find meaningful employment opportunities. 
+                            Whether you have questions about our platform, need accessibility support, 
+                            or want to provide feedback, we'd love to hear from you.
+                        </p>
+                    </div>
                     
-                    <div class="grid md:grid-cols-2 gap-16">
-                        <div>
-                            <h2 class="text-3xl font-semibold text-white mb-6 font-heading">Get in Touch</h2>
-                            <p class="text-xl text-corporate-200 mb-8 font-corporate leading-relaxed">
-                                We're here to help you find meaningful employment opportunities. 
-                                Whether you have questions about our platform, need accessibility support, 
-                                or want to provide feedback, we'd love to hear from you.
-                            </p>
+                    <div class="grid lg:grid-cols-2 gap-12">
+                        <!-- Contact Information -->
+                        <div class="space-y-8">
+                            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                                <h2 class="text-2xl font-semibold text-white mb-6 font-heading">Contact Information</h2>
+                                
+                                <div class="space-y-6">
+                                    <div class="flex items-center gap-4 p-4 bg-white/5 rounded-xl">
+                                        <div class="flex-shrink-0 w-12 h-12 bg-primary-500/20 rounded-xl flex items-center justify-center">
+                                            <i class="fas fa-envelope text-primary-400 text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-white font-corporate">General Email</p>
+                                            <a href="mailto:siddharthadhakall3722@gmail.com" class="text-primary-400 hover:text-primary-300 font-corporate transition-colors">siddharthadhakall3722@gmail.com</a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center gap-4 p-4 bg-white/5 rounded-xl">
+                                        <div class="flex-shrink-0 w-12 h-12 bg-success-500/20 rounded-xl flex items-center justify-center">
+                                            <i class="fas fa-universal-access text-success-400 text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-white font-corporate">Accessibility Support</p>
+                                            <a href="mailto:siddharthadhakall3722@gmail.com" class="text-success-400 hover:text-success-300 font-corporate transition-colors">siddharthadhakall3722@gmail.com</a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center gap-4 p-4 bg-white/5 rounded-xl">
+                                        <div class="flex-shrink-0 w-12 h-12 bg-secondary-500/20 rounded-xl flex items-center justify-center">
+                                            <i class="fas fa-map-marker-alt text-secondary-400 text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-semibold text-white font-corporate">Location</p>
+                                            <p class="text-corporate-300 font-corporate">Biratnagar, Nepal</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             
-                            <div class="space-y-6">
-                                <div class="flex items-center gap-4 glass-card p-6">
-                                    <i class="fas fa-envelope text-primary-400 text-2xl"></i>
-                                    <div>
-                                        <p class="font-semibold text-white font-corporate text-lg">Email</p>
-                                        <a href="mailto:siddharthadhakall3722@gmail.com" class="text-primary-400 hover:text-primary-300 font-corporate text-lg">siddharthadhakall3722@gmail.com</a>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-center gap-4 glass-card p-6">
-                                    <i class="fas fa-universal-access text-green-400 text-2xl"></i>
-                                    <div>
-                                        <p class="font-semibold text-white font-corporate text-lg">Accessibility Support</p>
-                                        <a href="mailto:siddharthadhakall3722@gmail.com" class="text-primary-400 hover:text-primary-300 font-corporate text-lg">siddharthadhakall3722@gmail.com</a>
-                                    </div>
-                                </div>
-                                
-                                <div class="flex items-center gap-4 glass-card p-6">
-                                    <i class="fas fa-map-marker-alt text-red-400 text-2xl"></i>
-                                    <div>
-                                        <p class="font-semibold text-white font-corporate text-lg">Location</p>
-                                        <p class="text-corporate-300 font-corporate text-lg">Biratnagar, Nepal</p>
-                                    </div>
+                            <!-- Quick Links -->
+                            <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                                <h3 class="text-xl font-semibold text-white mb-4 font-heading">Quick Links</h3>
+                                <div class="space-y-3">
+                                    <a href="#" class="flex items-center gap-3 p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
+                                        <i class="fas fa-question-circle text-primary-400"></i>
+                                        <span class="text-white font-corporate">FAQ</span>
+                                    </a>
+                                    <a href="#" class="flex items-center gap-3 p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
+                                        <i class="fas fa-book text-success-400"></i>
+                                        <span class="text-white font-corporate">Help Center</span>
+                                    </a>
+                                    <a href="#" class="flex items-center gap-3 p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
+                                        <i class="fas fa-users text-secondary-400"></i>
+                                        <span class="text-white font-corporate">Community</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                         
-                        <div>
-                            <form class="glass-card p-8">
-                                <h3 class="text-2xl font-semibold text-white mb-6 font-heading">Send us a message</h3>
+                        <!-- Contact Form -->
+                        <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+                            <h3 class="text-2xl font-semibold text-white mb-6 font-heading">Send us a message</h3>
+                            
+                            <form class="space-y-6">
+                                <div>
+                                    <label for="contact-name" class="block text-sm font-semibold text-white mb-2 font-corporate">
+                                        Name *
+                                    </label>
+                                    <input type="text" 
+                                           id="contact-name" 
+                                           name="name" 
+                                           required
+                                           class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-xl text-white font-corporate focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder-corporate-400">
+                                </div>
+                                    
+                                <div>
+                                    <label for="contact-email" class="block text-sm font-semibold text-white mb-2 font-corporate">
+                                        Email *
+                                    </label>
+                                    <input type="email" 
+                                           id="contact-email" 
+                                           name="email" 
+                                           required
+                                           class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-xl text-white font-corporate focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder-corporate-400">
+                                </div>
                                 
-                                <div class="space-y-6">
-                                    <div>
-                                        <label for="contact-name" class="block text-sm font-semibold text-white mb-2 font-corporate">
-                                            Name *
-                                        </label>
-                                        <input type="text" 
-                                               id="contact-name" 
-                                               name="name" 
-                                               required
-                                               class="w-full px-4 py-4 font-corporate text-lg">
-                                    </div>
-                                    
-                                    <div>
-                                        <label for="contact-email" class="block text-sm font-semibold text-white mb-2 font-corporate">
-                                            Email *
-                                        </label>
-                                        <input type="email" 
-                                               id="contact-email" 
-                                               name="email" 
-                                               required
-                                               class="w-full px-4 py-4 font-corporate text-lg">
-                                    </div>
-                                    
-                                    <div>
-                                        <label for="contact-subject" class="block text-sm font-semibold text-white mb-2 font-corporate">
-                                            Subject *
-                                        </label>
-                                        <select id="contact-subject" 
-                                                name="subject" 
-                                                required
-                                                class="w-full px-4 py-4 font-corporate text-lg">
-                                            <option value="">Select a topic</option>
-                                            <option value="job-search">Job Search Support</option>
-                                            <option value="accessibility">Accessibility Issue</option>
-                                            <option value="feedback">General Feedback</option>
-                                            <option value="partnership">Partnership Inquiry</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div>
-                                        <label for="contact-message" class="block text-sm font-semibold text-white mb-2 font-corporate">
-                                            Message *
-                                        </label>
-                                        <textarea id="contact-message" 
-                                                  name="message" 
-                                                  rows="5" 
-                                                  required
-                                                  class="w-full px-4 py-4 font-corporate text-lg"
-                                                  placeholder="How can we help you?"></textarea>
-                                    </div>
-                                    
-                                    <button type="submit" 
-                                            class="btn-professional w-full">
-                                        <i class="fas fa-paper-plane mr-2"></i>
-                                        Send Message
-                                    </button>
+                                <div>
+                                    <label for="contact-subject" class="block text-sm font-semibold text-white mb-2 font-corporate">
+                                        Subject *
+                                    </label>
+                                    <select id="contact-subject" 
+                                            name="subject" 
+                                            required
+                                            class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-xl text-white font-corporate focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+                                        <option value="">Select a topic</option>
+                                        <option value="job-search">Job Search Support</option>
+                                        <option value="accessibility">Accessibility Issue</option>
+                                        <option value="feedback">General Feedback</option>
+                                        <option value="partnership">Partnership Inquiry</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="contact-message" class="block text-sm font-semibold text-white mb-2 font-corporate">
+                                        Message *
+                                    </label>
+                                    <textarea id="contact-message" 
+                                              name="message" 
+                                              rows="5" 
+                                              required
+                                              class="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-xl text-white font-corporate focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent placeholder-corporate-400"
+                                              placeholder="How can we help you?"></textarea>
+                                </div>
+                                
+                                <button type="submit" 
+                                        class="w-full bg-primary-500 hover:bg-primary-600 text-white px-6 py-4 font-semibold font-corporate rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/50">
+                                    <i class="fas fa-paper-plane mr-2"></i>
+                                    Send Message
+                                </button>
                                 </div>
                             </form>
                         </div>
