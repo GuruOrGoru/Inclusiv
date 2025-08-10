@@ -277,6 +277,10 @@
         .nav-btn-geometric:hover .nav-text {
             color: #0ea5e9;
         }
+        /* Tighten desktop nav spacing on small laptops */
+        @media (max-width: 1200px) and (min-width: 768px) {
+            #navigation .nav-btn-geometric { padding-left: 12px; padding-right: 12px; }
+        }
 
         .nav-btn-active .nav-text {
             color: #0ea5e9;
@@ -322,6 +326,10 @@
             background: rgba(255, 255, 255, 0.95);
             border-bottom: 1px solid rgba(14, 165, 233, 0.2);
         }
+        /* Slightly tweaked color scheme accents */
+        :root { --accent: #22d3ee; }
+        .btn-professional { background: linear-gradient(135deg, #06b6d4, #0284c7); }
+        .btn-professional:hover { background: linear-gradient(135deg, #0891b2, #0369a1); }
 
         .light-theme .nav-text {
             color: #1e293b;
@@ -719,6 +727,9 @@
         .mobile-menu-professional {
             background: rgba(15, 23, 42, 0.98);
             backdrop-filter: blur(20px);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
             border-top: 1px solid rgba(148, 163, 184, 0.2);
         }
 
@@ -824,10 +835,33 @@
                 overflow: hidden;
             }
         }
+        /* Unified form controls */
+        input[type="text"], input[type="email"], select, textarea {
+            background: rgba(2, 132, 199, 0.08);
+            border: 1px solid rgba(14, 165, 233, 0.35);
+            border-radius: 10px;
+            color: #ffffff;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+        input[type="text"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.25);
+        }
+        .light-theme input[type="text"], .light-theme input[type="email"], .light-theme select, .light-theme textarea {
+            background: rgba(255,255,255,0.9);
+            color: #0f172a;
+        }
     </style>
 
     <!-- Preload critical fonts -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" as="style">
+
+    <!-- Favicon and app icons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" href="logo.png" sizes="256x256">
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta name="theme-color" content="#0ea5e9">
 
     <script>
         // Reduce mobile lag by pausing/unloading decorative videos on small screens
@@ -877,10 +911,10 @@
                         <div class="logo-container mr-4">
                             <img src="logo.png" loading="eager" decoding="async" fetchpriority="high" width="48" height="48"
                              alt="Inclusiv Logo"
-                                 class="h-12 w-12 object-cover">
+                                 class="h-12 w-12 object-cover rounded-lg ring-2 ring-primary-500/40">
                             <div class="logo-geometric-overlay"></div>
                         </div>
-                        <span class="text-3xl font-bold font-heading text-white logo-text">Inclusiv</span>
+                        <span class="text-3xl font-bold font-heading text-white logo-text tracking-tight">Inclusiv</span>
                     </div>
                 </div>
                 
@@ -889,7 +923,7 @@
                     <div class="ml-10 flex items-center space-x-2">
                         <button @click="currentPage = 'home'" 
                                 :class="currentPage === 'home' ? 'nav-btn-active' : 'nav-btn'"
-                                class="nav-btn-geometric px-6 py-3 font-medium transition-all duration-300 font-corporate"
+                                class="nav-btn-geometric px-5 py-3 font-medium transition-all duration-300 font-corporate rounded-md"
                                 aria-current="page"
                                 :aria-label="currentPage === 'home' ? 'Home, current page' : 'Home'">
                             <span class="nav-text">Home</span>
@@ -897,29 +931,28 @@
                         </button>
                         <button @click="currentPage = 'jobs'; loadJobs()" 
                                 :class="currentPage === 'jobs' ? 'nav-btn-active' : 'nav-btn'"
-                                class="nav-btn-geometric px-6 py-3 font-medium transition-all duration-300 font-corporate"
+                                class="nav-btn-geometric px-5 py-3 font-medium transition-all duration-300 font-corporate rounded-md"
                                 :aria-label="currentPage === 'jobs' ? 'Browse Jobs, current page' : 'Browse Jobs'">
                             <span class="nav-text">Browse Jobs</span>
                             <div class="nav-geometric-bg"></div>
                         </button>
                         <button @click="currentPage = 'about'" 
                                 :class="currentPage === 'about' ? 'nav-btn-active' : 'nav-btn'"
-                                class="nav-btn-geometric px-6 py-3 font-medium transition-all duration-300 font-corporate"
+                                class="nav-btn-geometric px-5 py-3 font-medium transition-all duration-300 font-corporate rounded-md"
                                 :aria-label="currentPage === 'about' ? 'About, current page' : 'About'">
                             <span class="nav-text">About</span>
                             <div class="nav-geometric-bg"></div>
                         </button>
                         <button @click="currentPage = 'accessibility'" 
                                 :class="currentPage === 'accessibility' ? 'nav-btn-active' : 'nav-btn'"
-                                class="nav-btn-geometric px-6 py-3 font-medium transition-all duration-300 font-corporate"
+                                class="nav-btn-geometric px-5 py-3 font-medium transition-all duration-300 font-corporate rounded-md"
                                 :aria-label="currentPage === 'accessibility' ? 'Accessibility Help, current page' : 'Accessibility Help'">
                             <span class="nav-text">Accessibility</span>
                             <div class="nav-geometric-bg"></div>
                         </button>
                         <button @click="currentPage = 'contact'" 
                                 :class="currentPage === 'contact' ? 'nav-btn-active' : 'nav-btn'"
-                                class="nav-btn-geometric px-6 py-3 font-medium transition-all duration-300 font-corporate"
-                                :aria-label="currentPage === 'contact' ? 'Contact, current page' : 'Contact'">
+                                class="nav-btn-geometric px-5 py-3 font-medium transition-all duration-300 font-corporate rounded-md">
                             <span class="nav-text">Contact</span>
                             <div class="nav-geometric-bg"></div>
                         </button>
@@ -992,7 +1025,7 @@
             <!-- Hero Section with Video Background -->
             <section class="hero-section flex items-center justify-center text-center relative overflow-hidden">
                 <!-- Background Video - Professional Office Environment -->
-                <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover opacity-80">
+                <video autoplay muted loop playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover opacity-80">
                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
                 </video>
                 <div class="absolute inset-0 bg-gradient-to-br from-corporate-900/20 via-corporate-800/15 to-corporate-900/20"></div>
@@ -1031,7 +1064,7 @@
             <!-- Features Section with Video Background -->
 <section class="bg-corporate-800 py-24 relative overflow-hidden" aria-labelledby="features-heading">
                 <!-- Background Video - Professional Office -->
-                <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover opacity-80">
+                <video autoplay muted loop playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover opacity-80">
                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
                 </video>
                 <div class="absolute inset-0 bg-gradient-to-br from-corporate-800/20 via-corporate-700/15 to-corporate-800/20"></div>
@@ -1043,7 +1076,7 @@
                         <!-- AI-Powered Matching Card -->
                         <div class="geometric-card p-10 text-center group">
                             <div class="mb-6">
-                                <video autoplay muted loop class="w-24 h-24 mx-auto rounded-lg object-cover shadow-lg">
+                                <video autoplay muted loop playsinline preload="metadata" class="w-24 h-24 mx-auto rounded-lg object-cover shadow-lg">
                                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -1066,7 +1099,7 @@
                         <!-- Workplace Solutions Card -->
                         <div class="geometric-card p-10 text-center group">
                             <div class="mb-6">
-                                <video autoplay muted loop class="w-24 h-24 mx-auto rounded-lg object-cover shadow-lg">
+                                <video autoplay muted loop playsinline preload="metadata" class="w-24 h-24 mx-auto rounded-lg object-cover shadow-lg">
                                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -1089,7 +1122,7 @@
                         <!-- Verified Employers Card -->
                         <div class="geometric-card p-10 text-center group">
                             <div class="mb-6">
-                                <video autoplay muted loop class="w-24 h-24 mx-auto rounded-lg object-cover shadow-lg">
+                                <video autoplay muted loop playsinline preload="metadata" class="w-24 h-24 mx-auto rounded-lg object-cover shadow-lg">
                                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4" type="video/mp4">
                                 </video>
                             </div>
@@ -1115,7 +1148,7 @@
             <!-- Statistics Section with Video Background -->
             <section class="stats-professional py-24 text-white text-center relative overflow-hidden" aria-labelledby="stats-heading">
                 <!-- Background Video -->
-                <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover opacity-80">
+                <video autoplay muted loop playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover opacity-80">
                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4" type="video/mp4">
                 </video>
                 <div class="absolute inset-0 bg-gradient-to-br from-corporate-900/20 via-corporate-800/15 to-corporate-900/20"></div>
@@ -1144,7 +1177,7 @@
         <div x-show="currentPage === 'jobs'" x-transition>
             <div class="jobs-video-bg min-h-screen relative overflow-hidden">
                 <!-- Background Video -->
-                <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover opacity-80 pointer-events-none">
+                <video autoplay muted loop playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover opacity-80 pointer-events-none">
                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4">
                 </video>
                 <div class="absolute inset-0 bg-gradient-to-br from-corporate-900/20 via-corporate-800/15 to-corporate-900/20"></div>
@@ -1235,58 +1268,60 @@
                         </p>
                     </div>
 
-                    <template x-for="job in paginatedJobs" :key="job.id">
-                            <article class="job-card-geometric p-10 shadow-lg">
-                            <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-8">
-                                <div class="flex-1">
-                                        <div class="flex items-center mb-6">
-                                            <div class="company-logo-container mr-6">
-                                                <img :src="getCompanyLogo(job.company)" :alt="job.company + ' logo'" loading="lazy" decoding="async" class="company-logo-real">
-                                                <div class="logo-geometric-frame"></div>
+                    <div class="grid gap-6 lg:grid-cols-2">
+                        <template x-for="job in paginatedJobs" :key="job.id">
+                                <article class="job-card-geometric p-8 shadow-lg">
+                                <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+                                    <div class="flex-1">
+                                            <div class="flex items-center mb-5">
+                                                <div class="company-logo-container mr-5">
+                                                    <img :src="getCompanyLogo(job.company)" :alt="job.company + ' logo'" loading="lazy" decoding="async" class="company-logo-real">
+                                                    <div class="logo-geometric-frame"></div>
+                                                </div>
+                                            <div>
+                                                    <h2 class="text-2xl font-bold text-white mb-2 font-heading" x-html="highlightSearch(job.title)"></h2>
+                                                <p class="text-lg text-primary-400 font-semibold font-corporate" x-html="highlightSearch(job.company)"></p>
                                             </div>
-                                        <div>
-                                                <h2 class="text-3xl font-bold text-white mb-3 font-heading" x-html="highlightSearch(job.title)"></h2>
-                                            <p class="text-xl text-primary-400 font-semibold font-corporate" x-html="highlightSearch(job.company)"></p>
+                                        </div>
+                                            <div class="flex flex-wrap items-center gap-3 text-base text-corporate-300 mb-5">
+                                                <span class="job-tag">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                                <span x-text="job.location" class="font-corporate"></span>
+                                            </span>
+                                                <span class="job-tag remote-tag" x-show="job.remote">
+                                                <i class="fas fa-home"></i>
+                                                Remote
+                                            </span>
+                                                <span x-show="job.salary && job.salary !== 'Salary not specified'" x-text="job.salary" class="job-tag salary-tag font-corporate"></span>
                                         </div>
                                     </div>
-                                        <div class="flex flex-wrap items-center gap-4 text-base text-corporate-300 mb-6">
-                                            <span class="job-tag">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                            <span x-text="job.location" class="font-corporate"></span>
+                                    <div class="flex flex-col items-end gap-3">
+                                            <span class="inclusive-badge">
+                                            <i class="fas fa-check-circle mr-2"></i>
+                                            Inclusive Workplace
                                         </span>
-                                            <span class="job-tag remote-tag" x-show="job.remote">
-                                            <i class="fas fa-home"></i>
-                                            Remote
-                                        </span>
-                                            <span x-show="job.salary && job.salary !== 'Salary not specified'" x-text="job.salary" class="job-tag salary-tag font-corporate"></span>
+                                            <time class="date-badge" x-text="formatDate(job.posted_date)"></time>
                                     </div>
                                 </div>
-                                <div class="flex flex-col items-end gap-4">
-                                        <span class="inclusive-badge">
-                                        <i class="fas fa-check-circle mr-2"></i>
-                                        Inclusive Workplace
-                                    </span>
-                                        <time class="date-badge" x-text="formatDate(job.posted_date)"></time>
+                                <div class="prose max-w-none mb-6">
+                                    <p class="text-corporate-200 leading-relaxed text-base font-corporate" x-html="highlightSearch(job.description || 'No description available')"></p>
                                 </div>
-                            </div>
-                            <div class="prose max-w-none mb-8">
-                                <p class="text-corporate-200 leading-relaxed text-lg font-corporate" x-html="highlightSearch(job.description || 'No description available')"></p>
-                            </div>
-                            <div class="flex flex-col sm:flex-row gap-4">
-                                <button @click="showJobDetails(job)" class="btn-professional shadow-lg">
-                                    <i class="fas fa-eye mr-2"></i>
-                                    View Details
-                                </button>
-                                <a :href="job.apply_url" target="_blank" rel="noopener noreferrer" class="btn-secondary-professional text-center">
-                                    <i class="fas fa-external-link-alt mr-2"></i>
-                                    Apply Now
-                                </a>
-                            </div>
-                        </article>
-                    </template>
+                                <div class="flex flex-col sm:flex-row gap-3">
+                                    <button @click="showJobDetails(job)" class="btn-professional shadow-lg">
+                                        <i class="fas fa-eye mr-2"></i>
+                                        View Details
+                                    </button>
+                                    <a :href="job.apply_url" target="_blank" rel="noopener noreferrer" class="btn-secondary-professional text-center">
+                                        <i class="fas fa-external-link-alt mr-2"></i>
+                                        Apply Now
+                                    </a>
+                                </div>
+                            </article>
+                        </template>
+                    </div>
 
                     <!-- Pagination -->
-                    <div x-show="totalPages > 1" class="flex justify-center items-center space-x-3 mt-12">
+                    <div x-show="totalPages > 1" class="flex justify-center items-center space-x-3 mt-10">
                         <button @click="goToPage(currentPageNum - 1)" 
                                 :disabled="currentPageNum === 1"
                                 :class="currentPageNum === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-corporate-700'"
@@ -1339,7 +1374,7 @@
         <div x-show="currentPage === 'about'" x-transition>
             <div class="about-video-bg min-h-screen relative overflow-hidden">
                 <!-- Background Video - Professional Diversity -->
-                <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover opacity-80">
+                <video autoplay muted loop playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover opacity-80">
                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" type="video/mp4">
                 </video>
                 
@@ -1766,7 +1801,7 @@
         <div x-show="currentPage === 'contact'" x-transition>
             <div class="contact-bg min-h-screen relative overflow-hidden">
                 <!-- Background Video -->
-                <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover opacity-80">
+                <video autoplay muted loop playsinline preload="metadata" class="absolute inset-0 w-full h-full object-cover opacity-80">
                     <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" type="video/mp4">
                 </video>
                 <div class="absolute inset-0 bg-gradient-to-br from-corporate-900/20 via-corporate-800/15 to-corporate-900/20"></div>
@@ -1985,6 +2020,7 @@
                     </p>
                     <p class="text-corporate-400 text-base font-corporate">
                         © 2025 Inclusiv. All rights reserved. Made with care for accessibility.
+                        <span class="block text-corporate-500 text-sm mt-2">Mobile design iterated by team based on community feedback.</span>
                     </p>
                 </div>
                 
