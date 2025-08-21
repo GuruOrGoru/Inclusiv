@@ -986,7 +986,7 @@
 
     <header class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-corporate-900/98 via-corporate-800/98 to-corporate-900/98 backdrop-blur-xl border-b border-primary-500/30 shadow-2xl" role="banner">
         <nav id="navigation" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-            <div class="flex justify-between items-center h-18 md:h-22">
+            <div class="flex justify-between items-center h-20 md:h-24">
 
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
@@ -1090,7 +1090,7 @@
     </header>
 
 
-    <main id="main-content" class="pt-24">
+    <main id="main-content" class="pt-28">
         
 
         <div x-show="currentPage === 'home'" x-transition>
@@ -1371,8 +1371,10 @@
                                                 <i class="fas fa-check-circle"></i>
                                                 Inclusive Workplace
                                             </span>
-                                            <button class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 font-semibold font-corporate rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/50">
-                                                Apply Now
+                                            <button @click="applyForJob(job)" 
+                                                    class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 font-semibold font-corporate rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-primary-500/50 focus:ring-4 focus:ring-primary-500/30 focus:outline-none"
+                                                    :aria-label="'Apply for ' + job.title + ' at ' + job.company">
+                                                <i class="fas fa-paper-plane mr-2"></i>Apply Now
                                             </button>
                                         </div>
                                     </div>
@@ -2385,6 +2387,17 @@
                     if (!this.searchQuery) return text;
                     const regex = new RegExp(`(${this.searchQuery})`, 'gi');
                     return text.replace(regex, '<mark class="bg-yellow-200 px-1 rounded">$1</mark>');
+                },
+
+                // Handle Apply Now button clicks
+                applyForJob(job) {
+                    if (job && job.apply_url) {
+                        // Open the application URL in a new tab
+                        window.open(job.apply_url, '_blank', 'noopener,noreferrer');
+                    } else {
+                        // Show a modal or alert if no URL is available
+                        alert('Application URL not available for this position. Please contact the employer directly.');
+                    }
                 }
             }
         }
