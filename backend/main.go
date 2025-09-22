@@ -13,6 +13,6 @@ func main() {
 
 	server := config.GetServerConfigs(portstr, router)
 
-	log.Println("Server started on port", portstr)
+	log.Println("Server started on port:", portstr)
 	log.Fatalln(server.ListenAndServe())
 }
