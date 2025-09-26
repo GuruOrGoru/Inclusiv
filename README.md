@@ -14,7 +14,7 @@ Inclusiv was born out of this frustration. It’s a place where job seekers like
 
 ## What is Inclusiv?
 
-Inclusiv is an AI-powered job portal focused entirely on **inclusivity**. It carefully filters job listings to highlight those that truly embrace accessibility, diversity, and flexibility. Our mission? To bring transparency to hiring practices and to help companies who *actually* care connect with the talent they deserve.
+Inclusiv is an AI powered job portal focused entirely on **inclusivity**. It carefully filters job listings to highlight those that truly embrace accessibility, diversity, and flexibility. Our mission? To bring transparency to hiring practices and to help companies who *actually* care connect with the talent they deserve.
 
 ---
 
